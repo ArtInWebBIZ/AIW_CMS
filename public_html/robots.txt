@@ -14,4 +14,4 @@ Disallow: /*print=1
 Disallow: /*=atom
 Disallow: /*=rss
 
-Sitemap: https://andorinha-pr.com/sitemap.txt
+Sitemap: http://artinweb.cms/sitemap.txt
