@@ -1,0 +1,199 @@
+@use "global"
+@use "sass:color"
+
+.uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, .uk-heading-2xlarge, .uk-heading-large, .uk-heading-medium, .uk-heading-small, .uk-heading-xlarge, h1, h2, h3, h4, h5, h6
+    font-family: "Open Sans Condensed",sans-serif
+
+.uk-background-default
+    background-color: global.$glBg
+
+.uk-input, .uk-select, .uk-textarea
+    border: 1px solid global.$glLineColor
+    border-radius: 10px
+    color: color.adjust(#000000, $lightness: 10%)
+    &:focus, &:hover
+        border: 1px solid global.$glPrimary
+    &::placeholder  // Chrome, Firefox, Opera, Safari 10.1+
+        color: color.adjust(#000000, $lightness: 80%)
+        opacity: 1 //* Firefox */
+    &:-ms-input-placeholder // Internet Explorer 10-11
+        color: color.adjust(#000000, $lightness: 80%)
+    &::-ms-input-placeholder //* Microsoft Edge
+        color: color.adjust(#000000, $lightness: 80%)
+
+.fieldset-label
+    border: 1px solid color.adjust(global.$glLineColor, $lightness: 10%)
+    &:hover,
+    &:focus
+        background: global.$glLineColor
+
+input
+    &:checked + .fieldset-label
+        background: global.$glLineColor
+
+.uk-input:disabled
+    background: inherit
+
+.uk-button
+    border-radius: 10px
+    line-height: 150%
+    padding: 5px 30px
+    &-default
+        &:hover
+            color: color.adjust(global.$glBg, $lightness: -70%)
+            border-color: color.adjust(#dddddd, $lightness: -10%)
+            background: color.adjust(global.$glBg, $lightness: -5%)
+    &-link
+        padding: 0 10px
+        margin: 0
+
+.menu-icon
+    position: fixed
+    z-index: 999
+    padding: 15px
+    border-radius: 50%
+    color: global.$glLineColor
+
+.uk-pagination
+    justify-content: center
+    & > .uk-active
+        & > *
+            color: global.$glLineColor
+            border-bottom: 1px solid #fff
+    & > li
+        & > a
+            display: block
+
+.uk-modal-dialog
+    border-radius: 10px
+
+.js-upload.uk-form-custom
+    width: 100%
+    > .uk-input:disabled
+        width: 100%
+        border: 1px solid global.$glLineColor
+
+.brand-activation-code
+    border-left: 5px solid color.adjust(global.$glBg, $lightness: -15%)
+    border-right: 5px solid color.adjust(global.$glBg, $lightness: -15%)
+    font-style: normal
+    background-color: color.adjust(global.$glBg, $lightness: -5%)
+    padding: 10px
+    font-size: 1.3rem
+
+.uk-text-meta a
+    color: #555555
+
+.uk-alert
+    border-radius: 15px
+
+.uk-accordion-title
+    padding: 8px 15px
+    border-radius: 15px
+    border: 1px solid global.$glLineColor
+    background-color: global.$glBg
+    &.uk-alert-success
+        border: 1px solid global.$glLineColor
+    &.uk-alert-primary
+        border: 1px solid color.adjust(#d8eafc, $lightness: -10%)
+
+.uk-offcanvas-bar
+    color: #b1bac1
+    & .uk-text-muted
+        color: #999999 !important
+    & .uk-input
+        border-radius: 10px
+        color: global.$glBg
+        &:focus
+            // background-color: $lightBg
+            border: 1px solid #1e87f0
+    &::placeholder  // Chrome, Firefox, Opera, Safari 10.1+
+        color: color.adjust(global.$lightBg, $lightness: 20%)
+        opacity: 1 //* Firefox */
+    &:-ms-input-placeholder // Internet Explorer 10-11
+        color: color.adjust(global.$lightBg, $lightness: 20%)
+    &::-ms-input-placeholder //* Microsoft Edge
+        color: color.adjust(global.$lightBg, $lightness: 20%)
+    & .uk-input:focus
+        // border: 1px solid darken(#e5e5e5, 10%)
+        color: rgba(255,255,255,1) !important
+        // border-radius: 10px
+    & .uk-button-primary
+        background-color: #1e87f0
+        color: global.$glBg
+        &:hover
+            color: color.adjust(global.$glBg, $lightness: -10%)
+            background-color: color.adjust(#1e87f0, $lightness: 10%)
+    & a
+        color: #b1bac1
+        border-bottom: none
+        &:hover
+            color: #e5e5e5
+    & hr
+        border-top: 1px solid #e5e5e5
+    & h3, & h4, & h5, & h6
+        color: global.$glLineColor
+    & input:checked + label
+        background-color: global.$glBg
+        color: #23172f
+    & .uk-accordion > :nth-child(n+2)
+        margin-top: 10px
+    & .uk-select
+        background-color: rgba(255,255,255,.1)
+        border-color: rgba(255,255,255,.2)
+        &:hover,
+        &:focus
+            background-color: rgba(255,255,255,.1)
+            border-color: #1e87f0
+        & option
+            color: inherit
+            background-color: inherit
+    & .uk-button-default
+        color: #cccccc
+        border: 1px solid rgba(255,255,255,.2)
+        background: #212529
+    & .uk-button-default:hover,
+    & .uk-button-default:focus
+        color: color.adjust(#212529, $lightness: 10%)
+        border-color: color.adjust(#cccccc, $lightness: 10%)
+        background: #cccccc
+    & .uk-accordion-title
+        padding: 10px
+        border-radius: 10px
+        border: 1px solid rgba(255,255,255,.2)
+        font-size: .9rem
+        background-color: inherit
+    & .uk-button
+        padding: 5px
+
+.accordion-about-brand .uk-accordion-title
+    border-top: 1px solid color.adjust(#cccccc, $lightness: 10%)
+    border-bottom: 1px solid color.adjust(#cccccc, $lightness: 10%)
+
+.uk-button-large
+    line-height: 53px !important
+
+.uk-card-default
+    color: inherit !important
+
+.uk-table
+    background-color: global.$glBg
+    &.intro-table
+        & td
+            padding: 5px 12px
+
+b, strong
+    font-weight: 700
+
+.uk-slider
+    &-items
+        & > div
+            padding-left: 0
+
+nav
+    & .uk-inline a
+        font-family: global.$glHf
+        font-size: 1rem
+
+.uk-text-decoration-none
+    border-bottom: none !important

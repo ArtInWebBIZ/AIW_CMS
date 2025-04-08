@@ -1,0 +1,91 @@
+@use "sass:color"
+@use 'global'
+
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year
+    border: 1px solid #e5e5e5
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button,
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active
+    // border: 1px solid #c5c5c5
+    display: flex
+    justify-content: center
+    border: none
+    background: #f6f6f6
+    font-weight: normal
+    color: #454545
+
+.ui-state-highlight
+    background: color.adjust(#f6f6f6, $lightness: -30%) !important
+    color: #ffffff !important
+    font-weight: bold !important
+
+.ui-state-active
+    background: global.$glLineColor !important
+    color: #ffffff !important
+    font-weight: bold !important
+
+.uk-inline.uk-width-1-1
+    & > .uk-form-icon
+        color: #666666
+
+.signal
+    margin-left: 20px
+    border-radius: 33px
+    min-width: 46px
+    height: 46px
+    padding: 10px
+
+.a4-container
+    width: 1240px
+    height: 1754px
+
+.com-net-all
+    height: 60px
+
+.com-net
+    display: block
+    width: 50px
+    padding: 5px
+
+.intro-params
+    border: 1px dashed global.$glLineColor
+    padding: 4px 10px
+    min-height: 22px
+    border-radius: 15px
+
+.c-gold.uk-icon
+    color: global.$glPrimary
+
+.c-red
+    color: red
+
+.c-lime
+    color: lime
+
+.bg-green
+    background: global.$glLineColor
+    color: global.$glBg
+
+.circle-number-div
+    display: flex
+    width: 60px
+    height: 60px
+    background-color: global.$glLineColor
+    color: global.$glBg
+    border-radius: 50%
+    justify-content: center
+    align-items: center
+    margin: auto
+    font-weight: 700
+    font-size: 1.2rem
+
+.div-content
+    & + hr
+        margin: 40px 0 40px 0
+    & a
+        border-bottom: none

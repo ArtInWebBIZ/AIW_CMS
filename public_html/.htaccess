@@ -1,0 +1,99 @@
+ <IfModule mod_rewrite.c>
+     RewriteEngine On
+     RewriteCond %{REQUEST_FILENAME} !-f
+     RewriteCond %{REQUEST_FILENAME} !-d
+     RewriteRule ^ index.php?$1 [L,QSA]
+ </IfModule>
+
+## No catalog lists
+<IfModule mod_autoindex.c>
+  IndexIgnore *
+</IfModule>
+
+## Suppress mime type detection in browsers for unknown types
+<IfModule mod_headers.c>
+Header always set X-Content-Type-Options "nosniff"
+##
+# Disable Federated Learning of Cohorts (FLoC)
+##
+Header always set Permissions-Policy "interest-cohort=()"
+</IfModule>
+
+<FilesMatch "\.svg$">
+  <IfModule mod_headers.c>
+    Header always set Content-Security-Policy "script-src 'none'"
+  </IfModule>
+</FilesMatch>
+
+## It can be made if it causes an error, see the notes above.
+Options +FollowSymlinks
+Options -Indexes
+
+## Mod_rewrite in use.
+
+RewriteEngine On
+
+# 
+# Block any script trying to encode the data of Base64_encode in the URL.
+RewriteCond %{QUERY_STRING} base64_encode[^(]*\([^)]*\) [OR]
+# Close any scenario that includes the <SCRIPT> tag in the URL.
+RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+# Blok any scenario trying to install the PHP Globals variable through the URL.
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+# Blok any scenario trying to change the variable _request through the URL.
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+# Return the header 403 Forbidden and show the contents of the root page
+RewriteRule .* index.php [F]
+#
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+#
+# If the requested path and file is not /index.php and request
+# has not yet been rewritten inside the index.php script
+RewriteCond %{REQUEST_URI} !^/index\.php
+# and the requested path and file do not directly correspond to the physical file
+RewriteCond %{REQUEST_FILENAME} !-f
+# and the requested path and file do not directly correspond to the physical folder
+RewriteCond %{REQUEST_FILENAME} !-d
+# internally rewrite the request to the script index.php
+RewriteRule .* index.php [L]
+#
+## PHP errors view setting
+# Disable display of launch errors
+php_flag display_startup_errors off
+# Disable the display of all other errors
+php_flag display_errors off
+# отключить ошибки html разметки
+php_flag html_errors off
+# Turn on the error recording
+php_flag log_errors on
+# включить игнорирование повторяющихся ошибок
+php_flag ignore_repeated_errors on
+# Disable ignoring errors from unique sources
+php_flag ignore_repeated_source off
+# Turn on the recording of PHP memory
+php_flag report_memleaks on
+# Save most of the last errors via php_errormsg
+php_flag track_errors on
+# Disable formatting reference links to errors
+php_value docref_root 0
+# Disable formatting reference links to errors
+php_value docref_ext 0
+# indicating the path to the log log file PHP
+## FOR EXAMPLE
+# in LINUX OS (real server)
+# php_value error_log /home/ACCOUNT_LOGIN/domains/YOUR-DOMAIN.NAME/src/log/PHP_errors.log
+# or, WINDOWS (local server)
+php_value error_log D:\OpenServer\domains\artinweb.cms\AIW_CMS\src\log\PHP_errors.log
+# indicate all errors php
+php_value error_reporting 1
+# Disable the maximum length of the error line
+php_value log_errors_max_len 0
+# Protect the file of the error magazine from public access
+<Files PHP_errors.log>
+     Order allow,deny
+     Deny from all
+     Satisfy All
+</Files>
+## ONLY FOR LINUX SERVERS IF NECESSARY
+# RemoveHandler .php # phpvs v80
+# AddType php80cgi .php # phpvs v80
