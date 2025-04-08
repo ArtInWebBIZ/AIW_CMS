@@ -9,14 +9,14 @@ defined('AIW_CMS') or die;
 class Fields
 {
     private static $prepareFields = null;
-    private static $curDir       = null;
+    private static $curDir        = null;
     /**
-     * Return …
+     * Return all item fields
      * @return array
      */
     private static function prepareFields(): array
     {
-        if (self::$prepareFields == null) {
+        if (self::$prepareFields === null) {
 
             $addFields  = require PATH_APP . self::$curDir . DS . 'Add' . DS . 'inc' . DS . 'fields.php';
             $editFields = require PATH_APP . self::$curDir . DS . 'Edit' . DS . 'inc' . DS . 'fields.php';
@@ -40,8 +40,13 @@ class Fields
 
         return self::$prepareFields;
     }
-
-    public static function checkFieldsType(array $filtersValues, string $controllerName)
+    /**
+     * Check filters fields type
+     * @param array  $filtersValues
+     * @param string $controllerName
+     * @return array
+     */
+    public static function checkFieldsType(array $filtersValues, string $controllerName): array
     {
         $fieldsList = [];
         self::$curDir = $controllerName;

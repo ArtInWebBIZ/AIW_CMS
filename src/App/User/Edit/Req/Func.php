@@ -11,7 +11,7 @@ namespace App\User\Edit\Req;
 
 defined('AIW_CMS') or die;
 
-use Core\{Auth, BaseUrl, Config, GV};
+use Core\{Auth, Config, GV};
 use Core\Plugins\Create\GetHash\GetHash;
 use Core\Plugins\{ParamsToSql, Msg, Model\DB, Crypt\CryptText, View\Tpl};
 use Core\Plugins\Check\{GroupAccess, IntPageAlias};
@@ -23,8 +23,11 @@ class Func
     private static $instance    = null;
     private $checkFormValues    = [];
     private $compareUserProfile = [];
-    private $checkAccess = 'null';
-    private $getCustomUser = [];
+    private $checkAccess        = 'null';
+    private $getCustomUser      = [];
+    private $checkNewUserEmail  = 'null';
+    private $checkNewUserPhone  = 'null';
+    private $saveAvatar         = null;
 
     private function __construct() {}
 
@@ -301,7 +304,7 @@ class Func
         return $return;
     }
     /**
-     * Return userrs edit form
+     * Return users edit form
      * @return string
      */
     public function viewForm(): string
@@ -352,16 +355,15 @@ class Func
             ]
         );
     }
-
-    private $checkNewUserEmail = 'null';
     /**
-     * @return mixed // value or null
+     * Check new users email
+     * @return integer // value or zero (0)
      */
-    public function checkNewUserEmail()
+    public function checkNewUserEmail(): int
     {
-        if ($this->checkNewUserEmail == 'null') {
+        if ($this->checkNewUserEmail === 'null') {
 
-            $this->checkNewUserEmail = DB::getI()->getValue(
+            $this->checkNewUserEmail = (int) DB::getI()->getValue(
                 [
                     'table_name' => 'user',
                     'select'     => 'id',
@@ -373,16 +375,15 @@ class Func
 
         return $this->checkNewUserEmail;
     }
-    #
-    private $checkNewUserPhone = 'null';
     /**
-     * @return mixed // value or null
+     * Check new users phone
+     * @return mixed // value or zero (0)
      */
     public function checkNewUserPhone()
     {
         if ($this->checkNewUserPhone == 'null') {
 
-            $this->checkNewUserPhone = DB::getI()->getValue(
+            $this->checkNewUserPhone = (int) DB::getI()->getValue(
                 [
                     'table_name' => 'user',
                     'select'     => 'id',
@@ -394,17 +395,15 @@ class Func
 
         return $this->checkNewUserPhone;
     }
-    #
-    private $saveAvatar = 'null';
     /**
      * Return avatar or logo name or error message in key ['msg']
      * @return array // or []
      */
     public function saveAvatar(): array
     {
-        if ($this->saveAvatar == 'null') {
+        if ($this->saveAvatar === null) {
 
-            if ( #
+            if (
                 isset(GV::files()['avatar']) &&
                 GV::files()['avatar']['error'] == (int) 0 &&
                 (int) GV::files()['avatar']['size'] < Config::getCfg('CFG_MAX_IMAGES_SIZE')

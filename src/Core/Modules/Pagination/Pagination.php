@@ -24,27 +24,27 @@ class Pagination
             $count > $paginationStep
         ) {
             /**
-             * Начальное число отображаемого списка
+             * The initial number of the displayed list
              */
             $startList = self::checkStartGet();
             /**
-             * Определяем, сколько раз в переменной $count
-             * помещается диапазон $paginationStep
+             * We determine how many times in the variable $count
+             * the range of $paginationStep is placed
              */
             $pagesCount = (int) floor($count / $paginationStep);
             /**
-             * Определяем, есть ли остаток такого деления
+             * We determine whether there is the rest of such a division
              */
             $paginationRest = $count % $paginationStep;
             /**
-             * Если остаток есть, увеличиваем переменную
-             * $pagesCount на единицу
+             * If there is the rest, we increase the variable
+             * $pagesCount + 1
              */
             if ($paginationRest > 0) {
                 $pagesCount = $pagesCount + 1;
             }
             /**
-             * Проверяем корректность введенных данных $startList
+             * We check the correctness of the entered data $startList
              */
             if (
                 $startList >= $count ||
@@ -53,20 +53,20 @@ class Pagination
                 $startList = 0;
             }
             /**
-             * Определяем номер активной страницы
+             * We determine the number of the active page
              */
             $activePage = (int) ($startList / $paginationStep) + 1;
             /**
-             * Определяем корректное начальное число отображения списка
+             * We determine the correct initial number of display of the list
              */
             $startList = ($activePage - 1) * $paginationStep;
             /**
-             * Формируем вывод пагинации
+             * We form the conclusion of the pagination
              */
             self::$pagination = '<ul class="uk-pagination uk-flex uk-flex-center uk-flex-middle uk-margin">';
             /**
-             * Если переменная $startList = 0
-             * выводим неактивную ссылку на предыдущую страницу
+             * If the variable $startList = 0
+             * We display an inactive link to the previous page
              */
             if ($startList == 0) {
                 self::$pagination .= '<li class="uk-disabled"><a href=""><span uk-pagination-previous></span></a></li>';
@@ -74,9 +74,9 @@ class Pagination
                 self::$pagination .= '<li><a href="' . BaseUrl::getBaseUrl() . GV::addToGet(['start' => $startList - $paginationStep]) . '"><span uk-pagination-previous></span></a></li>';
             }
             /**
-             * Формируем html-код пагинации
+             * We form a paginations HTML code
              *
-             * Если страниц пагинации меньше или равно 9
+             * If pages of pagination are smaller or equal 9
              */
             if ($pagesCount <= 9) {
 
@@ -90,7 +90,7 @@ class Pagination
                 }
             }
             /**
-             * Если страниц пагинации больше 9-ти
+             * If the pages of the pagination are larger 9-ти
              */
             else {
 
@@ -138,7 +138,7 @@ class Pagination
                 }
             }
             /**
-             * Определяем ссылку на следующую страницу
+             * Determine the link to the next page
              */
             if (($count - $startList) > $paginationStep) {
                 self::$pagination .= '<li><a href="' . BaseUrl::getBaseUrl() . GV::addToGet(['start' => $startList + $paginationStep]) . '"><span uk-pagination-next></span></a></li>';
@@ -146,7 +146,7 @@ class Pagination
                 self::$pagination .= '<li class="uk-disabled"><a href=""><span uk-pagination-next></span></a></li>';
             }
             /**
-             * Конец блока пагинации
+             * The end of the pagination unit
              */
             self::$pagination .= '</ul>';
         } else {
@@ -155,8 +155,11 @@ class Pagination
 
         return self::$pagination;
     }
-
-    public static function checkStartGet()
+    /**
+     * Get start items count from global $_GET variable
+     * @return integer
+     */
+    public static function checkStartGet(): int
     {
         if (isset(GV::get()['start'])) {
 
@@ -172,8 +175,13 @@ class Pagination
 
         return self::$checkStartGet;
     }
-
-    private static function getStandardLi($i, $paginationStep)
+    /**
+     * Get correctly paginations link
+     * @param integer $i
+     * @param integer $paginationStep
+     * @return string
+     */
+    private static function getStandardLi(int $i, int $paginationStep): string
     {
         return '<li><a href="' . BaseUrl::getBaseUrl() . GV::addToGet(['start' => ($i * $paginationStep) - $paginationStep]) . '">' . $i . '</a></li>';
     }

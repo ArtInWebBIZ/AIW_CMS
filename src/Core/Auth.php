@@ -19,6 +19,7 @@ class Auth
     private static $userId = null;
     private static $user   = null;
     private static $status = null;
+    private static $getUserUser = null;
 
     private static function setUserId()
     {
@@ -71,12 +72,13 @@ class Auth
 
         return self::$user;
     }
-
-    private static $getUserUser = 'null';
-
-    public static function getUserUser()
+    /**
+     * Get in array value from key ['user']
+     * @return array
+     */
+    public static function getUserUser(): array
     {
-        if (self::$getUserUser == 'null') {
+        if (self::$getUserUser === null) {
             self::$getUserUser = json_decode(self::getUser()['user'], true);
         }
 
@@ -177,38 +179,56 @@ class Auth
 
         return self::$status;
     }
-
-    public static function getEditedCount()
+    /**
+     * Return users edit count value or empty string
+     * @return string|integer
+     */
+    public static function getEditedCount(): string|int
     {
         return self::getUser() == [] ? '' : (int) self::getUser()['edited_count'];
     }
-
-    public static function getUserCreated()
+    /**
+     * Return users created date value or empty string
+     * @return string|integer
+     */
+    public static function getUserCreated(): string|int
     {
         return self::getUser() == [] ? '' : (int) self::getUser()['created'];
     }
-
+    /**
+     * Return users type value or empty string
+     * @return string|integer
+     */
     public static function getUserType(): string|int
     {
         return self::getUser() == [] ? '' : (int) self::getUser()['type'];
     }
-
+    /**
+     * Return users email or empty string
+     * @return string
+     */
     public static function getUserEmail(): string
     {
         return self::getUser() == [] ? '' : CryptText::getI()->textDecrypt(self::getUserUser()['email']);
     }
-
+    /**
+     * Return users phone or empty string
+     * @return string
+     */
     public static function getUserPhone(): string
     {
         return self::getUser() == [] ? '' : CryptText::getI()->textDecrypt(self::getUserUser()['phone']);
     }
-
+    /**
+     * Return users avatar link or empty string
+     * @return string
+     */
     public static function getUserAvatar(): string
     {
         if (self::getUser() == []) {
             return '';
         } else {
-            if ( #
+            if (
                 isset(self::getUserUser()['avatar']) &&
                 self::getUserUser()['avatar'] != ''
             ) {
@@ -223,8 +243,11 @@ class Auth
         }
         return self::getUser() == [] ? '' : CryptText::getI()->textDecrypt(self::getUserUser()['phone']);
     }
-
-    public static function getUserBalance()
+    /**
+     * Return users balance or 0
+     * @return float
+     */
+    public static function getUserBalance(): float
     {
         return self::getUser() == [] ? 0 : (float) self::getUser()['balance'];
     }

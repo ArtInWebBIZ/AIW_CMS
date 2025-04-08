@@ -1,16 +1,20 @@
 <?php
 
+/**
+ * @package    ArtInWebCMS.Core
+ *
+ * @copyright  (C) 2024 Igor Kruk <https://cms.artinweb.biz>
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
 namespace Core\Plugins\Dll\User;
 
 defined('AIW_CMS') or die;
 
-use Core\Config;
+use Core\{Config, Trl, Session};
 use Core\Plugins\Dll\User;
 use Core\Plugins\Model\DB;
-use Core\Trl;
-use Core\Plugins\Ssl;
-use Core\Plugins\ParamsToSql;
-use Core\Session;
+use Core\Plugins\{Ssl, ParamsToSql};
 
 class NewUser
 {
@@ -109,7 +113,11 @@ class NewUser
 
         return $this->create;
     }
-    #
+    /**
+     * Delete user
+     * @param integer $id
+     * @return boolean
+     */
     private function deleteNewUser(int $id): bool
     {
         return DB::getI()->delete(
@@ -125,8 +133,6 @@ class NewUser
         );
     }
     #
-
-
     private function __clone() {}
     public function __wakeup() {}
 }

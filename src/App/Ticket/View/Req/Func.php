@@ -134,7 +134,7 @@ class Func
          * Показываем форму для изменения статуса только для пользователей
          * группы "Модератор" и выше
          */
-        if (GroupAccess::check([2, 5])) {
+        if (GroupAccess::check([5])) {
             $ticketChangeStatusForm = Tpl::view(
                 PATH_APP . 'Ticket' . DS . 'View' . DS . 'inc' . DS . 'ticketChangeStatusForm.php',
                 ['select' => $this->getSelect()]

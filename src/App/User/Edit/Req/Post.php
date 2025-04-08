@@ -83,7 +83,7 @@ class Post
                             /**
                              * If correct new users phone
                              */
-                            if (Func::getI()->checkNewUserPhone() === null) {
+                            if (Func::getI()->checkNewUserPhone() === 0) {
                                 $this->ifEditUsersEmailOrPhone();
                             } else {
                                 /**

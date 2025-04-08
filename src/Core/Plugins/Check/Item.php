@@ -33,7 +33,6 @@ class Item
 {
     private static $instance      = null;
     private $viewForm             = 'null';
-    private $getControllerList    = null;
     private $currControllerId     = 'null';
     private $getItemLang          = 'null';
     private $getNotLangItemFields = null;
@@ -61,10 +60,14 @@ class Item
 
         return $this->viewForm;
     }
-
-    public function checkContentInCurrentLanguage(): bool
+    /**
+     * Return currently item id in table 'item_lang'
+     * this website database
+     * @return integer // item_lang id or 0
+     */
+    public function getItemCurLangId(): int
     {
-        $return = (int) DB::getI()->getValue(
+        return (int) DB::getI()->getValue(
             [
                 'table_name' => 'item_lang',
                 'select'     => 'id',
@@ -77,8 +80,6 @@ class Item
                 'array'      => $where,
             ]
         );
-
-        return $return > 0 ? true : false;
     }
     /**
      * Checked values $_POST
@@ -119,11 +120,7 @@ class Item
      */
     public function getControllerList(): array
     {
-        if ($this->getControllerList == null) {
-            $this->getControllerList = Controller::getControllerList();
-        }
-
-        return $this->getControllerList;
+        return Controller::getList();
     }
     /**
      * Return current controllers ID or false
@@ -214,7 +211,6 @@ class Item
 
         return $this->getAllItemsCurLang;
     }
-    #
     /**
      * Save items edit log
      * @param string $fieldName
@@ -231,13 +227,19 @@ class Item
 
         return SaveItemEditLog::saveItemEditLog($fieldName, $newValue);
     }
-    #
-    public function getItemFields()
+    /**
+     * Get in array all fields from table `item`
+     * @return array
+     */
+    public function getItemFields(): array
     {
         return require PATH_INC . 'item' . DS . 'itemFields.php';
     }
-    #
-    public function getItemLangFields()
+    /**
+     * Get in array all fields from table `item_lang`
+     * @return array
+     */
+    public function getItemLangFields(): array
     {
         return require PATH_INC . 'item' . DS . 'langFields.php';
     }
@@ -309,8 +311,11 @@ class Item
     {
         return PageMeta::getMeta();
     }
-    #
-    public function itemAlternate()
+    /**
+     * Get correctly html alternate link
+     * @return string
+     */
+    public function itemAlternate(): string
     {
         return Alternate::getItemAlternate();
     }

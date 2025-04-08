@@ -18,7 +18,10 @@ defined('AIW_CMS') or die;
 
 class Breadcrumbs
 {
-    private static $instance = null;
+    private static $instance   = null;
+    private $getHtml           = 'null';
+    private $getBreadcrumbList = 'null';
+    private $controllersList   = null;
 
     private function __construct() {}
 
@@ -30,10 +33,8 @@ class Breadcrumbs
 
         return self::$instance;
     }
-
-    private $getHtml = 'null';
     /**
-     * Return …
+     * Return breadcrumbs navigations html
      * @return string
      */
     public function getHtml(): string
@@ -59,10 +60,8 @@ class Breadcrumbs
 
         return $this->getHtml;
     }
-
-    private $getBreadcrumbList = 'null';
     /**
-     * Return …
+     * Return in string html breadcrumbs links list
      * @return string
      */
     private function getBreadcrumbList(): string
@@ -75,7 +74,7 @@ class Breadcrumbs
                 $mainLink = '
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
             <a itemprop="item" href="' . BaseUrl::getLangToLink() . '">
-                <span itemprop="name">' . Trl::_($this->ControllersList()['Main']) . '</span>
+                <span itemprop="name">' . Trl::_($this->controllersList()['Main']) . '</span>
                 <meta itemprop="position" content="1" />
             </a>
         </li>';
@@ -90,8 +89,8 @@ class Breadcrumbs
                     Router::getRoute()['action_url'] != '')
 
             ) {
-                $controllerName = isset($this->ControllersList()[Router::getRoute()['controller_name']]) ?
-                    Trl::_($this->ControllersList()[Router::getRoute()['controller_name']]) : 'UNKNOWN';
+                $controllerName = isset($this->controllersList()[Router::getRoute()['controller_name']]) ?
+                    Trl::_($this->controllersList()[Router::getRoute()['controller_name']]) : 'UNKNOWN';
 
                 $controllerLink = '
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
@@ -108,8 +107,8 @@ class Breadcrumbs
                 Router::getRoute()['action_url'] != '' &&
                 Router::getRoute()['page_alias'] != ''
             ) {
-                $actionName = isset($this->ControllersList()[Router::getRoute()['action_name']]) ?
-                    Trl::_($this->ControllersList()[Router::getRoute()['action_name']]) : 'UNKNOWN';
+                $actionName = isset($this->controllersList()[Router::getRoute()['action_name']]) ?
+                    Trl::_($this->controllersList()[Router::getRoute()['action_name']]) : 'UNKNOWN';
 
                 $actionLink = '
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
@@ -134,19 +133,17 @@ class Breadcrumbs
 
         return $this->getBreadcrumbList;
     }
-
-    private $ControllersList = null;
     /**
-     * Return …
+     * Return in array all controllers names
      * @return array
      */
-    private function ControllersList(): array
+    private function controllersList(): array
     {
-        if ($this->ControllersList == null) {
-            $this->ControllersList = require PATH_INC . 'breadcrumbs' . DS . 'controllersList.php';
+        if ($this->controllersList == null) {
+            $this->controllersList = require PATH_INC . 'breadcrumbs' . DS . 'controllersList.php';
         }
 
-        return $this->ControllersList;
+        return $this->controllersList;
     }
 
     private function __clone() {}

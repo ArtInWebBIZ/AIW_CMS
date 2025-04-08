@@ -11,19 +11,16 @@ namespace Core\Plugins\Dll;
 
 defined('AIW_CMS') or die;
 
-use Core\Auth;
+use Core\{Auth, Session};
 use Core\Modules\Randomizer;
 use Core\Plugins\Model\DB;
 use Core\Plugins\ParamsToSql;
-use Core\Session;
 
 class Ticket
 {
     private static $instance = null;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function getI(): Ticket
     {
@@ -33,56 +30,52 @@ class Ticket
 
         return self::$instance;
     }
-
-    public function add(array $params)
+    /**
+     * Add new ticket to database
+     * @param array $params
+     * @return integer
+     */
+    public function add(array $params): int
     {
-        $params = [
-            'ticket_type' => $params['ticket_type'],
-            'author_id'   => Auth::getUserId(),
-            'text'        => $params['text'],
-            'lang'        => Session::getLang(),
-            'created'     => time(),
-            'edited'      => time(),
-        ];
-
         $ticketId = DB::getI()->add(
             [
                 'table_name' => 'ticket',
-                'set'        => ParamsToSql::getSet($params),
-                'array'      => $params,
+                'set'        => ParamsToSql::getSet(
+                    $set = [
+                        'ticket_type' => $params['ticket_type'],
+                        'author_id'   => Auth::getUserId(),
+                        'text'        => $params['text'],
+                        'lang'        => Session::getLang(),
+                        'created'     => time(),
+                        'edited'      => time(),
+                    ]
+                ),
+                'array'      => $set,
             ]
         );
 
-        $this->saveToEditLog(
-            [
-                'ticket_id'    => $ticketId,
-                'editor_id'    => Auth::getUserId(),
-                'edited_field' => 'ticket_status',
-                'old_value'    => '',
-                'new_value'    => 0,
-                'edited'       => time(),
-            ]
-        );
+        if ($ticketId > 0) {
+
+            $this->saveToEditLog(
+                [
+                    'ticket_id'    => $ticketId,
+                    'editor_id'    => Auth::getUserId(),
+                    'edited_field' => 'ticket_status',
+                    'old_value'    => '',
+                    'new_value'    => ForAll::valueFromKey('ticket', 'status')['TICKET_NOT_CONSIDERED'],
+                    'edited'       => time(),
+                ]
+            );
+        }
 
         return $ticketId;
     }
-
-    public function setTicketKey()
-    {
-        do {
-            $ticketKey = Randomizer::getRandomStr(32, 32);
-            $a         = DB::getI()->getValue([
-                'table_name' => 'ticket',
-                'select'     => 'id',
-                'where'      => '`ticket_key` = :ticket_key',
-                'array'      => ['ticket_key' => $ticketKey],
-            ]);
-        } while ($a !== null);
-
-        return $ticketKey;
-    }
-
-    public function saveToEditLog(array $params)
+    /**
+     * Save edited tickets value to tickets edit log
+     * @param array $params
+     * @return integer
+     */
+    public function saveToEditLog(array $params): int
     {
         return DB::getI()->add(
             [
@@ -92,13 +85,12 @@ class Ticket
             ]
         );
     }
-
     /**
      * Get ticket
      * @param array $params
-     * @return mixed array | false
+     * @return array|false
      */
-    public function getTicket(array $params)
+    public function getTicket(array $params): array|bool
     {
         return DB::getI()->getRow(
             [
@@ -108,20 +100,12 @@ class Ticket
             ]
         );
     }
-
-    public function getLatestTicketId(array $params)
-    {
-        return DB::getI()->getMaxValue(
-            [
-                'table_name' => 'ticket',
-                'field_name' => 'id',
-                'where'      => ParamsToSql::getSql($params),
-                'array'      => $params,
-            ]
-        );
-    }
-
-    public function updateTicket(array $params)
+    /**
+     * Save to ticket new params
+     * @param array $params
+     * @return boolean
+     */
+    public function updateTicket(array $params): bool
     {
         return DB::getI()->update(
             [
@@ -133,10 +117,6 @@ class Ticket
         );
     }
 
-    private function __clone()
-    {
-    }
-    public function __wakeup()
-    {
-    }
+    private function __clone() {}
+    public function __wakeup() {}
 }

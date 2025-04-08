@@ -55,7 +55,7 @@ class Func
                         (int) $this->getReview()['author_id'] === Auth::getUserId() &&
                         (int) $this->getReview()['status'] === 0
                     ) ||
-                    GroupAccess::check([2, 5])
+                    GroupAccess::check([5])
                 )
             ) {
                 $this->checkAccess = true;

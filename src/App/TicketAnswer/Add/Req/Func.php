@@ -40,7 +40,7 @@ class Func
                 Auth::getUserStatus() == 1 &&
                 (
                     (int) $this->checkTicket()['author_id'] === Auth::getUserId() ||
-                    GroupAccess::check([2, 5])
+                    GroupAccess::check([5])
                 ) &&
                 (int) $this->checkTicket()['ticket_status'] === ForAll::valueFromKey('ticket', 'status')['TICKET_CONSIDERED']
             ) {

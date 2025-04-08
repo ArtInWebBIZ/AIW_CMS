@@ -19,7 +19,7 @@ if ($created !== null) {
 }
 
 $rating = GroupAccess::check([2]) ? Review::getI()->rating(isset($v['rating']) ? $v['rating'] : '') : null;
-$status = GroupAccess::check([2, 5]) ? Review::getI()->status(isset($v['status']) ? $v['status'] : '') : null;
+$status = GroupAccess::check([5]) ? Review::getI()->status(isset($v['status']) ? $v['status'] : '') : null;
 
 return [
     'rating'  => $rating,

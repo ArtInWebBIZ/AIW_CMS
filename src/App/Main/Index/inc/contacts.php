@@ -14,9 +14,9 @@ $cardClass = 'uk-text-center uk-card uk-card-default uk-card-body';
             <div class="<?= $class ?>">
                 <div class="<?= $cardClass ?>">
                     <h2><span uk-icon="icon: phone; ratio: 4"></span></h2>
-                    <p class="uk-text-center"><a itemprop="telephone" href="tel:+380664806767">+38 066 480 6767</a> -
-                        <a href="https://wa.me/380664806767?text=<?= Trl::_('CONTACTS_CONSULTING_MSG') ?>">WhatsApp</a> /
-                        <a href="viber://chat?number=%2B380664806767">Viber</a>
+                    <p class="uk-text-center"><a itemprop="telephone" href="tel:+987654321987">+987 654 321 987</a> -
+                        <a href="https://wa.me/987654321987?text=<?= Trl::_('CONTACTS_CONSULTING_MSG') ?>">WhatsApp</a> /
+                        <a href="viber://chat?number=%2B987654321987">Viber</a>
                     </p>
                 </div>
             </div>
@@ -41,7 +41,7 @@ $cardClass = 'uk-text-center uk-card uk-card-default uk-card-body';
             <div class="<?= $class ?>">
                 <div class="<?= $cardClass ?>">
                     <h2><span uk-icon="icon: location; ratio: 4"></span></h2>
-                    <p class="uk-text-center"><?= Trl::_('OV_PORTUGAL') ?>, <?= Trl::_('PLACE_LISBON') ?></p>
+                    <p class="uk-text-center"><?= Trl::_('OV_COUNTRY') ?>, <?= Trl::_('PLACE_LISBON') ?></p>
                 </div>
             </div>
         </div>

@@ -4,13 +4,10 @@ namespace Core\Plugins\Item\ControlToCont;
 
 defined('AIW_CMS') or die;
 
-use Core\Plugins\Check\Item;
 use Core\Plugins\Item\ControlToCont\Func;
-use Core\Plugins\Item\Filters\Filters;
 use Core\Plugins\Model\DB;
 use Core\Plugins\ParamsToSql;
 use Core\DB as CoreDB;
-use Core\GV;
 use Core\Plugins\Item\ControlToCont\Fields;
 use Core\Session;
 
@@ -316,7 +313,7 @@ class GetItemsLang
 
         return $this->getItemsLang;
     }
-    #
+
     private function __clone() {}
     public function __wakeup() {}
 }

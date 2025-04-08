@@ -12,7 +12,11 @@ namespace Core\Modules\Control;
 defined('AIW_CMS') or die;
 
 use Core\Content;
+use Core\Modules\Control\Filters\Filters;
 use Core\Modules\Control\Func;
+use Core\Plugins\Msg;
+use Core\Plugins\View\Style;
+use Core\Plugins\View\Tpl;
 
 class Control
 {
@@ -56,7 +60,7 @@ class Control
             /**
              * Get the number of content type records from the database according to the filter values
              */
-            if (Func::getI()->countItemsId() > 0) { // Если записи  в БД есть
+            if (Func::getI()->countItemsId() > 0) { // If there are records in the database
                 /**
                  * We connect scripts for filters,
                  * and display the shape of the filters
@@ -86,12 +90,14 @@ class Control
                  * and display the filter form
                  */
                 if ($dirName === null) {
+
                     $this->filtersToContent();
+                    /**
+                     * Display a message that there are NO values according to all filters
+                     */
+                    // $this->content['msg'] = Msg::getMsg_('warning', 'MSG_NO_RESULT');                    
+                    #
                 }
-                /**
-                 * Display a message that there are NO values according to all filters
-                 */
-                // $this->content['msg'] = Msg::getMsg_('warning', 'MSG_NO_RESULT');
                 /**
                  * Display the list header
                  */
@@ -126,7 +132,7 @@ class Control
 
     private function filtersToContent()
     {
-        $this->content['content'] .= Func::getI()->viewFiltersForm();
+        $this->content['content'] .= Filters::getI()->viewFiltersForm();
 
         return $this->content;
     }

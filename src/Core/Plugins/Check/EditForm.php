@@ -24,7 +24,6 @@ class EditForm
             require $pathToFields
         );
     }
-
     /**
      * Check edited fields
      * @param array $checkForm

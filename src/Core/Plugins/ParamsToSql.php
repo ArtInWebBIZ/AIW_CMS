@@ -138,7 +138,6 @@ class ParamsToSql
 
         return substr(trim($set), 0, -1);
     }
-
     /**
      * Return array adapted to 
      * @param array  $params

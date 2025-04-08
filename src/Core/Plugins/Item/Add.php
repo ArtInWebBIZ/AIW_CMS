@@ -23,7 +23,6 @@ class Add
 
     public function getContent()
     {
-
         if (Func::getI()->checkAccess() === true) {
             /**
              * Get item page parameters value

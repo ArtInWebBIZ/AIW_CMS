@@ -28,6 +28,7 @@ class Func
     private $prepareSql      = null;
     private $prepareLimit    = 'null';
     private $prepareOrderBy  = 'null';
+    private $getContent      = null;
 
     private function __construct() {}
 
@@ -59,7 +60,7 @@ class Func
         return $this->checkAccess;
     }
     /**
-     * Return …
+     * Return prepared SQL
      * @return string
      */
     private function prepareSql(): array
@@ -104,7 +105,6 @@ class Func
                 $array  = array_merge($array, $filtersValues['filtersFields']);
                 #
             }
-
             /**
              * If isset FIELDSET fields
              */
@@ -147,7 +147,7 @@ class Func
         return $this->prepareSql;
     }
     /**
-     * Return …
+     * Return prepared ORDER BY value to SQL
      * @return string
      */
     public function prepareOrderBy(): string
@@ -197,7 +197,7 @@ class Func
         return $this->prepareLimit;
     }
     /**
-     * Return all items id count
+     * Return count all items id
      * @return int // int or 0
      */
     public function itemCount(): int
@@ -271,15 +271,13 @@ class Func
 
         return $this->getAllItemsId;
     }
-    #
-    private $getContent = 'null';
     /**
-     * Return …
-     * @return mixed
+     * Return all items values to page render
+     * @return array
      */
-    public function getContent(): mixed
+    public function getContent(): array
     {
-        if ($this->getContent == 'null') {
+        if ($this->getContent === null) {
 
             $this->getContent = Item::getI()->itemParams();
 
@@ -299,7 +297,7 @@ class Func
         return $this->getContent;
     }
     /**
-     * Get controls page body
+     * Get controls page items body
      * @return string
      */
     private function body(): string
@@ -323,8 +321,12 @@ class Func
 
         return $body;
     }
-
-    public function checkFieldsType(array $filtersValues)
+    /**
+     * Check items filters fields type
+     * @param array $filtersValues
+     * @return array
+     */
+    public function checkFieldsType(array $filtersValues): array
     {
         $fieldsList = [];
 

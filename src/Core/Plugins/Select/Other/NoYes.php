@@ -15,12 +15,10 @@ use Core\Trl;
 
 class NoYes
 {
-    private static $instance     = null;
-    private static $all = 'null';
+    private static $instance = null;
+    private static $all      = null;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function getI(): NoYes
     {
@@ -33,7 +31,7 @@ class NoYes
 
     private static function getAll(): array
     {
-        if (self::$all == 'null') {
+        if (self::$all === null) {
 
             $all = require PATH_INC . 'other' . DS . 'noYes.php';
 
@@ -69,10 +67,6 @@ class NoYes
         return $optionHtml;
     }
 
-    private function __clone()
-    {
-    }
-    public function __wakeup()
-    {
-    }
+    private function __clone() {}
+    public function __wakeup() {}
 }

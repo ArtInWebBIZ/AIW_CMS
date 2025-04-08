@@ -11,6 +11,5 @@ defined('AIW_CMS') or die;
 
 use Core\{Session, Router};
 
-
 Session::getSession();
 Router::getRoute();

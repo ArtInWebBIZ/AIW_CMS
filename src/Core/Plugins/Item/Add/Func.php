@@ -19,8 +19,18 @@ use Core\Plugins\{Msg, ParamsToSql};
 
 class Func
 {
-    private static $instance = null;
-    private $checkForm = null;
+    private static $instance    = null;
+    private $checkAccess        = 'null';
+    private $checkForm          = null;
+    private $saveItem           = 'null';
+    private $saveNewItem        = 'null';
+    private $promoCode          = 'null';
+    private $newPostTime        = 'null';
+    private $lang               = 'null';
+    private $saveIntroImage     = null;
+    private $saveItemLang       = 'null';
+    private $saveToFieldset     = 'null';
+    private $saveToFiltersTable = 'null';
 
     private function __construct() {}
 
@@ -32,15 +42,13 @@ class Func
 
         return self::$instance;
     }
-
-    private $checkAccess = 'null';
     /**
      * Return user access value
      * @return bool
      */
     public function checkAccess(): bool
     {
-        if ($this->checkAccess == 'null') {
+        if ($this->checkAccess === 'null') {
 
             $this->checkAccess = false;
 
@@ -55,7 +63,7 @@ class Func
      * Return item parameters
      * @return mixed // item params array or false
      */
-    public function itemParams(): mixed
+    public function itemParams(): array|bool
     {
         return Item::getI()->itemParams();
     }
@@ -105,13 +113,11 @@ class Func
 
         return $this->otherFields;
     }
-    #
-    private $saveItem = 'null';
     /**
-     * Return …
-     * @return mixed // item ID or error message in array key ['msg']
+     * Return item ID or error message in array key ['msg']
+     * @return mixed
      */
-    public function saveItem(): mixed
+    public function saveItem(): int|array
     {
         if ($this->saveItem == 'null') {
             /**
@@ -173,8 +179,6 @@ class Func
 
         return $this->saveItem;
     }
-    #
-    private $saveNewItem = 'null';
     /**
      * Save new item
      * Return new items ID or 0
@@ -223,15 +227,13 @@ class Func
 
         return $this->saveNewItem;
     }
-    #
-    private $promoCode = 'null';
     /**
      * Return items promo code
      * @return string
      */
     public function promoCode(): string
     {
-        if ($this->promoCode == 'null') {
+        if ($this->promoCode === 'null') {
 
             $this->promoCode = Randomizer::getRandomStr(
                 Config::getCfg('CFG_MIN_REF_CODE_LEN'),
@@ -242,29 +244,25 @@ class Func
 
         return $this->promoCode;
     }
-    #
-    private $newPostTime = 'null';
     /**
      * Get new post time
      * @return integer
      */
     public function newPostTime(): int
     {
-        if ($this->newPostTime == 'null') {
+        if ($this->newPostTime === 'null') {
             $this->newPostTime = time();
         }
 
         return $this->newPostTime;
     }
-    #
-    private $lang = 'null';
     /**
      * Get correct default items language
      * @return string
      */
     private function lang(): string
     {
-        if ($this->lang == 'null') {
+        if ($this->lang === 'null') {
 
             $this->lang = count(Languages::langList()) > 1 ? $this->checkForm()['cur_lang'] : Languages::langList()[0][0];
 
@@ -275,8 +273,6 @@ class Func
 
         return $this->lang;
     }
-    #
-    private $saveIntroImage = null;
     /**
      * Save to server intro image
      * Return if success empty key ['msg']
@@ -302,10 +298,8 @@ class Func
 
         return $this->saveIntroImage;
     }
-    #
-    private $saveItemLang = 'null';
     /**
-     * Undocumented function
+     * Save items value to `item_lang` table
      * @return integer // ID or 0
      */
     public function saveItemLang()
@@ -352,15 +346,13 @@ class Func
 
         return $this->saveItemLang;
     }
-    #
-    private $saveToFieldset = 'null';
     /**
-     * Return …
+     * Save items value to fieldset database tables
      * @return bool
      */
     public function saveToFieldset(): bool
     {
-        if ($this->saveToFieldset == 'null') {
+        if ($this->saveToFieldset === 'null') {
 
             $this->saveToFieldset = true;
             /**
@@ -393,15 +385,13 @@ class Func
 
         return $this->saveToFieldset;
     }
-    #
-    private $saveToFiltersTable = 'null';
     /**
      * Return results save values to item filters table
      * @return bool
      */
     private function saveToFiltersTable(): bool
     {
-        if ($this->saveToFiltersTable == 'null') {
+        if ($this->saveToFiltersTable === 'null') {
 
             $this->saveToFiltersTable == true;
 

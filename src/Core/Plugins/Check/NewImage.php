@@ -34,9 +34,8 @@ class NewImage
         // (new \Core\Plugins\Check\NewImage)->getNewImageLink($params);
 
         if ($this->imageLink == []) {
-
             /**
-             * Если массив $_FILES не пустой
+             * If the $_FILES array is not empty
              */
             if (GV::files() !== null) {
                 /**
@@ -51,7 +50,7 @@ class NewImage
                     $this->imageLink['msg'] .= Msg::getMsg_('warning', 'INFO_INCORRECT_DOWNLOAD_IMAGE');
                 } else {
                     /**
-                     * Если изображение загружено без ошибок
+                     * If the image is loaded without errors
                      */
                     $errors    = [];
                     $fileName  = $image['name'];
@@ -74,8 +73,8 @@ class NewImage
 
                     if (!isset($this->imageLink['msg'])) {
                         /**
-                         * Определяем стандартный путь к файлам аватаров
-                         * для этого пользователя
+                         * Determine the standard path to avatar files
+                         * for this user
                          */
                         $data     = $params['time'];
                         $year     = userDate("Y", $data);
@@ -85,7 +84,7 @@ class NewImage
                         $fileName = substr(md5($fileName . $fileSize), 20, 32) . '.' . $fileExt;
 
                         /**
-                         * Создаём дефолтные папки и файлы
+                         * Create default folders and files
                          */
                         $destination = PATH_PUBLIC . 'img' . DS . $params['dir'] . DS . $year;
                         if (!file_exists($destination)) {
@@ -130,14 +129,13 @@ class NewImage
                             } else {
                                 $tmpFile = false;
                             }
-
                             /**
-                             * Определяем пропорции конечного изображения
+                             * Determine the proportions of the final image
                              */
                             $proportions = (float) ($params['width'] / $params['height']);
 
                             /**
-                             * Определяем ширину и высоту фото
+                             * Determine the width and height photo
                              */
                             $photoWidth  = (int) imagesx($tmpFile);
                             $photoHeight = (int) imagesy($tmpFile);
@@ -145,9 +143,8 @@ class NewImage
                             if ($params['type'] == 'crop') {
                                 require PATH_CORE . 'Plugins' . DS . 'Check' . DS . 'Require' . DS . 'NewImage' . DS . 'crop.php';
                             }
-
                             /**
-                             * Обрезаем изображение согласно нужных пропорций
+                             * Cut the image according to the necessary proportions
                              */
                             $tmpPhoto = imagecrop(
                                 $tmpFile,
@@ -158,21 +155,18 @@ class NewImage
                                     'height' => $cropHeight,
                                 ]
                             );
-
                             /**
-                             * Создаём изображение нужного названия и размера
+                             * Create an image of the desired name and size
                              */
                             $dest  = imagecreatetruecolor($params['width'], $params['height']);
                             $color = imagecolorallocate($dest, 255, 255, 255);
                             imagefilledrectangle($dest, 0, 0, $cropWidth, $cropHeight, $color);
-
                             /**
-                             * Копируем старое изображение в новое с изменением параметров
+                             * Copy the old image in the new with a change in parameters
                              */
                             imagecopyresampled($dest, $tmpPhoto, 0, 0, 0, 0, $params['width'], $params['height'], $cropWidth, $cropHeight);
-
                             /**
-                             * Записываем изображение на сервер
+                             * Record the image on the server
                              */
                             if ($fileExt == 'jpeg' || $fileExt == 'jpg') {
                                 imagejpeg($dest, $destination);
@@ -206,8 +200,8 @@ class NewImage
     private function setIndexFile($destination)
     {
         /**
-         * Создаём индексный файл (если он НЕ существует)
-         * для предотвращения доступа к директории из браузера
+         * Create an index file (if it does not exist)
+         * To prevent access to the directory from the browser
          */
         $index = $destination . DS . 'index.html';
         if (!file_exists($index)) {

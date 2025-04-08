@@ -38,28 +38,6 @@ use Core\Plugins\Create\Menu\LineMenu;
 <?= LineMenu::getI()->createMenu(
     [
         'menu_access'    => true,
-        'menu_title'     => 'EXCURSION_EXCURSIONS',
-        'controller_url' => 'excursion',
-        'action_url'     => '',
-        'page_alias'     => '',
-        #
-        'menu_list'   => [],
-    ]
-); ?>
-<?= LineMenu::getI()->createMenu(
-    [
-        'menu_access'    => true,
-        'menu_title'     => 'SERVICE_SERVICE',
-        'controller_url' => 'service',
-        'action_url'     => '',
-        'page_alias'     => '',
-        #
-        'menu_list'   => [],
-    ]
-); ?>
-<?= LineMenu::getI()->createMenu(
-    [
-        'menu_access'    => true,
         'menu_title'     => 'REVIEW_REVIEWS',
         'controller_url' => 'review',
         'action_url'     => '',

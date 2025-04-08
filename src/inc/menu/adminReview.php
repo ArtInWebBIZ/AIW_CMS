@@ -9,13 +9,6 @@ return [
     'menu_title'  => '',
     'menu_list'   => [
         [
-            'label'          => 'REVIEW_ADD',
-            'access'         => true,
-            'controller_url' => 'review',
-            'action_url'     => 'add',
-            'page_alias'     => '',
-        ],
-        [
             'label'          => 'REVIEW_MY_REVIEWS',
             'access'         => true,
             'controller_url' => 'review',
@@ -24,7 +17,7 @@ return [
         ],
         [
             'label'          => 'OV_CONTROL',
-            'access'         => GroupAccess::check([2, 5]),
+            'access'         => GroupAccess::check([5]),
             'controller_url' => 'review',
             'action_url'     => 'control',
             'page_alias'     => '',

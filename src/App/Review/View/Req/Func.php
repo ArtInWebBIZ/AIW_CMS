@@ -53,7 +53,7 @@ class Func
                         Auth::getUserStatus() === 1 &&
                         (
                             (int) $this->getReview()['author_id'] === Auth::getUserId() ||
-                            GroupAccess::check([2, 5]) === true
+                            GroupAccess::check([5]) === true
                         )
                     )
                 )
@@ -109,7 +109,7 @@ class Func
                 (int) $this->getReview()['status'] === ForAll::contentStatus()['REVIEW_NOT_PUBLISHED'] &&
                 (int) $this->getReview()['author_id'] === Auth::getUserId()
             ) ||
-            GroupAccess::check([2, 5])
+            GroupAccess::check([5])
 
         ) {
             return true;
@@ -125,7 +125,7 @@ class Func
     {
         if (
             (int) $this->getReview()['author_id'] === Auth::getUserId() ||
-            GroupAccess::check([2, 5])
+            GroupAccess::check([5])
         ) {
             return $this->getReview()['status'];
         } else {

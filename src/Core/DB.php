@@ -84,7 +84,6 @@ class DB
                     );
                     self::$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
                 } catch (PDOException $e) {
-                    // exit('Error connecting to database: ' . $e->getMessage());
                     die('ERROR!!! No database connection :( !!!');
                 }
                 #

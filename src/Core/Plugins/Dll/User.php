@@ -15,12 +15,14 @@ use Core\Modules\Randomizer;
 use Core\Plugins\Create\GetHash\GetHash;
 use Core\Plugins\{ParamsToSql, Crypt\CryptText, Model\DB};
 use Core\{Session, Config};
-use Core\Plugins\Dll\User\{Check, Distribution};
+use Core\Plugins\Dll\User\Check;
 
 class User
 {
     private static $instance      = null;
     private $getNotActivatedUsers = null;
+    private $generateUserPass     = 'null';
+    private $newRefCode           = 'null';
 
     private function __construct() {}
 
@@ -59,8 +61,6 @@ class User
             ),
             'password'    => $this->userPasswordHash($this->generateUserPass()),
         ];
-
-        // toTmp($this->generateUserPass());
 
         $defValue = [
             'status'       => 0,
@@ -186,7 +186,11 @@ class User
 
         return $this->getNotActivatedUsers;
     }
-
+    /**
+     * Get hash users password
+     * @param string $password
+     * @return string
+     */
     public function userPasswordHash(string $password): string
     {
         return GetHash::getPassHash($password);
@@ -212,22 +216,20 @@ class User
             ]
         );
     }
-
-    private $generateUserPass = 'null';
     /**
      * Generate new users password
      * @return string
      */
     public function generateUserPass(): string
     {
-        if ($this->generateUserPass == 'null') {
+        if ($this->generateUserPass === 'null') {
             $this->generateUserPass = Randomizer::getRandomStr(8, 12);
         }
 
         return $this->generateUserPass;
     }
     /**
-     * Undocumented function
+     * Check user from email
      * @param string $email
      * @return array|bool // array or false
      */
@@ -241,12 +243,13 @@ class User
             ]
         );
     }
-
-    private $newRefCode = 'null';
-
-    private function newRefCode()
+    /**
+     * Generate users referrals code
+     * @return string
+     */
+    private function newRefCode(): string
     {
-        if ($this->newRefCode == 'null') {
+        if ($this->newRefCode === 'null') {
 
             do {
 
@@ -287,40 +290,6 @@ class User
                 'array'      => array_merge($set, $where),
             ]
         );
-    }
-    /**
-     * Save and update users balance
-     * @param integer $userId
-     * @param float   $sumToPaid
-     * @param string  $typeCode
-     * @param integer $contentId
-     * @return bool
-     */
-    public function feeDistribution(int $userId, float $sumToPaid, string $typeCode, int $contentId): bool
-    {
-        return Distribution::getI()->feeDistribution($userId, $sumToPaid, $typeCode, $contentId);
-    }
-
-    public function saveToUserBalanceEditLog(array $params): int
-    {
-        return DB::getI()->add(
-            [
-                'table_name' => 'user_balance_edit_log',
-                'set'        => ParamsToSql::getSet($params),
-                'array'      => $params,
-            ]
-        );
-    }
-
-    private $getEmailMsgStage = [];
-
-    public function getEmailMsgStage(): array
-    {
-        if ($this->getEmailMsgStage == []) {
-            $this->getEmailMsgStage = require PATH_INC . 'balance' . DS . 'emailMsgStage.php';
-        }
-
-        return $this->getEmailMsgStage;
     }
     #
     private function __clone() {}

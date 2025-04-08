@@ -15,11 +15,14 @@ use Core\{Auth, Config, Trl};
 use Core\Plugins\Name\{UserGroup, UserStatus};
 use Core\Plugins\{Ssl, View\Tpl, Crypt\CryptText};
 use Core\Plugins\Check\{GroupAccess, IntPageAlias};
-use Core\Plugins\Name\User\Type;
+use Core\Plugins\Dll\ForAll;
 
 class Func
 {
     private static $instance = null;
+    private $checkAccess     = 'null';
+    private $viewedUser      = 'null';
+    private $user            = [];
 
     private function __construct() {}
 
@@ -31,10 +34,11 @@ class Func
 
         return self::$instance;
     }
-
-    private $checkAccess = 'null';
-
-    public function checkAccess()
+    /**
+     * Check users access
+     * @return boolean
+     */
+    public function checkAccess(): bool
     {
         if ($this->checkAccess == 'null') {
 
@@ -44,14 +48,9 @@ class Func
                 IntPageAlias::check() !== false &&
                 Auth::getUserStatus() == 1 &&
                 (
-                    (Auth::getUserId() === IntPageAlias::check()
-                    ) ||
-                    (GroupAccess::check([3, 4, 5]) &&
-                        in_array($this->getViewedUser()['group'], [0, 1, 2], true) === true
-                    ) ||
-                    (GroupAccess::check([4, 5]) &&
-                        $this->getViewedUser()['group'] < Auth::getUserGroup()
-                    )
+                    Auth::getUserId() === IntPageAlias::check()
+                    ||
+                    GroupAccess::check([5])
                 )
             ) {
                 $this->checkAccess =  true;
@@ -60,12 +59,10 @@ class Func
 
         return $this->checkAccess;
     }
-
-    private $viewedUser = 'null';
     /**
      * @return mixed // array or false
      */
-    public function getViewedUser()
+    public function getViewedUser(): array|false
     {
         if ($this->viewedUser === 'null') {
             $userId = IntPageAlias::check();
@@ -74,9 +71,10 @@ class Func
 
         return $this->viewedUser;
     }
-
-    private $user = [];
-
+    /**
+     * Get all users params
+     * @return array
+     */
     private function user(): array
     {
         if ($this->user == []) {
@@ -115,16 +113,22 @@ class Func
             return '';
         }
     }
-
-    public function getViewedUserFullName()
+    /**
+     * Return viewed users full name only for for him
+     * @return string
+     */
+    public function getViewedUserFullName(): string
     {
         return ($this->user()['name'] != '' ?
             $this->user()['name'] . ' ' . $this->user()['middle_name'] . ' ' . $this->user()['surname'] :
             Trl::_('USER_USER') . ' #' . IntPageAlias::check()
         );
     }
-
-    public function getViewedUserFullNameForAll()
+    /**
+     * Return full users name for all other users
+     * @return string
+     */
+    public function getViewedUserFullNameForAll(): string
     {
         if ((int) $this->getViewedUser()['type'] === 1) {
 
@@ -143,11 +147,14 @@ class Func
             );
         }
     }
-
-    public function getViewViewedUser()
+    /**
+     * View user from 'view' template for only him
+     * @return string
+     */
+    public function getViewViewedUser(): string
     {
         return Tpl::view(
-            PATH_APP . 'User' . DS . 'View' . DS . 'inc' . DS . 'view.php',
+            ForAll::contIncPath() . 'view.php',
             [
                 'userFullName'   => $this->getViewedUserFullName(),
                 'toEditedLink'   => $this->getViewedUserToEditedLink(),
@@ -161,18 +168,21 @@ class Func
                 'youtube'        => $this->user()['youtube'],
                 'website'        => $this->user()['website'],
                 'soc_net_page'   => $this->user()['soc_net_page'],
-                'balance'        => $this->getViewedUser()['type'] == 1 && (IntPageAlias::check() === Auth::getUserId() || GroupAccess::check([3, 4, 5])) ? $this->getViewedUser()['balance'] : '',
+                'balance'        => $this->getViewedUser()['type'] == 1 && (IntPageAlias::check() === Auth::getUserId() || GroupAccess::check([5])) ? $this->getViewedUser()['balance'] : '',
                 'userCreated'    => userDate(Config::getCfg('CFG_DATE_TIME_FORMAT'), $this->getViewedUser()['created']),
                 'latestEdited'   => $this->getViewedUserEdited(),
                 'latestVisit'    => $this->getViewedUserLatestVisit(),
             ]
         );
     }
-
-    public function getViewToAllUser()
+    /**
+     * View user from 'toAll' template for all users
+     * @return string
+     */
+    public function getViewToAllUser(): string
     {
         return Tpl::view(
-            PATH_APP . 'User' . DS . 'View' . DS . 'inc' . DS . 'toAll.php',
+            ForAll::contIncPath() . 'toAll.php',
             [
                 'userFullName' => $this->getViewedUserFullNameForAll(),
                 'avatar'       => $this->userAvatar(),
@@ -184,13 +194,16 @@ class Func
             ]
         );
     }
-
-    private function userStatusName()
+    /**
+     * Get name value users status
+     * @return string
+     */
+    private function userStatusName(): string
     {
         if (
             $this->getViewedUser()['id'] == Auth::getUserId() ||
-            (Auth::getUserGroup() > 2 &&
-                $this->getViewedUser()['group'] < Auth::getUserGroup() &&
+            (
+                GroupAccess::check([5]) &&
                 Auth::getUserStatus() == 1
             )
         ) {
@@ -199,47 +212,53 @@ class Func
             return '';
         }
     }
-
-    private function getGroupName()
+    /**
+     * Get name value users group
+     * @return string
+     */
+    private function getGroupName(): string
     {
         if (
-            $this->getViewedUser()['id'] == Auth::getUserId()
-            || (Auth::getUserGroup() > 2
-                && $this->getViewedUser()['group'] < Auth::getUserGroup()
-                && Auth::getUserStatus() == 1
+            $this->getViewedUser()['id'] == Auth::getUserId() ||
+            (
+                GroupAccess::check([5]) &&
+                Auth::getUserStatus() == 1
             )
         ) {
-
             return UserGroup::getGroupName($this->getViewedUser()['group']);
         } else {
-
             return '';
         }
     }
-
-    private function getViewedUserEdited()
-    {
-        if (
-            (IntPageAlias::check() === Auth::getUserId()
-            )
-            || (Auth::getUserGroup() > 2
-                && ($this->getViewedUser()['group'] < Auth::getUserGroup())
-            )
-        ) {
-
-            return userDate(Config::getCfg('CFG_DATE_TIME_FORMAT'), $this->getViewedUser()['edited']);
-        } else {
-
-            return '';
-        }
-    }
-
-    private function getViewedUserLatestVisit()
+    /**
+     * Get users edit date in date & time format
+     * @return string
+     */
+    private function getViewedUserEdited(): string
     {
         if (
             IntPageAlias::check() === Auth::getUserId() ||
-            (Auth::getUserGroup() > 2 &&
-                $this->getViewedUser()['group'] < Auth::getUserGroup()
+            (
+                GroupAccess::check([5]) &&
+                Auth::getUserStatus() == 1
+            )
+        ) {
+            return userDate(Config::getCfg('CFG_DATE_TIME_FORMAT'), $this->getViewedUser()['edited']);
+        } else {
+            return '';
+        }
+    }
+    /**
+     * Get users latest visit date in date & time format
+     * @return string
+     */
+    private function getViewedUserLatestVisit(): string
+    {
+        if (
+            IntPageAlias::check() === Auth::getUserId() ||
+            (
+                GroupAccess::check([5]) &&
+                Auth::getUserStatus() == 1
             )
         ) {
             return userDate(Config::getCfg('CFG_DATE_TIME_FORMAT'), $this->getViewedUser()['latest_visit']);
@@ -247,21 +266,21 @@ class Func
             return '';
         }
     }
-
-    private function getViewedUserToEditedLink()
+    /**
+     * Get link for users edit
+     * @return string
+     */
+    private function getViewedUserToEditedLink(): string
     {
         if (
-            (IntPageAlias::check() === Auth::getUserId()
-                || (Auth::getUserGroup() > 2
-                    && $this->getViewedUser()['group'] < Auth::getUserGroup()
-                )
+            (
+                IntPageAlias::check() === Auth::getUserId() ||
+                GroupAccess::check([5])
             )
             && Auth::getUserStatus() == 1
         ) {
-
             return '<a href="' . Ssl::getLinkLang() . 'user/edit/' . IntPageAlias::check() . '.html" class="uk-text-primary" uk-icon="icon: file-edit"></a>';
         } else {
-
             return '';
         }
     }

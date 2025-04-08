@@ -56,7 +56,7 @@ class Func
     {
         if ($this->extra === null) {
 
-            if (GroupAccess::check([2, 5])) {
+            if (GroupAccess::check([5])) {
                 $this->extra = [];
             } else {
                 /**

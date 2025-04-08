@@ -22,6 +22,7 @@ class Session
     private static $session     = [];
     private static $sessionTime = 'null';
     private static $countIp     = 'null';
+    private static $setSessionKey = 'null';
 
     public static function getSession()
     {
@@ -333,8 +334,6 @@ class Session
         return self::$countIp;
     }
 
-    private static $setSessionKey = 'null';
-
     private static function setSessionKey()
     {
         if (self::$setSessionKey == 'null') {
@@ -559,7 +558,7 @@ class Session
         }
     }
 
-    private static function setRtl()
+    private static function setRtl(): int
     {
         if (
             GV::get() !== null &&
@@ -582,10 +581,10 @@ class Session
         return $rtl;
     }
 
-    public static function getRtl()
+    public static function getRtl(): int
     {
         if (isset(self::getSession()['rtl'])) {
-            return self::getSession()['rtl'];
+            return (int) self::getSession()['rtl'];
         } else {
             return self::setRtl();
         }

@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @package    ArtInWebCMS.Core
+ *
+ * @copyright  (C) 2024 Igor Kruk <https://cms.artinweb.biz>
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
 namespace Core\Plugins\Check\Item;
 
 defined('AIW_CMS') or die;
@@ -15,10 +22,9 @@ class AllItemFields
     private static $getAllItemFieldsType = null;
     private static $getAllItemFieldsClean = null;
     private static $getAllItemFieldsList = null;
-
-    private static $prepareFields = null;
+    private static $prepareFields        = null;
     /**
-     * Return …
+     * Delete doubles items add and edit fields
      * @return array
      */
     private static function prepareFields(): array
@@ -92,7 +98,7 @@ class AllItemFields
         return self::$getAllItemFields;
     }
     /**
-     * Return …
+     * Return all items fields list
      * @return array
      */
     public static function getAllItemFieldsList(): array
@@ -125,7 +131,7 @@ class AllItemFields
         return self::$getAllItemFieldsList;
     }
     /**
-     * Return all items fields list
+     * Return all items fields names list
      * @return array
      */
     public static function getAllItemFieldsName(): array

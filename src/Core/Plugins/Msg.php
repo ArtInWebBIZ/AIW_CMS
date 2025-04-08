@@ -21,7 +21,7 @@ class Msg
         return Message::getI()->getMsg($msgType, Trl::_($msgText));
     }
 
-    public static function getMsgSprintf($msgType, $msgText, ...$args)
+    public static function getMsgSprintf($msgType, $msgText, ...$args): string
     {
         return Message::getI()->getMsg($msgType, Trl::sprintf($msgText, ...$args));
     }

@@ -28,24 +28,24 @@ class Cont
         $this->content['title'] = 'USER_NEW_PASSWORD';
 
         /**
-         * Проверяем доступ пользователя
+         * Check user access
          */
         if (Func::getI()->getAccess() === true) {
             /**
-             * Удаляем просроченные записи в таблице pass_reset_note
+             * We delete expired records in the pass_reset_note table
              */
             Func::getI()->delOldPassResetNote();
             /**
-             * Если данные формы ещё не отправлены
+             * If these forms have not yet been sent
              */
             if (GV::post() === null && GV::get() === null) {
                 /**
-                 * Выводим форму отправки нового пароля
+                 * We display the form of sending a new password
                  */
                 $this->content['content'] = Func::getI()->getView();
             }
             /**
-             * Иначе, обрабатываем полученные $_POST данные
+             * Otherwise, we process the received $_POST data
              */
             elseif (GV::post() !== null && GV::get() === null) {
                 /**
@@ -53,32 +53,33 @@ class Cont
                  */
                 if (CheckToken::checkToken() === true) {
                     /**
-                     * Проверяем соответствие полученных данных
-                     * типу email
+                     * We check the compliance of the received data type email
                      */
                     if (!isset(Func::getI()->checkForm()['msg'])) {
                         /**
-                         * Проверяем, есть ли пользователь с таким адресом email
+                         * Check if there is a user with such an address email
                          *
-                         * Если пользователь с таким email есть
+                         * If a user with such an email has
                          */
                         if (Func::getI()->checkUserEmail() !== 0) {
                             /**
-                             * Проверяем, есть ли запись о новом пароле
-                             * для этого пользователя
-                             * Если записи нет
+                             * We check if there is a record about the new password
+                             * For this user
+                             * If there is no record
                              */
-                            if (Func::getI()->getPassResetNote() === null) {
+                            if (Func::getI()->getPassResetNote() === 0) {
                                 /**
-                                 * Вносим данные о смене пароля в таблицу pass_reset_note
+                                 * We enter the data on the change of password to the table pass_reset_note
                                  */
                                 Func::getI()->saveToPassResetNote();
 
-                                /** ВЫСЫЛАЕМ ПИСЬМО С НОВЫМ ПАРОЛЕМ НА УКАЗАННЫЙ EMAIL */
+                                /** 
+                                 * We enter the data on the change of password to the table 
+                                 */
                                 Func::getI()->sendEmail();
 
                                 /**
-                                 * Выводим сообщение об успешной отправке пароля на указанный email
+                                 * We display a message about the successful sending of the password to the specified email
                                  */
                                 $this->content['msg'] .= Msg::getMsgSprintf(
                                     'success',
@@ -89,12 +90,12 @@ class Cont
                                 $this->content['redirect'] = Ssl::getLinkLang();
                             }
                             /**
-                             * Если запись есть
+                             * If there is a record
                              */
                             else {
                                 /**
-                                 * Выводим сообщение, что следующая попытка смены пароля
-                                 * будет доступна через ?? минут
+                                 * We display a message that the next attempt to change password
+                                 * will be available through ?? minutes
                                  */
                                 $this->content['msg'] .= Msg::getMsgSprintf(
                                     'warning',
@@ -106,8 +107,8 @@ class Cont
                             }
                         }
                         /**
-                         * Если пользователя с таким email нет,
-                         * выводим сообщение об успешной отправке пароля на указанный email
+                         * If there is no user with such an email,
+                         * We display a message about the successful sending of the password to the specified email
                          */
                         else {
 
@@ -119,9 +120,9 @@ class Cont
                         }
                     }
                     /**
-                     * Иначе, отправляем сообщение о неверном формате
-                     * введенного адреса электронной почты
-                     * и выводим снова форму получения нового пароля
+                     * Otherwise, send a message about the wrong format
+                     * entered email address
+                     * and display the form of obtaining a new password again
                      */
                     else {
                         $this->content['msg'] .= Msg::getMsg_('warning', 'USER_EMAIL_NO_CORRECT');
@@ -130,26 +131,26 @@ class Cont
                 }
             }
             /**
-             * Если пользователь перешёл по ссылке в письме
+             * If the user has crossed the link in the letter
              */
             elseif (GV::post() === null && GV::get() !== null) {
                 /**
-                 * Проверяем корректность кода активации нового пароля
+                 * We check the correctness of the activation code of the new password
                  */
                 if (Func::getI()->checkCode() !== false) {
                     /**
-                     * Проверяем, есть ли такой код в БД pass_reset_note
-                     * Если такой код существует
+                     * We check if there is such a code in the database pass_reset_note
+                     * If such a code exists
                      */
                     if (Func::getI()->getPassResetNoteFromCode() !== false) {
                         /**
-                         * Удаляем запись с этим кодом активации из БД
+                         * We delete the record with this activation code from the database
                          */
                         $userId = (int) Func::getI()->getPassResetNoteFromCode()['user_id'];
                         Func::getI()->delPassResetNote($userId);
                         /**
-                         * Изменяем пароль в профиле пользователя
-                         * и увеличиваем на 1 счётчик изменений в профиле пользователя
+                         * We change the password in the user profile
+                         * and increase by 1 meter of changes in the user profile
                          */
                         Func::getI()->updateUserProfile(
                             $userId,
@@ -159,7 +160,7 @@ class Cont
                             ]
                         );
                         /**
-                         * Вносим запись в лог изменений профиля пользователя
+                         * We make an entry into the log of the user profile changes
                          */
                         Func::getI()->saveToUserEditLog([
                             'edited_id'    => $userId,
@@ -170,15 +171,15 @@ class Cont
                             'edited'       => time(),
                         ]);
                         /**
-                         * Выводим сообщение, об успешной смене пароля пользователя
+                         * We display a message about the successful change of user password
                          */
                         $this->content['msg'] .= Msg::getMsg_('success', 'USER_RESET_PASSWORD_SUCCESS');
                         $this->content['redirect'] = Ssl::getLinkLang();
                     }
                     /**
-                     * Если такого кода нет
-                     * выводим сообщение, что такого кода активации не существует
-                     * и выводим форму отправки нового пароля
+                     * If there is no such code
+                     * We display a message that such an activation code does not exist
+                     * and display the form of sending a new password
                      */
                     else {
 
@@ -187,9 +188,9 @@ class Cont
                     }
                 }
                 /**
-                 * Если код не корректный
-                 * выводим сообщение о некорректном коде
-                 * активации нового пароля пользователя
+                 * If the code is not correct
+                 * We display a message about an incorrect code
+                 * Activation of the new user password
                  */
                 else {
 
@@ -199,7 +200,7 @@ class Cont
             }
         }
         /**
-         * Иначе, выводим сообщение о запрещении доступа
+         * Otherwise, we display a message about the prohibition of access
          */
         else {
 

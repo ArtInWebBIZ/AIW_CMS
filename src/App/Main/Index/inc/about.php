@@ -15,20 +15,20 @@ use Core\Plugins\Ssl;
 $linkToPage = Ssl::getLinkLang() . 'doc/about-us.html';
 
 ?>
+<hr class="uk-divider-icon uk-margin-large-top uk-margin-remove-bottom">
 <section class="uk-section uk-section-small uk-margin-large-top">
     <div class="uk-container uk-container-xlarge">
         <div class="uk-child-width-expand@s uk-flex uk-flex-middle" uk-grid uk-scrollspy="target: > div; cls: uk-animation-fade; delay: 500">
             <div>
                 <div class="uk-card uk-card-body" uk-scrollspy="cls: uk-animation-slide-left; repeat: true">
-                    <h2 class="uk-text-center"><?= Trl::_('FP_WELCOME') ?></h2>
-                    <p class="uk-text-center"><?= Trl::_('FP_WELCOME_TEXT') ?></p>
-                    <p class="uk-text-right"><a href="<?= $linkToPage ?>"><?= Trl::_('OV_ABOUT_US') ?></a></p>
+                    <h2 class="uk-text-center"><?= Trl::_('MP_01') ?></h2>
+                    <p><?= Trl::_('MP_01_TEXT') ?></p>
                 </div>
             </div>
             <div>
                 <div class="uk-card uk-card-body" uk-scrollspy="cls: uk-animation-slide-right; repeat: true">
                     <a href="<?= $linkToPage ?>">
-                        <img class="intro-image" data-src="/img/about_us/mu-1-2x3.jpg" alt="" uk-img="" src="/img/about_us/mu-1-2x3.jpg">
+                        <img class="" data-src="/img/logo_w790.jpg" alt="" uk-img="" src="/img/logo_w790.jpg">
                     </a>
                 </div>
             </div>

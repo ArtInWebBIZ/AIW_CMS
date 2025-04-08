@@ -15,11 +15,21 @@ use Core\{Session, Clean, GV,};
 
 class CheckToken
 {
-    public static function checkToken()
+    /**
+     * Check token
+     * Return true or die this session
+     * @return boolean
+     */
+    public static function checkToken(): bool
     {
-        if (Clean::str(GV::post()['token']) == Session::getToken()) {
+        if (
+            Clean::str(GV::post()['token']) == Session::getToken()
+        ) {
+
             return true;
+            #
         } else {
+
             $v = [
                 'lang'    => Session::getLang(),
                 'refresh' => 10,

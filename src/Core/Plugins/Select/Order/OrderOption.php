@@ -17,11 +17,9 @@ use Core\Trl;
 class OrderOption
 {
     private static $instance = null;
-    private static $allOrder = 'null';
+    private static $allOrder = null;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function getI(): OrderOption
     {
@@ -32,16 +30,16 @@ class OrderOption
         return self::$instance;
     }
 
-    private static function getAllOrder()
+    private static function getAllOrder(): array
     {
-        if (self::$allOrder == 'null') {
+        if (self::$allOrder === null) {
             self::$allOrder = require PATH_INC . 'order' . DS . 'order.php';
         }
 
         return self::$allOrder;
     }
 
-    public function clear()
+    public function clear(): array
     {
         return self::getAllOrder();
     }
@@ -63,10 +61,6 @@ class OrderOption
         return $optionHtml;
     }
 
-    private function __clone()
-    {
-    }
-    public function __wakeup()
-    {
-    }
+    private function __clone() {}
+    public function __wakeup() {}
 }

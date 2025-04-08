@@ -42,7 +42,7 @@ class Func
             $this->checkAccess = false;
 
             if (
-                Auth::getUserStatus() == 1 && GroupAccess::check([2, 5])
+                Auth::getUserStatus() == 1 && GroupAccess::check([5])
             ) {
 
                 $this->checkAccess =  true;

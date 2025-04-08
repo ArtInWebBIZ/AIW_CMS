@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @package    ArtInWebCMS.Core
+ *
+ * @copyright  (C) 2024 Igor Kruk <https://cms.artinweb.biz>
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
 namespace Core\Plugins\Check\Item;
 
 defined('AIW_CMS') or die;
@@ -15,7 +22,7 @@ class Controller
      * Return controllers list or false
      * @return array // array or []
      */
-    public static function getControllerList(): array
+    public static function getList(): array
     {
         $getControllerList = DB::getI()->getAll(
             [
@@ -50,8 +57,8 @@ class Controller
     {
         $currControllerId = false;
 
-        if (isset(self::getControllerList()[self::currControllerName()])) {
-            $currControllerId = (int) self::getControllerList()[Item::getI()->currControllerName()]['id'];
+        if (isset(self::getList()[self::currControllerName()])) {
+            $currControllerId = (int) self::getList()[Item::getI()->currControllerName()]['id'];
         }
 
         return $currControllerId;
@@ -62,7 +69,7 @@ class Controller
      */
     public static function currControllerName(): string
     {
-        if (self::$currControllerName == 'null') {
+        if (self::$currControllerName === 'null') {
             self::$currControllerName = str_replace("-", "_", Router::getRoute()['controller_url']);
         }
 

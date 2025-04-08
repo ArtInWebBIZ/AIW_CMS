@@ -17,10 +17,9 @@ use Core\Plugins\Check\Item;
 class Gallery
 {
     private static $instance = null;
+    private $checkPath       = 'null';
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function getI(): Gallery
     {
@@ -30,8 +29,6 @@ class Gallery
 
         return self::$instance;
     }
-    #
-    private $checkPath = 'null';
     /**
      * Get gallery path
      * @return mixed // array or false
@@ -110,7 +107,7 @@ class Gallery
     #
     private $getGalleryHtml = 'null';
     /**
-     * Return …
+     * Return gallery html
      * @return string
      */
     public function getGalleryHtml(): string
@@ -188,11 +185,7 @@ class Gallery
             return '';
         }
     }
-
-    private function __clone()
-    {
-    }
-    public function __wakeup()
-    {
-    }
+    #
+    private function __clone() {}
+    public function __wakeup() {}
 }

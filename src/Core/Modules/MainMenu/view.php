@@ -22,26 +22,6 @@ $uk_accordion = 'uk-accordion-content uk-margin-remove-top uk-margin-small-botto
         <?= Menu::getI()->createMenu(require PATH_INC . 'menu' . DS . 'mainMenu.php') ?>
         <?php if (Auth::getUserStatus() == 1) { ?>
             <ul uk-accordion>
-                <?php if (GroupAccess::check([2, 5])) { ?>
-                    <li <?= Router::getRoute()['controller_url'] == 'excursion' ? 'class="uk-open"' : ''; ?>>
-                        <a class="uk-accordion-title" href="#">
-                            <img src="/img/icons-menu/guide-board.svg" width="18px" height="18px" alt=""> <?= Trl::_('EXCURSION_EXCURSIONS') ?>
-                        </a>
-                        <div class="<?= $uk_accordion ?>">
-                            <?= Menu::getI()->createAdminMenu(require PATH_INC . 'menu' . DS . 'adminExcursion.php') ?>
-                        </div>
-                    </li>
-                <? } ?>
-                <?php if (GroupAccess::check([2, 5])) { ?>
-                    <li <?= Router::getRoute()['controller_url'] == 'service' ? 'class="uk-open"' : ''; ?>>
-                        <a class="uk-accordion-title" href="#">
-                            <img src="/img/icons-menu/airplane.svg" width="18px" height="18px" alt=""> <?= Trl::_('SERVICE_SERVICE') ?>
-                        </a>
-                        <div class="<?= $uk_accordion ?>">
-                            <?= Menu::getI()->createAdminMenu(require PATH_INC . 'menu' . DS . 'adminService.php') ?>
-                        </div>
-                    </li>
-                <? } ?>
                 <li <?= Router::getRoute()['controller_url'] == 'review' ? 'class="uk-open"' : ''; ?>>
                     <a class="uk-accordion-title" href="#">
                         <img src="/img/icons-menu/notebook-and-pen.svg" width="18px" height="18px" alt=""> <?= Trl::_('REVIEW_REVIEWS') ?>
@@ -50,7 +30,7 @@ $uk_accordion = 'uk-accordion-content uk-margin-remove-top uk-margin-small-botto
                         <?= Menu::getI()->createAdminMenu(require PATH_INC . 'menu' . DS . 'adminReview.php') ?>
                     </div>
                 </li>
-                <?php if (GroupAccess::check([2, 5])) { ?>
+                <?php if (GroupAccess::check([5])) { ?>
                     <li <?= Router::getRoute()['controller_url'] == 'blog' ? 'class="uk-open"' : ''; ?>>
                         <a class="uk-accordion-title" href="#">
                             <img src="/img/icons-menu/book-open.svg" width="18px" height="18px" alt=""> <?= Trl::_('BLOG_BLOG') ?>
@@ -66,7 +46,7 @@ $uk_accordion = 'uk-accordion-content uk-margin-remove-top uk-margin-small-botto
                         <?= Menu::getI()->createAdminMenu(require PATH_INC . 'menu' . DS . 'adminTicket.php') ?>
                     </div>
                 </li>
-                <?php if (GroupAccess::check([2, 5])) { ?>
+                <?php if (GroupAccess::check([5])) { ?>
                     <li <?= Router::getRoute()['controller_url'] == 'user' ? 'class="uk-open"' : ''; ?>>
                         <a class="uk-accordion-title" href="#">
                             <img src="/img/icons-menu/public.svg" width="18px" height="18px" alt=""> <?= Trl::_('USER_USERS') ?>
@@ -84,7 +64,7 @@ $uk_accordion = 'uk-accordion-content uk-margin-remove-top uk-margin-small-botto
                         </div>
                     </li>
                 <? } ?>
-                <?php if (GroupAccess::check([2, 5])) { ?>
+                <?php if (GroupAccess::check([5])) { ?>
                     <li <?= Router::getRoute()['controller_url'] == 'view-log' || Router::getRoute()['controller_url'] == 'item-controller' || Router::getRoute()['controller_url'] == 'search-bots-ip' ? 'class="uk-open"' : ''; ?>>
                         <a class="uk-accordion-title" href="#"><img src="/img/icons-menu/setting-config.svg" width="18px" height="18px" alt=""> <?= Trl::_('OV_CONTROL') ?></a>
                         <div class="<?= $uk_accordion ?>">

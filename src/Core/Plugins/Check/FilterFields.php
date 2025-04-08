@@ -31,6 +31,7 @@ class FilterFields
                 $filterFields[$key] = $value;
             }
         }
+        unset($key, $value);
 
         return isset($filterFields['msg']) ? [] : $filterFields;
     }

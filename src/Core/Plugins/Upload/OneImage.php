@@ -26,6 +26,7 @@ use Core\Plugins\Upload\Images;
 
 class OneImage extends Images
 {
+    private $getImagePath = 'null';
     /**
      * Save all errors to this variable
      * @var array
@@ -115,8 +116,6 @@ class OneImage extends Images
 
         return $this->msg;
     }
-
-    private $getImagePath = 'null';
     /**
      * Get images path
      * @param array $params
@@ -124,7 +123,7 @@ class OneImage extends Images
      */
     private function getImagePath(array $params): string
     {
-        if ($this->getImagePath == 'null') {
+        if ($this->getImagePath === 'null') {
 
             $this->getImagePath = $this->pathItemCode(
                 $params['items_date'],
@@ -164,7 +163,7 @@ class OneImage extends Images
             $msg .= Msg::getMsgSprintf('danger', 'MSG_INVALID_FILE_TYPE', ...[$params['img_name']]);
         }
         /**
-         * Определяем ширину и высоту фото
+         * Determine the width and height photo
          */
         $photoWidth  = (int) imagesx($tmpFile);
         $photoHeight = (int) imagesy($tmpFile);
@@ -172,13 +171,13 @@ class OneImage extends Images
         $imageWidth  = $params['img_width'];
         $imageHeight = $params['img_height'];
         /**
-         * Определяем пропорции конечного изображения
+         * Determine the proportions of the final image
          */
         $proportions = (float) ($imageWidth / $imageHeight);
 
         require PATH_CORE . 'Plugins' . DS . 'Check' . DS . 'Require' . DS . 'NewImage' . DS . 'crop.php';
         /**
-         * Обрезаем изображение согласно нужных пропорций
+         * Cut the image according to the necessary proportions
          */
         $tmpPhoto = imagecrop(
             $tmpFile,
@@ -190,18 +189,18 @@ class OneImage extends Images
             ]
         );
         /**
-         * Создаём изображение нужного названия и размера
+         * Create an image of the desired name and size
          */
         $destination = $params['img_path'] . $params['img_name'];
         $dest  = imagecreatetruecolor($imageWidth, $imageHeight);
         $color = imagecolorallocate($dest, 255, 255, 255);
         imagefilledrectangle($dest, 0, 0, $cropWidth, $cropHeight, $color);
         /**
-         * Копируем старое изображение в новое с изменением параметров
+         * Copy the old image in the new with a change in parameters
          */
         imagecopyresampled($dest, $tmpPhoto, 0, 0, 0, 0, $imageWidth, $imageHeight, $cropWidth, $cropHeight);
         /**
-         * Записываем изображение на сервер
+         * Record the image on the server
          */
         if ($fileType == 'image/jpeg') {
             imagejpeg($dest, $destination);

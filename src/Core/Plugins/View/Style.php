@@ -14,6 +14,8 @@ defined('AIW_CMS') or die;
 class Style
 {
     private static $content = null;
+    private static $form    = null;
+    private static $control = null;
     /**
      * Return styles to content block
      * @return array
@@ -26,22 +28,18 @@ class Style
 
         return self::$content;
     }
-    #
-    private static $form = null;
     /**
      * Return styles to content block
      * @return array
      */
     public static function form(): array
     {
-        if (self::$form == null) {
+        if (self::$form === null) {
             self::$form = require PATH_INC . 'style' . DS . 'form.php';
         }
 
         return self::$form;
     }
-    #
-    private static $control = null;
     /**
      * Return styles to content block
      * @return array
@@ -54,5 +52,4 @@ class Style
 
         return self::$control;
     }
-    #
 }

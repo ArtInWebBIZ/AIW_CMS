@@ -12,7 +12,7 @@ namespace App\ConfigControl\Edit;
 defined('AIW_CMS') or die;
 
 use App\ConfigControl\Edit\Req\Func;
-use Core\{Content, GV};
+use Core\{Content, GV, Router};
 use Core\Plugins\Check\{CheckToken, EditNote};
 use Core\Plugins\{Msg, Ssl};
 
@@ -29,90 +29,106 @@ class Cont
 
         if (Func::getI()->checkAccess() === true) {
             /**
-             * If from post not send values
+             * Check edit note
              */
-            if (GV::post() === null) {
+            if (EditNote::getI()->checkNote() === true) {
                 /**
-                 * Check EditNote
+                 * If from post not send values
                  */
-                EditNote::getI()->checkNote();
-                /**
-                 * View config edit form
-                 */
-                $this->content['content'] = Func::getI()->viewEditForm();
-            }
-            /**
-             * If from post SEND values
-             */
-            else {
-                /**
-                 * Check forms token
-                 */
-                if (CheckToken::checkToken() === true) {
+                if (GV::post() === null) {
                     /**
-                     * If corrects form values
+                     * Check EditNote
                      */
-                    if (!isset(Func::getI()->checkForm()['msg'])) {
+                    /**
+                     * View config edit form
+                     */
+                    $this->content['content'] = Func::getI()->viewEditForm();
+                }
+                /**
+                 * If from post SEND values
+                 */
+                else {
+                    /**
+                     * Check forms token
+                     */
+                    if (CheckToken::checkToken() === true) {
                         /**
-                         * If isset edited fields
+                         * If corrects form values
                          */
-                        if (Func::getI()->countEditedFields() > 0) {
+                        if (!isset(Func::getI()->checkForm()['msg'])) {
                             /**
-                             * If correct save edited values to DB
+                             * If isset edited fields
                              */
-                            if (Func::getI()->updateEditedValues() === true) {
+                            if (Func::getI()->countEditedFields() > 0) {
                                 /**
-                                 * Save edited action to log
+                                 * If correct save edited values to DB
                                  */
-                                Func::getI()->saveEditToLog();
+                                if (Func::getI()->updateEditedValues() === true) {
+                                    /**
+                                     * Save edited action to log
+                                     */
+                                    Func::getI()->saveEditToLog();
+                                    /**
+                                     * Redirect to config control page
+                                     */
+                                    $this->content['redirect'] = Ssl::getLinkLang() . 'config-control/control/';
+                                    /**
+                                     * Delete EditNote
+                                     */
+                                    EditNote::getI()->deleteNote();
+                                }
                                 /**
-                                 * Redirect to config control page
+                                 * If incorrect save edited values to DB
                                  */
-                                $this->content['redirect'] = Ssl::getLinkLang() . 'config-control/control/';
-                                /**
-                                 * Delete EditNote
-                                 */
-                                EditNote::getI()->deleteNote();
+                                else {
+                                    /**
+                                     * View error message
+                                     */
+                                    $this->content['msg'] .= Msg::getMsg_('warning', 'MSG_SAVE_TO_DATABASE_ERROR');
+                                    /**
+                                     * View config edit form
+                                     */
+                                    $this->content['content'] .= Func::getI()->viewEditForm();
+                                }
                             }
                             /**
-                             * If incorrect save edited values to DB
+                             * If not isset edited values
                              */
                             else {
                                 /**
-                                 * View error message
+                                 * Redirect to control page
                                  */
-                                $this->content['msg'] .= Msg::getMsg_('warning', 'MSG_SAVE_TO_DATABASE_ERROR');
-                                /**
-                                 * View config edit form
-                                 */
-                                $this->content['content'] .= Func::getI()->viewEditForm();
+                                $this->content['redirect'] = Ssl::getLinkLang() . 'config-control/control/';
                             }
                         }
                         /**
-                         * If not isset edited values
+                         * If error form values
                          */
                         else {
                             /**
-                             * Redirect to control page
+                             * View errors message
                              */
-                            $this->content['redirect'] = Ssl::getLinkLang() . 'config-control/control/';
+                            $this->content['msg'] .= Func::getI()->checkForm()['msg'];
+                            /**
+                             * View config edit form
+                             */
+                            $this->content['content'] .= Func::getI()->viewEditForm();
                         }
                     }
-                    /**
-                     * If error form values
-                     */
-                    else {
-                        /**
-                         * View errors message
-                         */
-                        $this->content['msg'] .= Func::getI()->checkForm()['msg'];
-                        /**
-                         * View config edit form
-                         */
-                        $this->content['content'] .= Func::getI()->viewEditForm();
-                    }
                 }
+                #
+            } else {
+                /**
+                 * View message about error
+                 */
+                $this->content['msg'] .= Msg::getMsg_('warning', 'MSG_EDIT_NOTE_ERROR');
+                /**
+                 * Redirect to config control page
+                 */
+                $this->content['redirect'] = Ssl::getLinkLang() . Router::getRoute()['controller_url'] . '/';
+                #
             }
+            #
         } else {
 
             $this->content = (new \App\Main\NoAccess\Cont)->getContent();

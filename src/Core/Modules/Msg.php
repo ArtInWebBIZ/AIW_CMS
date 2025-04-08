@@ -20,9 +20,7 @@ class Msg
     private $msg             = null;
     private static $instance = null;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function getI(): Msg
     {
@@ -32,15 +30,13 @@ class Msg
 
         return self::$instance;
     }
-
-    private function __clone()
-    {
-    }
-    public function __wakeup()
-    {
-    }
-
-    public function getMsg(string $msgType, string $msgText)
+    /**
+     * Return alert messages to content page
+     * @param string $msgType
+     * @param string $msgText
+     * @return string
+     */
+    public function getMsg(string $msgType, string $msgText): string
     {
         $this->msgType = Clean::str($msgType);
 
@@ -75,4 +71,7 @@ class Msg
 
         return $this->msg;
     }
+
+    private function __clone() {}
+    public function __wakeup() {}
 }

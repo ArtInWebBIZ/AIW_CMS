@@ -14,17 +14,16 @@ defined('AIW_CMS') or die;
  */
 
 return [
-    'OV_SITE_NAME'                 => '«Andorinha» – экскурсии по Португалии',
-    'OV_SITE_FULL_NAME'            => '«Andorinha Portugal Tours» — экскурсии по центральной Португалии',
-    'OV_SITE_SHORT_NAME'           => '«Andorinha Portugal Tours»',
-    'OV_USER_NAME'                 => 'Владимир и Ольга Грязновы',
-    'OV_GUIDES'                    => 'лицензированные гиды по Португалии',
+    'OV_SITE_NAME'                 => '«AIW CMS» – экскурсии по Португалии',
+    'OV_SITE_FULL_NAME'            => '«ArtInWeb CMS» — экскурсии по центральной Португалии',
+    'OV_SITE_SHORT_NAME'           => '«ArtInWeb CMS»',
+    'OV_OWNER_NAME'                 => 'Владимир и Ольга Грязновы',
     'OV_HOME'                      => 'Главная',
     'OV_CONTACTS'                  => 'Контакты',
     'OV_PAGE_TITLE'                => 'Заголовок страницы',
     'OV_ABOUT_US'                  => 'О нас',
-    'OV_COUNTRY'                   => 'Португалия',
-    'OV_REGION'                    => 'Лиссабон',
+    'OV_COUNTRY'                   => 'Украина',
+    'OV_REGION'                    => 'Тернополь',
     /**
      * yes or no
      */
@@ -80,7 +79,6 @@ return [
      */
     'OV_INFORMATION'               => 'Информация',
     'OV_COPYRIGHT'                 => 'Копирайты',
-    'OV_PORTUGAL'                  => 'Португалия',
     'OV_WE_IN_SOC_NET'             => 'Мы в соцсетях',
     'OV_INSTAGRAM'                 => 'Мы в Instagram',
     'OV_FACEBOOK'                  => 'Мы в Facebook',

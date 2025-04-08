@@ -17,11 +17,9 @@ use Core\Trl;
 class StatusOption
 {
     private static $instance  = null;
-    private static $allStatus = 'null';
+    private static $allStatus = null;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function getI(): StatusOption
     {
@@ -32,9 +30,9 @@ class StatusOption
         return self::$instance;
     }
 
-    private static function getAllStatus()
+    private static function getAllStatus(): array
     {
-        if (self::$allStatus == 'null') {
+        if (self::$allStatus === null) {
             self::$allStatus = require PATH_INC . 'ticket' . DS . 'status.php';
         }
 
@@ -62,10 +60,6 @@ class StatusOption
         return $ticketStatusOptionHtml;
     }
 
-    private function __clone()
-    {
-    }
-    public function __wakeup()
-    {
-    }
+    private function __clone() {}
+    public function __wakeup() {}
 }

@@ -258,8 +258,14 @@ class FormFields
 
         return $this->field;
     }
-
-    private function fieldLength($key, $postValue, $fieldArr)
+    /**
+     * Check fields length value
+     * @param string $key
+     * @param mixed  $postValue
+     * @param array  $fieldArr
+     * @return boolean
+     */
+    private function fieldLength(string $key, mixed $postValue, array $fieldArr): bool
     {
         if ($postValue !== false) {
 
@@ -269,30 +275,39 @@ class FormFields
                 $fieldArr[$key]['required'] === false &&
                 $postValue == ''
             ) {
+
                 return true;
+                #
             } elseif (
-                ( #
+                (
                     $fieldArr[$key]['minlength'] != '' &&
                     iconv_strlen($postValue) < (int) $fieldArr[$key]['minlength']
                 ) ||
-                ( #
+                (
                     $fieldArr[$key]['maxlength'] != '' &&
                     iconv_strlen($postValue) > (int) $fieldArr[$key]['maxlength']
                 )
             ) {
+
                 return false;
+                #
             } else {
                 return true;
             }
+            #
         } else {
             return false;
         }
     }
-
-    private function getFieldsMsg($fieldArr, string $key)
+    /**
+     * Return fields errors message
+     * @param array  $fieldArr
+     * @param string $key
+     * @return boolean
+     */
+    private function getFieldsMsg(array $fieldArr, string $key): bool
     {
         $msgText = Trl::_('INFO_NO_CORRECT_FIELD_VALUE') . '<br><strong>' . $fieldArr[$key]['label'] . '</strong><br><br>' . $fieldArr[$key]['info'];
-
         /**
          * If isset msg
          */
@@ -310,10 +325,14 @@ class FormFields
 
         return true;
     }
-
+    /**
+     * View file errors value
+     * @param array $file
+     * @return string
+     */
     private function fileError(array $file): string
     {
-        if ($file['error'] > 0) {
+        if ((int) $file['error'] > 0) {
 
             if (!isset($this->field['msg'])) {
                 $this->field['msg'] = '';
@@ -361,40 +380,15 @@ class FormFields
             return '';
         }
     }
-
-    private function clean(array $field)
+    /**
+     * Return correctly fields value or false
+     * @param array $field
+     * @return mixed
+     */
+    private function clean(array $field): mixed
     {
-        $postValue = false;
+        $postValue = Clean::check(trim(GV::post()[$field['name']]), $field['clean']);
 
-        if ($field['clean'] == 'str') {
-            $postValue = Clean::str(trim(GV::post()[$field['name']]));
-        } elseif ($field['clean'] == 'link') {
-
-            $postValue = Clean::link(trim(GV::post()[$field['name']]));
-
-            if ($postValue == 'https://') {
-                $postValue = '';
-            }
-        } elseif ($field['clean'] == 'email') {
-            $postValue = Clean::email(trim(GV::post()[$field['name']]));
-        } elseif ($field['clean'] == 'password') {
-            $postValue = Clean::password(trim(GV::post()[$field['name']]));
-        } elseif ($field['clean'] == 'time') {
-            $postValue = Clean::time(trim(GV::post()[$field['name']]));
-        } elseif ($field['clean'] == 'unsInt') {
-            $postValue = Clean::unsInt(trim(GV::post()[$field['name']]));
-        } elseif ($field['clean'] == 'int') {
-            $postValue = Clean::int(trim(GV::post()[$field['name']]));
-        } elseif ($field['clean'] == 'float') {
-            $postValue = Clean::float(trim(GV::post()[$field['name']]));
-        } elseif ($field['clean'] == 'name') {
-            $postValue = Clean::name(trim(GV::post()[$field['name']]));
-        } elseif ($field['clean'] == 'text') {
-            $postValue = Clean::text(trim(GV::post()[$field['name']]));
-        } elseif ($field['clean'] == 'raw') {
-            $postValue = Clean::raw(trim(GV::post()[$field['name']]));
-        }
-
-        return $postValue;
+        return is_string($postValue) ? str_ireplace("https://", "", $postValue) : $postValue;
     }
 }

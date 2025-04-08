@@ -19,9 +19,7 @@ class ErrorHandler
     private $content         = [];
     private static $instance = null;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function getI(): ErrorHandler
     {
@@ -212,12 +210,7 @@ class ErrorHandler
     {
         return $this->content;
     }
-    #
-    private function __clone()
-    {
-    }
-    #
-    public function __wakeup()
-    {
-    }
+
+    private function __clone() {}
+    public function __wakeup() {}
 }

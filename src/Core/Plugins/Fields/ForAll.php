@@ -17,9 +17,7 @@ class ForAll
 {
     private static $instance = null;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function getI(): ForAll
     {
@@ -49,10 +47,6 @@ class ForAll
         ];
     }
 
-    private function __clone()
-    {
-    }
-    public function __wakeup()
-    {
-    }
+    private function __clone() {}
+    public function __wakeup() {}
 }

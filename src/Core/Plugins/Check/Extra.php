@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @package    ArtInWebCMS.Core
+ *
+ * @copyright  (C) 2024 Igor Kruk <https://cms.artinweb.biz>
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
 namespace Core\Plugins\Check;
 
 defined('AIW_CMS') or die;
@@ -9,7 +16,7 @@ use Core\Plugins\Item\Control\Func;
 
 class Extra
 {
-    private static $extraItem = null;
+    private static $extraItem  = null;
     /**
      * Return in array first sql to database,
      * and array extra values
@@ -25,7 +32,6 @@ class Extra
                 $whereId    = '';
                 $where      = '';
                 $extraArray = [];
-
                 /**
                  * Sorted fields in type
                  */
@@ -98,22 +104,14 @@ class Extra
 
         return self::$extraItem;
     }
-    #
-    private static $extraOther = 'null';
     /**
-     * Return …
-     * @return string
+     * Return in:
+     * key ['where'] prepare where sql,
+     * key ['array'] values to prepare sql
+     * @param array  $fieldsList
+     * @param string $tablename
+     * @return array
      */
-    public static function extraOther(): string
-    {
-        if (self::$extraOther == 'null') {
-
-            self::$extraOther = '';
-        }
-
-        return self::$extraOther;
-    }
-    #
     public static function whereAndArray(array $fieldsList, string $tablename): array
     {
         $where = '';

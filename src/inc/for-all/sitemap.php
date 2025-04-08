@@ -21,26 +21,6 @@ return [
             'robots' => $robots[2],
         ],
     ],
-    'Excursion' => [
-        'Index' => [
-            'order'  => 2,
-            'robots' => $robots[1],
-        ],
-        'View' => [
-            'order'  => 8,
-            'robots' => $robots[2],
-        ],
-    ],
-    'Service' => [
-        'Index' => [
-            'order'  => 3,
-            'robots' => $robots[1],
-        ],
-        'View' => [
-            'order'  => 9,
-            'robots' => $robots[2],
-        ],
-    ],
     'Blog' => [
         'Index' => [
             'order'  => 4,

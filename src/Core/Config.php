@@ -16,7 +16,6 @@ use Core\Plugins\Model\DB;
 class Config
 {
     private static $config = null;
-
     /**
      * Return all config array
      * @return array

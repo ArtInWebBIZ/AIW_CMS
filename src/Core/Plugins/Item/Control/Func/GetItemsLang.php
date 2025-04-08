@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @package    ArtInWebCMS.Core
+ *
+ * @copyright  (C) 2024 Igor Kruk <https://cms.artinweb.biz>
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
 namespace Core\Plugins\Item\Control\Func;
 
 defined('AIW_CMS') or die;
@@ -10,7 +17,6 @@ use Core\Plugins\Item\Filters\Filters;
 use Core\Plugins\Model\DB;
 use Core\Plugins\ParamsToSql;
 use Core\DB as CoreDB;
-use Core\GV;
 use Core\Session;
 
 class GetItemsLang
@@ -169,7 +175,7 @@ class GetItemsLang
      */
     public function getItemsLang(): array
     {
-        if ($this->getItemsLang == null) {
+        if ($this->getItemsLang === null) {
 
             if (Func::getI()->itemCount() > 0) {
                 /**

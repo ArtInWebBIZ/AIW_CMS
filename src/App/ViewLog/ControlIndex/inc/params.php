@@ -16,7 +16,7 @@ use Core\Router;
 return
     [
         'tpl'                 => 'admin',
-        'section_css'         => 'uk-padding-remove-top',
+        'template'            => PATH_TPL . 'control.php',
         'title'               => 'OV_ATTENDANCE_INDEX',
         'access'              => Func::getI()->checkAccess(),
         'content_type'        => 'view_index_log',

@@ -21,9 +21,8 @@ class ControlClear
     public function getContent()
     {
         $this->content = Content::getDefaultValue();
-
         /**
-         * Удаляем запись фильтров из БД
+         * We delete filters from the database
          */
         DB::getI()->delete(
             [
@@ -39,7 +38,7 @@ class ControlClear
             ]
         );
         /**
-         * Перенаправляем на страницу управления
+         * We redirect the control page
          */
         $this->content['redirect'] = Ssl::getLinkLang() . Router::getRoute()['controller_url'] . '/' . str_replace("-clear", "", Router::getRoute()['action_url']) . '/';
 

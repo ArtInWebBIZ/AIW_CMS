@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
     sass = require('gulp-sass')(require('sass')),
-    autoprefixer = require('gulp-autoprefixer'),
     cleanCSS = require('gulp-clean-css'),
     rename = require('gulp-rename'),
     sourcemaps = require('gulp-sourcemaps')
@@ -18,9 +17,6 @@ gulp.task('sass', function ()
         .pipe(sass({
             outputStyle: 'expanded'
         }).on('error', sass.logError)) // We bring errors to the console
-
-        // Add from CSS the drugs for different browsers and their versions (including for IE)
-        .pipe(autoprefixer({}))
 
         // Minimize CSS
         .pipe(cleanCSS({

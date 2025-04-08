@@ -11,7 +11,8 @@ namespace Core\Modules\Control;
 
 defined('AIW_CMS') or die;
 
-use Core\{Clean, Auth, Config, GV, Session, Router};
+use Core\{Clean, Config, GV, Session, Router};
+use Core\Modules\Control\Filters\Filters;
 use Core\Modules\Pagination\Pagination;
 use Core\Plugins\{Dll\FiltersNote, ParamsToSql, Model\DB, View\Tpl};
 
@@ -20,14 +21,15 @@ class Func
     private static $instance    = null;
     private $params             = [];
     private $getFiltersValues   = [];
-    private $getNeededId        = [];
+    private $getNeededId        = null;
     private $getItemsListHtml   = 'null';
     private $countItemsId       = 'null';
     private $viewItemsList      = [];
     private $filtersValuesToSql = [];
-    private $extra              = null;
     private $checkAccess        = 'null';
     private $curDir             = null;
+    private $orderBy            = 'null';
+    private $getAllItems        = null;
 
     private function __construct() {}
 
@@ -50,11 +52,18 @@ class Func
             $this->curDir !== $dirName
         ) {
 
-            $this->curDir = $dirName;
+            $this->params             = [];
+            $this->getFiltersValues   = [];
+            $this->getNeededId        = null;
+            $this->getItemsListHtml   = 'null';
+            $this->countItemsId       = 'null';
+            $this->viewItemsList      = [];
+            $this->filtersValuesToSql = [];
+            $this->curDir             = $dirName;
+            $this->orderBy            = 'null';
+            $this->getAllItems        = null;
 
             $this->checkAccess = false;
-
-            $this->params = [];
 
             if ($this->getParams($dirName)['access'] === true) {
                 $this->checkAccess = true;
@@ -63,14 +72,13 @@ class Func
 
         return $this->checkAccess;
     }
-
     /**
      * Return controllers params
      * @return array
      */
     public function getParams($dirName = null): array
     {
-        if ($this->params == []) {
+        if ($this->params === []) {
 
             $dir = $dirName === null ? '' : $dirName . DS;
 
@@ -80,14 +88,19 @@ class Func
 
         return $this->params;
     }
-
-    public function deleteOldFiltersNote()
+    /**
+     * Delete old filters note
+     * @return boolean
+     */
+    public function deleteOldFiltersNote(): bool
     {
         return FiltersNote::getI()->deleteOldFiltersNote();
     }
-
-
-    public function countItemsId()
+    /**
+     * Count items
+     * @return integer
+     */
+    public function countItemsId(): int
     {
         if ($this->countItemsId === 'null') {
 
@@ -110,14 +123,27 @@ class Func
 
         return $this->countItemsId;
     }
-
-    public function viewItemsList()
+    /**
+     * Get in array in key ['content'] control template and insert to
+     * template needed values,
+     * or view in key ['msg'] error message
+     * @return array
+     */
+    public function viewItemsList(): array
     {
-        if ($this->viewItemsList == []) {
+        if ($this->viewItemsList === []) {
 
             if (isset($this->getFiltersValues()['msg'])) {
                 $this->viewItemsList['msg'] = $this->getFiltersValues()['msg'];
             } else {
+
+                if ($this->curDir === null) {
+                    $controlBody = $this->countItemsId() == 0 ?
+                        Tpl::view(PATH_INC . 'content' . DS . 'noResult.php') :
+                        $this->getItemsListHtml();
+                } else {
+                    $controlBody = $this->countItemsId() == 0 ? '' : $this->getItemsListHtml();
+                }
 
                 $v = [
                     'title'          => isset($this->getParams()['title']) ? $this->getParams()['title'] : '',
@@ -127,7 +153,7 @@ class Func
                     'count'          => $this->countItemsId(),
                     'paginationStep' => isset($this->getParams()['paginationStep']) ? $this->getParams()['paginationStep'] : Config::getCfg('CFG_HISTORY_PAGINATION'),
                     'control_header' => $this->getParams()['control_header'] == '' ? '' : Tpl::view($this->getParams()['control_header']),
-                    'control_body'   => $this->countItemsId() == 0 ? '' : $this->getItemsListHtml(),
+                    'control_body'   => $controlBody,
                 ];
 
                 if (isset($this->getParams()['template'])) {
@@ -149,8 +175,11 @@ class Func
 
         return $this->viewItemsList;
     }
-
-    private function getItemsListHtml()
+    /**
+     * Return in string all control items
+     * @return string
+     */
+    private function getItemsListHtml(): string
     {
         if ($this->getItemsListHtml === 'null') {
 
@@ -166,6 +195,7 @@ class Func
 
                     $itemsBodyHtml .= Tpl::view($this->getParams()['control_body'], $v);
                 }
+                unset($key1, $value1, $key2, $value2);
                 #
             }
 
@@ -174,10 +204,11 @@ class Func
 
         return $this->getItemsListHtml;
     }
-
-    private $orderBy = 'null';
-
-    public function orderBy()
+    /**
+     * Return ORDER BY params for sql
+     * @return string
+     */
+    public function orderBy(): string
     {
         if ($this->orderBy == 'null') {
 
@@ -208,34 +239,44 @@ class Func
 
         return $this->orderBy;
     }
-
-    private $getAllItems = null;
-
+    /**
+     * Return in array all items value or empty array
+     * @return array
+     */
     public function getAllItems(): array
     {
-        if ($this->getAllItems == null) {
+        if ($this->getAllItems === null) {
 
-            $in = ParamsToSql::getInSql($this->getNeededId());
+            if ($this->getNeededId() !== []) {
 
-            $this->getAllItems = DB::getI()->getAll(
-                [
-                    'table_name'          => $this->getParams()['content_type'],
-                    'where'               => '`id`' . $in['in'],
-                    'array'               => $in['array'],
-                    'order_by_field_name' => 'id',
-                    'order_by_direction'  => $this->orderBy(),
-                    'offset'              => 0,
-                    'limit'               => 0,
-                ]
-            );
+                $in = ParamsToSql::getInSql($this->getNeededId());
+
+                $this->getAllItems = DB::getI()->getAll(
+                    [
+                        'table_name'          => $this->getParams()['content_type'],
+                        'where'               => '`id`' . $in['in'],
+                        'array'               => $in['array'],
+                        'order_by_field_name' => 'id',
+                        'order_by_direction'  => $this->orderBy(),
+                        'offset'              => 0,
+                        'limit'               => 0,
+                    ]
+                );
+                #
+            } else {
+                $this->getAllItems = [];
+            }
         }
 
         return $this->getAllItems;
     }
-
-    private function getNeededId()
+    /**
+     * Get in array list items id or empty array
+     * @return array
+     */
+    private function getNeededId(): array
     {
-        if ($this->getNeededId === []) {
+        if ($this->getNeededId === null) {
 
             if (isset($this->getParams()['extra_limit'])) {
                 $limit = $this->getParams()['extra_limit'];
@@ -258,131 +299,30 @@ class Func
                 ]
             );
 
-            for ($i = 0; $i < count($getNeededId); $i++) {
-                $this->getNeededId[$i] = $getNeededId[$i]['id'];
+            if ($getNeededId !== []) {
+                for ($i = 0; $i < count($getNeededId); $i++) {
+                    $this->getNeededId[$i] = $getNeededId[$i]['id'];
+                }
+            } else {
+                $this->getNeededId = [];
             }
         }
 
         return $this->getNeededId;
     }
-
-    public function filtersValuesToSql()
+    /**
+     * Return correctly prepare sql
+     * In key ['sql'] - sql string,
+     * in key ['array'] - array to sql
+     * @return array
+     */
+    public function filtersValuesToSql(): array
     {
-        if ($this->filtersValuesToSql == []) {
-
-            $filtersValues = $this->getFiltersValues();
-
-            if ($filtersValues !== null) {
-
-                $sql = '';
-
-                foreach ($filtersValues as $key => $value) {
-
-                    if (strpos($key, '_from')) {
-
-                        if (strpos($key, 'created') !== false) {
-                            $sql .= '`created` >= :created_from AND ';
-                            $array['created_from'] = $value;
-                        } elseif (strpos($key, 'edited') !== false) {
-                            $sql .= '`edited` >= :edited_from AND ';
-                            $array['edited_from'] = $value;
-                        } else {
-                            $sql .= '`' . $key . '` = :' . $key . ' AND ';
-                            $array[$key] = $value;
-                        }
-                        #
-                    } elseif (strpos($key, '_to') !== false) {
-
-                        if (strpos($key, 'created') !== false) {
-                            $sql .= '`created` < :created_to AND ';
-                            $array['created_to'] = $value;
-                        } elseif (strpos($key, 'edited') !== false) {
-                            $sql .= '`edited` < :edited_to AND ';
-                            $array['edited_to'] = $value;
-                        } else {
-                            $sql .= '`' . $key . '` = :' . $key . ' AND ';
-                            $array[$key] = $value;
-                        }
-                        #
-                    } elseif (strpos($key, 'edited_count') !== false) {
-
-                        if ($value === 0) {
-                            $sql .= '`edited_count` = :edited_count AND ';
-                            $array['edited_count'] = $value;
-                        } else {
-                            $sql .= '`edited_count` >= :edited_count AND ';
-                            $array['edited_count'] = $value;
-                        }
-                        #
-                    } elseif (strpos($key, 'order_by') !== false) {
-                        unset($filtersValues[$key]);
-                    } else {
-                        $sql .= "`$key` = :$key AND ";
-                        $array[$key] = $value;
-                    }
-                }
-
-                if ($this->extra() != []) {
-
-                    $sql   = $this->extra()['sql'] . $sql;
-                    $array = isset($array) ? array_merge($this->extra()['array'], $array) : $this->extra()['array'];
-                }
-
-                $sql = substr($sql, 0, -5);
-
-                if ($filtersValues == [] && $this->extra() == []) {
-                    $this->filtersValuesToSql['sql']   = '`id` > 0';
-                    $this->filtersValuesToSql['array'] = [];
-                } else {
-                    $this->filtersValuesToSql['sql']   = $sql;
-                    $this->filtersValuesToSql['array'] = $array;
-                }
-                #
-            } else {
-
-                if ($this->extra() != []) {
-                    $this->filtersValuesToSql['sql']   = substr($this->extra()['sql'], 0, -5);
-                    $this->filtersValuesToSql['array'] = $this->extra()['array'];
-                } else {
-                    $this->filtersValuesToSql['sql']   = '`id` > 0';
-                    $this->filtersValuesToSql['array'] = [];
-                }
-            }
+        if ($this->filtersValuesToSql === []) {
+            $this->filtersValuesToSql = Filters::getI()->filtersValuesToSql();
         }
 
         return $this->filtersValuesToSql;
-    }
-
-    public function viewFiltersForm()
-    {
-        $path = PATH_MODULES . 'Control' . DS . 'FiltersForm' . DS . 'filtersForm.php';
-
-        if ($this->getFiltersValues() !== null) {
-
-            foreach ($this->getFiltersValues() as $key => $value) {
-
-                if (
-                    $key != 'paid_to' &&
-                    $key != 'paid_from' &&
-                    (strpos($key, '_from') !== false ||
-                        strpos($key, '_to') !== false
-                    )
-                ) {
-                    $values[$key] = userDate(Config::getCfg('CFG_DATE_TIME_MYSQL_FORMAT'), $value);
-                } else {
-                    $values[$key] = $value;
-                }
-            }
-        }
-
-        $values['title']               = $this->getParams()['title'];
-        $values['filter_fields']       = $this->getParams()['filter_fields'];
-        $values['page_link']           = $this->getParams()['page_link'];
-        $values['filter_button_label'] = $this->getParams()['filter_button_label'];
-        $values['content_type']        = $this->getParams()['content_type'];
-        $values['filters_clear_link']  = $this->getParams()['filters_clear_link'];
-
-        return Tpl::view($path, $values);
     }
     /**
      * Get values from filters
@@ -391,88 +331,16 @@ class Func
     public function getFiltersValues(): array|null
     {
         if ($this->getFiltersValues === []) {
-            /**
-             * Если глобальная переменная POST равна NULL,
-             * т.е., из формы переданы данные
-             */
-            if (GV::post() === null) {
-                /**
-                 * Ели есть передача из GET в POST
-                 */
-                if ($this->fromGetToPost() === false) {
-
-                    if (FiltersNote::getI()->getFiltersNote() === false) {
-
-                        $getFiltersValues = null;
-                        #
-                    } else {
-
-                        $getFiltersValues = json_decode(FiltersNote::getI()->getFiltersNote()['post_note'], true);
-
-                        $this->updateNote($getFiltersValues);
-                    }
-                    #
-                } else {
-
-                    if (FiltersNote::getI()->getFiltersNote() === false) {
-
-                        $getFiltersValues = $this->fromGetToPost();
-
-                        $this->saveNote($getFiltersValues);
-                        #
-                    } else {
-
-                        $getFiltersValues = json_decode(FiltersNote::getI()->getFiltersNote()['post_note'], true);
-
-                        $fromGetToPost = $this->fromGetToPost();
-
-                        foreach ($getFiltersValues as $key => $value) {
-
-                            if (isset($fromGetToPost[$key])) {
-                                $getFiltersValues[$key] = $fromGetToPost[$key];
-                                unset($fromGetToPost[$key]);
-                            }
-                        }
-
-                        $getFiltersValues = array_merge($getFiltersValues, $fromGetToPost);
-
-                        $this->updateNote($getFiltersValues);
-                    }
-                }
-                #
-            } else {
-                /**
-                 * Проверяем поступившие из фильтра данные
-                 */
-                $getFiltersValues = (new \Core\Plugins\Check\FilterFields)->checkFilterFields(
-                    require $this->getParams()['filter_fields']
-                );
-
-                if ($getFiltersValues == []) {
-
-                    $getFiltersValues = null;
-                    #
-                } else {
-
-                    if (FiltersNote::getI()->getFiltersNote() === false) {
-                        /** 
-                         * Если данные корректны, и нет записи фильтров в БД
-                         */
-                        $this->saveNote($getFiltersValues);
-                        #
-                    } else {
-                        $this->updateNote($getFiltersValues);
-                    }
-                }
-            }
-
-            $this->getFiltersValues = $getFiltersValues;
+            $this->getFiltersValues = Filters::getI()->getFiltersValues();
         }
 
         return $this->getFiltersValues;
     }
-
-    private function fromGetToPost()
+    /**
+     * Return correctly filters values from $_GET
+     * @return array|boolean
+     */
+    public function fromGetToPost(): array|bool
     {
         if (GV::get() !== null) {
 
@@ -483,14 +351,15 @@ class Func
             foreach ($get as $key => $value) {
 
                 if (
-                    is_int(Clean::int($get[$key])) &&
+                    is_int(Clean::unsInt($get[$key])) &&
                     array_search($key, $this->getParams()['fields_in_body']) !== false
                 ) {
-                    $params[$key] = Clean::int($get[$key]);
+                    $params[$key] = Clean::unsInt($get[$key]);
                 } else {
                     continue;
                 }
             }
+            unset($key, $value);
 
             return $params !== [] ? $params : false;
             #
@@ -498,27 +367,35 @@ class Func
             return false;
         }
     }
-
-    private function saveNote($getFiltersValues)
+    /**
+     * Save currently filters parameters to filters note
+     * @param array $getFiltersValues
+     * @return integer
+     */
+    public function saveNote(array $getFiltersValues): int
     {
         return DB::getI()->add(
             [
                 'table_name' => 'control_post_note',
                 'set'        => ParamsToSql::getSet(
                     $where = [
-                        'token'        => Session::getToken(),
+                        'token'           => Session::getToken(),
                         'controller_name' => Router::getRoute()['controller_name'],
-                        'action_name'  => Router::getRoute()['action_name'],
-                        'post_note'    => json_encode($getFiltersValues),
-                        'enabled_to'   => time() + Config::getCfg('CFG_NOTE_ENABLED_TO'),
+                        'action_name'     => Router::getRoute()['action_name'],
+                        'post_note'       => json_encode($getFiltersValues),
+                        'enabled_to'      => time() + Config::getCfg('CFG_NOTE_ENABLED_TO'),
                     ]
                 ),
                 'array'      => $where,
             ]
         );
     }
-
-    private function updateNote($getFiltersValues)
+    /**
+     * Update filters note - save new filters values
+     * @param array $getFiltersValues
+     * @return boolean
+     */
+    public function updateNote(array $getFiltersValues): bool
     {
         return DB::getI()->update(
             [
@@ -539,79 +416,6 @@ class Func
                 'array'      => array_merge($set, $where),
             ]
         );
-    }
-
-    private function extra()
-    {
-        if ($this->extra === null) {
-
-            $extra = $this->getParams()['extra'];
-
-            if ($extra !== []) {
-
-                $sql = '';
-
-                foreach ($extra as $key => $value) {
-
-                    if (is_array($extra[$key]['filters_values'])) {
-
-                        foreach ($extra[$key]['filters_values'] as $key2 => $value2) {
-
-                            $array[$key2] = $extra[$key]['filters_values'][$key2];
-                        }
-                    } else {
-
-                        $array[$key] = $extra[$key]['filters_values'];
-                    }
-
-                    $sql .= $extra[$key]['sql'];
-                }
-
-                $this->extra['sql']   = $sql;
-                $this->extra['array'] = $array;
-                #
-            } else {
-
-                $this->extra = [];
-            }
-        }
-
-        return $this->extra;
-    }
-
-    private $countBalanceReplenishment = 'null';
-
-    public function countBalanceReplenishment()
-    {
-        if ($this->countBalanceReplenishment == 'null') {
-
-            $where = '`paid_type` = :paid_type AND `edited` > :user_created';
-            $array = [
-                'paid_type' => 3,
-                'user_created' => Auth::getUserCreated(),
-            ];
-
-            if (isset($this->getFiltersValues()['edited_from'])) {
-                $where = $where . ' AND `edited` > :edited_from';
-                $array = array_merge($array, ['edited_from' => $this->getFiltersValues()['edited_from']]);
-            }
-
-            if (isset($this->getFiltersValues()['edited_to'])) {
-                $where = $where . ' AND `edited` < :edited_to';
-                $array = array_merge($array, ['edited_to' => $this->getFiltersValues()['edited_to']]);
-            }
-
-            $this->countBalanceReplenishment = DB::getI()->sumFields(
-                [
-                    'table_name' => 'user_balance_edit_log',
-                    'field_name' => 'paid_sum',
-                    'where'      => $where,
-                    'array'      => $array,
-                ]
-            );
-        }
-
-        return $this->countBalanceReplenishment;
     }
 
     private function __clone() {}

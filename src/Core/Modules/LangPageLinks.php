@@ -16,8 +16,11 @@ use Core\{BaseUrl, Languages, Session};
 class LangPageLinks
 {
     private static $renderLinks      = '';
-
-    public static function renderLinks()
+    /**
+     * Return all website languages links
+     * @return string
+     */
+    public static function renderLinks(): string
     {
         $languageCodeList = Languages::langList();
 
@@ -36,6 +39,7 @@ class LangPageLinks
             self::$renderLinks .= '
             <li class="uk-text-uppercase"><a' . $activeClass . ' href="' . $link . '">' . $langNative . '</a></li>';
         }
+        unset($key, $value);
 
         return self::$renderLinks;
     }

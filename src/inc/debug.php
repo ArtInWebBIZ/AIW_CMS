@@ -16,18 +16,3 @@ function debug($data)
 {
     echo '<pre>' . print_r($data, true) . '</pre>';
 }
-
-// function toTmp(string $value)
-// {
-//     return DB::getI()->add(
-//         [
-//             'table_name' => 'tmp',
-//             'set'        => ParamsToSql::getSet(
-//                 $set = [
-//                     'value' => $value,
-//                 ]
-//             ),
-//             'array'      => $set,
-//         ]
-//     );
-// }

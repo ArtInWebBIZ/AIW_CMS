@@ -55,7 +55,7 @@ class Cont
                 /**
                  * View message about edit this review others user
                  */
-                $this->content['msg'] .= Msg::getMsg_('warning', 'REVIEW_BLOCK_EDITED_NOTE_MSG');
+                $this->content['msg'] .= Msg::getMsg_('warning', 'MSG_EDIT_NOTE_ERROR');
                 /**
                  * Redirect to reviews page
                  */

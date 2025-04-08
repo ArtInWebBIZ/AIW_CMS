@@ -12,11 +12,15 @@ defined('AIW_CMS') or die;
 use Core\{Content, Trl};
 use Core\Modules\Pagination\Pagination;
 
+$sectionCss   = isset($v['section_css']) ? $v['section_css'] : '';
+$containerCss = isset($v['container_css']) ? $v['container_css'] : '';
+$itemHeading  = isset($v['item_heading']) ? $v['item_heading'] : '';
+
 ?>
-<?= Content::getContentStart($v['section_css'], $v['container_css'],) ?>
-<h1 class="uk-text-center uk-margin-large-top<?= $v['item_heading'] != '' ? ' uk-margin-medium-bottom' : '' ?>"><?= Trl::_($v['title']) ?></h1>
-<?php if ($v['item_heading'] != '') { ?>
-    <h2 class="uk-text-center uk-margin-medium-bottom"><?= Trl::_($v['item_heading']) ?></h2>
+<?= Content::getContentStart($sectionCss, $containerCss,) ?>
+<h1 class="uk-text-center uk-margin-large-top<?= $itemHeading != '' ? ' uk-margin-medium-bottom' : '' ?>"><?= Trl::_($v['title']) ?></h1>
+<?php if ($itemHeading != '') { ?>
+    <h2 class="uk-text-center uk-margin-medium-bottom"><?= Trl::_($itemHeading) ?></h2>
 <?php } ?>
 <?= Pagination::getPagination($v['count'], $v['paginationStep']) ?>
 <p class="uk-text-center"><?= Trl::sprintf('OV_RECEIVED_VALUES', ...[$v['count']]) ?></p>

@@ -210,6 +210,5 @@ class UserFields
     }
 
     private function __clone() {}
-
     public function __wakeup() {}
 }

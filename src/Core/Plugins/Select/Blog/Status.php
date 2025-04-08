@@ -63,7 +63,7 @@ class Status
 
     public function clearForm()
     {
-        if (GroupAccess::check([2, 5])) {
+        if (GroupAccess::check([5])) {
             return self::getAllStatus();
         } else {
             $statusList = [];

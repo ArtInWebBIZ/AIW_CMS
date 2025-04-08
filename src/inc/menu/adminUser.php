@@ -8,13 +8,6 @@ return [
     'menu_title'  => '',
     'menu_list'   => [
         [
-            'label'          => 'USER_ADD',
-            'access'         => GroupAccess::check([5]),
-            'controller_url' => 'user',
-            'action_url'     => 'new-user',
-            'page_alias'     => '',
-        ],
-        [
             'label'          => 'OV_CONTROL',
             'access'         => true,
             'controller_url' => 'user',

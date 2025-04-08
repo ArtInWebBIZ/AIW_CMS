@@ -17,11 +17,9 @@ use Core\Trl;
 class FieldsOption
 {
     private static $instance  = null;
-    private static $allFields = 'null';
+    private static $allFields = null;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function getI(): FieldsOption
     {
@@ -32,9 +30,9 @@ class FieldsOption
         return self::$instance;
     }
 
-    private static function getAllFields()
+    private static function getAllFields(): array
     {
-        if (self::$allFields == 'null') {
+        if (self::$allFields === null) {
             self::$allFields = require PATH_INC . 'user' . DS . 'fields.php';
         }
 
@@ -64,10 +62,6 @@ class FieldsOption
         return $fieldsOptionHtml;
     }
 
-    private function __clone()
-    {
-    }
-    public function __wakeup()
-    {
-    }
+    private function __clone() {}
+    public function __wakeup() {}
 }

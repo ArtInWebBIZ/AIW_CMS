@@ -16,11 +16,9 @@ use Core\Trl;
 class Languages
 {
     private static $instance     = null;
-    private static $allLanguages = 'null';
+    private static $allLanguages = null;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function getI(): Languages
     {
@@ -33,7 +31,7 @@ class Languages
 
     private static function getAllLanguages(): array
     {
-        if (self::$allLanguages == 'null') {
+        if (self::$allLanguages === null) {
 
             $allLang = require PATH_INC . 'languages.php';
 
@@ -69,10 +67,6 @@ class Languages
         return $languagesOptionHtml;
     }
 
-    private function __clone()
-    {
-    }
-    public function __wakeup()
-    {
-    }
+    private function __clone() {}
+    public function __wakeup() {}
 }

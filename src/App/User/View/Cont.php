@@ -27,21 +27,24 @@ class Cont
 
         $this->content = Content::getDefaultValue();
 
-        $this->content['tpl'] = GroupAccess::check([2, 5]) ? 'admin' : 'index';
+        $this->content['tpl'] = GroupAccess::check([5]) ? 'admin' : 'index';
 
         if (Func::getI()->getViewedUser() !== false) {
 
             if (
                 IntPageAlias::check() === Auth::getUserId() ||
-                (GroupAccess::check([2, 5]) && Auth::getUserStatus() === 1)
+                (
+                    GroupAccess::check([5]) &&
+                    Auth::getUserStatus() === 1
+                )
             ) {
                 $this->content['title'] = Func::getI()->getViewedUserFullName();
             } else {
                 $this->content['title'] = Func::getI()->getViewedUserFullNameForAll();
             }
             /**
-             * Проверяем разрешение просмотра профиля
-             * этого пользователя
+             * Check the permit for viewing the profile
+             * this user
              */
             if (Func::getI()->checkAccess() === true) {
                 $this->content['content'] .= Func::getI()->getViewViewedUser();
@@ -51,9 +54,9 @@ class Cont
             #
         } else {
             /**
-             * Если такого профиля не существует
+             * If such a profile does not exist
              */
-            $this->content = (new \App\Main\Page404\Cont)->getContent();
+            $this->content = (new \App\Main\NoAccess\Cont)->getContent();
         }
 
         return $this->content;

@@ -15,12 +15,10 @@ use Core\Trl;
 
 class Rating
 {
-    private static $instance  = null;
-    private static $allRatings = 'null';
+    private static $instance   = null;
+    private static $allRatings = null;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function getI(): Rating
     {
@@ -31,9 +29,9 @@ class Rating
         return self::$instance;
     }
 
-    private static function getAllRatings()
+    private static function getAllRatings(): array
     {
-        if (self::$allRatings == 'null') {
+        if (self::$allRatings === null) {
             self::$allRatings = require PATH_INC . 'review' . DS . 'rating.php';
         }
 
@@ -65,10 +63,6 @@ class Rating
         return $ratingHtml;
     }
 
-    private function __clone()
-    {
-    }
-    public function __wakeup()
-    {
-    }
+    private function __clone() {}
+    public function __wakeup() {}
 }

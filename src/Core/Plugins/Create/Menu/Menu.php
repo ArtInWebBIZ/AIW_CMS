@@ -27,8 +27,12 @@ class Menu
 
         return self::$instance;
     }
-
-    public function createAdminMenu(array $params)
+    /**
+     * Get html admin menu
+     * @param array $params
+     * @return string
+     */
+    public function createAdminMenu(array $params): string
     {
         if ($params['menu_access'] === true) {
 
@@ -101,8 +105,12 @@ class Menu
             return '';
         }
     }
-
-    public function createMenu(array $params)
+    /**
+     * Get html main menu and user menu
+     * @param array $params
+     * @return string
+     */
+    public function createMenu(array $params): string
     {
         if ($params['menu_access'] === true) {
 

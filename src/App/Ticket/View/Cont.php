@@ -24,7 +24,7 @@ class Cont
     {
         $this->content = Content::getDefaultValue();
 
-        $this->content['tpl']   = GroupAccess::check([2, 5]) ? 'admin' : 'index';
+        $this->content['tpl']   = GroupAccess::check([5]) ? 'admin' : 'index';
         $this->content['title'] = Func::getI()->getTicketId() > 0 ?
             Trl::_('TICKET_NUMBER') . Func::getI()->getTicketId() : '';
 

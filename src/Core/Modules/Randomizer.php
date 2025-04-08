@@ -13,7 +13,13 @@ defined('AIW_CMS') or die;
 
 class Randomizer
 {
-    public static function getRandomStr($start = 16, $end = 32)
+    /**
+     * Return randomized string
+     * @param integer $start - minimal count symbols in string
+     * @param integer $end - maximal count symbols in string
+     * @return string
+     */
+    public static function getRandomStr($start = 16, $end = 32): string
     {
         $toRand    = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNPQRSTUVWXYZ';
         $toRandLen = iconv_strlen($toRand) - 1;

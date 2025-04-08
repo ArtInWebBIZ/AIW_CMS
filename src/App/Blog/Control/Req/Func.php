@@ -41,7 +41,7 @@ class Func
 
             if (
                 Auth::getUserStatus() === 1 &&
-                GroupAccess::check([2, 5])
+                GroupAccess::check([5])
             ) {
                 $this->checkAccess = true;
             }

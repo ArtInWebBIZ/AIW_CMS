@@ -9,6 +9,8 @@
 
 namespace Core;
 
+use Core\Plugins\Check\CleanHtml;
+
 defined('AIW_CMS') or die;
 
 class Clean
@@ -139,7 +141,8 @@ class Clean
             '@<script[^>]*?>.*?</script>@si',
             '@<style[^>]*?>.*?</style>@siU',
         ], ' ', $value);
-        $value = strip_tags($value, '<a><address><acronym><b><bdi><blockquote><br><bdo><dfn><em><h3><h4><h5><h6><hr><i><li><ol><p><q><small><strong><sup><span><sub><table><tbody><td><th><thead><tr><ul><wbr>');
+        $value = strip_tags($value, CleanHtml::allTagsInString());
+        $value = CleanHtml::cleanTags($value);
         $value = str_replace(['/*', '*/', ' --', '#__'], ' ', $value);
         $value = mb_ereg_replace('[ ]+', ' ', $value);
         $value = str_ireplace("\"", '&quot;', $value);

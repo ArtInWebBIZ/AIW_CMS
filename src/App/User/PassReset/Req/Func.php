@@ -14,6 +14,7 @@ defined('AIW_CMS') or die;
 use Core\{Clean, Config, GV, Modules\Randomizer, Plugins\Ssl, Session, Trl,};
 use Core\Plugins\Create\GetHash\GetHash;
 use Core\Plugins\{ParamsToSql, View\Tpl, Model\DB, Dll\User,};
+use Core\Plugins\Dll\ForAll;
 use Core\Plugins\View\Style;
 
 class Func
@@ -22,12 +23,13 @@ class Func
     private $saveToPassResetNote      = null;
     private $checkUserEmail           = null;
     private $getPassResetNoteFromCode = null;
+    private $checkForm                = [];
+    private $setResetCode             = 'null';
+    private $getPassResetNote         = 'null';
 
     private static $instance = null;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function getI(): Func
     {
@@ -37,13 +39,19 @@ class Func
 
         return self::$instance;
     }
-
-    public function getAccess()
+    /**
+     * Check users access
+     * @return boolean
+     */
+    public function getAccess(): bool
     {
         return Session::getUserId() == 0 ? true : false;
     }
-
-    public function getView()
+    /**
+     * View form to users pass reset
+     * @return string
+     */
+    public function getView(): string
     {
         return Tpl::view(
             PATH_TPL . 'view' . DS . 'formView.php',
@@ -67,21 +75,21 @@ class Func
             ]
         );
     }
-
-    private $checkForm = [];
-
+    /**
+     * Undocumented function
+     * @return array
+     */
     public function checkForm(): array
     {
-        if ($this->checkForm == []) {
+        if ($this->checkForm === []) {
 
             $this->checkForm = (new \Core\Plugins\Check\FormFields)->getCheckFields(
-                require PATH_APP . 'User' . DS . 'PassReset' . DS . 'inc' . DS . 'fields.php'
+                require ForAll::contIncPath() . 'fields.php'
             );
         }
 
         return $this->checkForm;
     }
-
     /**
      * Return User ID or 0
      * @return integer
@@ -106,8 +114,11 @@ class Func
 
         return $this->checkUserEmail;
     }
-
-    public function getNewPass()
+    /**
+     * Create new users password
+     * @return string
+     */
+    public function getNewPass(): string
     {
         if ($this->newPass == '') {
             $this->newPass = Randomizer::getRandomStr(6, 8);
@@ -115,8 +126,11 @@ class Func
 
         return $this->newPass;
     }
-
-    public function saveToPassResetNote()
+    /**
+     * Save note no database about reset passwords this user
+     * @return integer
+     */
+    public function saveToPassResetNote(): int
     {
         if ($this->saveToPassResetNote === null) {
 
@@ -138,8 +152,6 @@ class Func
 
         return $this->saveToPassResetNote;
     }
-
-    private $setResetCode = 'null';
     /**
      * Generated new passwords reset code
      * @return string
@@ -152,14 +164,15 @@ class Func
 
         return $this->setResetCode;
     }
-
-    private $getPassResetNote = 'null';
-
-    public function getPassResetNote()
+    /**
+     * Get users id from pass reset note
+     * @return integer
+     */
+    public function getPassResetNote(): int
     {
         if ($this->getPassResetNote === 'null') {
 
-            $this->getPassResetNote = DB::getI()->getValue(
+            $this->getPassResetNote = (int) DB::getI()->getValue(
                 [
                     'table_name' => 'pass_reset_note',
                     'select'     => 'user_id',
@@ -171,7 +184,10 @@ class Func
 
         return $this->getPassResetNote;
     }
-
+    /**
+     * Delete old pass reset note
+     * @return boolean
+     */
     public function delOldPassResetNote(): bool
     {
         return DB::getI()->delete(
@@ -182,13 +198,19 @@ class Func
             ]
         );
     }
-
-    public function checkCode()
+    /**
+     * Check activation password reset code
+     * @return string|false
+     */
+    public function checkCode(): string|false
     {
         return (iconv_strlen(Clean::str(GV::get()['reset_code'])) != 32) ? false : Clean::str(GV::get()['reset_code']);
     }
-
-    public function getPassResetNoteFromCode()
+    /**
+     * Return in array passwords reset note or false
+     * @return array|false
+     */
+    public function getPassResetNoteFromCode(): array|false
     {
         if ($this->getPassResetNoteFromCode === null) {
 
@@ -203,8 +225,12 @@ class Func
 
         return $this->getPassResetNoteFromCode;
     }
-
-    public function delPassResetNote(int $userId)
+    /**
+     * Delete passwords reset note for this user
+     * @param integer $userId
+     * @return boolean
+     */
+    public function delPassResetNote(int $userId): bool
     {
         return DB::getI()->delete(
             [
@@ -214,8 +240,13 @@ class Func
             ]
         );
     }
-
-    public function updateUserProfile(int $userId, array $params)
+    /**
+     * Update users profile
+     * @param integer $userId
+     * @param array   $params
+     * @return boolean
+     */
+    public function updateUserProfile(int $userId, array $params): bool
     {
         return DB::getI()->update(
             [
@@ -226,8 +257,12 @@ class Func
             ]
         );
     }
-
-    public function saveToUserEditLog(array $params)
+    /**
+     * Save to log change users password
+     * @param array $params
+     * @return integer
+     */
+    public function saveToUserEditLog(array $params): int
     {
         return DB::getI()->add(
             [
@@ -237,8 +272,11 @@ class Func
             ]
         );
     }
-
-    public function sendEmail()
+    /**
+     * Send to users email code in link for reset users password
+     * @return boolean
+     */
+    public function sendEmail(): bool
     {
         return (new \Core\Modules\Email)->sendEmail(
             GV::post()['email'],
@@ -255,10 +293,6 @@ class Func
         );
     }
 
-    private function __clone()
-    {
-    }
-    public function __wakeup()
-    {
-    }
+    private function __clone() {}
+    public function __wakeup() {}
 }

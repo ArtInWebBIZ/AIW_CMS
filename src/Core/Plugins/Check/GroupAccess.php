@@ -16,7 +16,11 @@ use Core\Auth;
 class GroupAccess
 {
     private static $managerGroups = null;
-
+    /**
+     * Check currently user access
+     * @param array $groups
+     * @return boolean
+     */
     public static function check(array $groups): bool
     {
         return in_array(Auth::getUserGroup(), $groups, true);

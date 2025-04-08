@@ -28,8 +28,12 @@ class LineMenu
 
         return self::$instance;
     }
-
-    public function createMenu(array $params)
+    /**
+     * Get menu html for top line menu
+     * @param array $params
+     * @return string
+     */
+    public function createMenu(array $params): string
     {
         if ($params['menu_access'] === true) {
 

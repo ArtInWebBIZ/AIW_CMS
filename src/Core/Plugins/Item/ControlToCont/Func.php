@@ -72,7 +72,7 @@ class Func
         return $this->checkAccess;
     }
     /**
-     * Return …
+     * Return all control params or false
      * @return array|bool
      */
     public function itemParams(string $dirName = null): array|bool
@@ -96,8 +96,8 @@ class Func
     }
     #
     /**
-     * Return …
-     * @return string
+     * Return prepared SQL
+     * @return array
      */
     private function prepareSql(): array
     {
@@ -141,7 +141,7 @@ class Func
         return $this->prepareSql;
     }
     /**
-     * Return …
+     * Return prepared ORDER BY params to SQL
      * @return string
      */
     public function prepareOrderBy(): string
@@ -168,17 +168,11 @@ class Func
     private function prepareLimit(): string
     {
         if (isset($this->itemParams()['extra_limit'])) {
-
             $prepareLimit = 'LIMIT 0, ' . $this->itemParams()['extra_limit'];
-            #
         } elseif (isset($this->itemParams()['pagination'])) {
-
             $prepareLimit = 'LIMIT 0, ' . $this->itemParams()['pagination'];
-            #
         } else {
-
             $prepareLimit = 'LIMIT 0, ' . Config::getCfg('CFG_PAGINATION');
-            #
         }
 
         return $prepareLimit;
@@ -279,7 +273,7 @@ class Func
         return $this->getAllItemsId;
     }
     /**
-     * Return …
+     * Return control values in array for page render
      * @return array
      */
     public function getContent(): array
@@ -341,11 +335,12 @@ class Func
         return $body;
     }
     /**
-     * @return mixed // value or null
+     * Return controllers id or 0
+     * @return integer
      */
-    private function getCurControllerId()
+    private function getCurControllerId(): int
     {
-        return DB::getI()->getValue(
+        return (int) DB::getI()->getValue(
             [
                 'table_name' => 'item_controller',
                 'select'     => 'id',
@@ -355,11 +350,6 @@ class Func
                 'array'      => $where,
             ]
         );
-    }
-
-    public function getCurDir()
-    {
-        return $this->curDir;
     }
 
     private function __clone() {}

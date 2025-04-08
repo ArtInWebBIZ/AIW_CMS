@@ -16,10 +16,10 @@ defined('AIW_CMS') or die;
 class CryptText
 {
     private static $instance = null;
+    private $getConfig       = null;
+    private $getAlphabet     = null;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function getI(): CryptText
     {
@@ -29,22 +29,23 @@ class CryptText
 
         return self::$instance;
     }
-    #
-    private $getConfig = 'null';
     /**
      * Return crypt config file
      * @return array
      */
     private function getConfig(): array
     {
-        if ($this->getConfig == 'null') {
-
+        if ($this->getConfig === null) {
             $this->getConfig = require PATH_PLUGINS . 'Crypt' . DS . 'inc' . DS . 'config.php';
         }
 
         return $this->getConfig;
     }
-    #
+    /**
+     * Get encrypted text
+     * @param string $text
+     * @return string
+     */
     public function textEncrypt(string $text): string
     {
         $config  = $this->getConfig();
@@ -92,8 +93,12 @@ class CryptText
             return implode('', $encrypt);
         }
     }
-    #
-    public function textDecrypt(string $text)
+    /**
+     * Get decrypted text
+     * @param string $text
+     * @return string
+     */
+    public function textDecrypt(string $text): string
     {
         $config = $this->getConfig();
 
@@ -152,7 +157,10 @@ class CryptText
             return 'incorrect text';
         }
     }
-    #
+    /**
+     * Get or create numbers.php file
+     * @return array
+     */
     private function getNumbers(): array
     {
         /**
@@ -198,15 +206,13 @@ class CryptText
             return require PATH_PLUGINS . 'Crypt' . DS . 'crypt' . DS . 'numbers.php';
         }
     }
-    #
-    private $getAlphabet = 'null';
     /**
      * Return in array symbols code in key
      * @return array
      */
     private function getAlphabet(): array
     {
-        if ($this->getAlphabet == 'null') {
+        if ($this->getAlphabet === null) {
             /**
              * Get alphabet file.
              * If isset alphabet file, get this file
@@ -224,7 +230,8 @@ class CryptText
                 foreach ($config['alphabet'] as $key => $value) {
 
                     do {
-                        $code = $config['symbols'][random_int(0, count($config['symbols']) - 1)] . $config['symbols'][random_int(0, count($config['symbols']) - 1)];
+                        $code = $config['symbols'][random_int(0, count($config['symbols']) - 1)] .
+                            $config['symbols'][random_int(0, count($config['symbols']) - 1)];
                     } while (isset($alphabet[$code]));
 
                     $alphabet[$code] = $value;
@@ -253,7 +260,11 @@ class CryptText
 
         return $this->getAlphabet;
     }
-    #
+    /**
+     * Save new symbols to alphabet.php file
+     * @param string $value
+     * @return void
+     */
     private function updAlphabet(string $value): void
     {
         /**
@@ -289,10 +300,6 @@ class CryptText
         }
     }
     #
-    private function __clone()
-    {
-    }
-    public function __wakeup()
-    {
-    }
+    private function __clone() {}
+    public function __wakeup() {}
 }

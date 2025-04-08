@@ -17,8 +17,12 @@ use Core\{App, Auth, BaseUrl, Languages, Config, DB as CoreDB, Session};
 class ViewLog
 {
     private static $getUrl = null;
-
-    public static function saveToLog(string $logTable)
+    /**
+     * Save to viewLog users viewed page
+     * @param string $logTable
+     * @return integer
+     */
+    public static function saveToLog(string $logTable): int
     {
         self::deleteOldLogs($logTable);
 
@@ -42,7 +46,10 @@ class ViewLog
             ]
         );
     }
-
+    /**
+     * Get id viewed page
+     * @return array
+     */
     private static function getUrl(): array
     {
         if (self::$getUrl === null) {
@@ -115,8 +122,12 @@ class ViewLog
 
         return self::$getUrl;
     }
-
-    private static function deleteOldLogs(string $logTable)
+    /**
+     * Delete old viewed log values
+     * @param string $logTable
+     * @return boolean
+     */
+    private static function deleteOldLogs(string $logTable): bool
     {
         return DB::getI()->delete(
             [
@@ -145,19 +156,6 @@ class ViewLog
                 'sitemap_order' => 0
             ];
         }
-
-        // $pageToSitemap = DB::getI()->getNeededField(
-        //     [
-        //         'table_name'          => 'list_page',
-        //         'field_name'          => 'lang`,`url',
-        //         'where'               => $where,
-        //         'array'               => $array,
-        //         'order_by_field_name' => 'sitemap_order',
-        //         'order_by_direction'  => 'ASC',
-        //         'offset'              => 0,
-        //         'limit'               => 50000,
-        //     ]
-        // );
 
         $pageToSitemap = CoreDB::getAll(
             "SELECT `lang`,`url` FROM `list_page` WHERE $where

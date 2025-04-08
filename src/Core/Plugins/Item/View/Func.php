@@ -16,6 +16,7 @@ use Core\Plugins\Check\Item;
 class Func
 {
     private static $instance = null;
+    private $checkAccess     = 'null';
 
     private function __construct() {}
 
@@ -27,15 +28,13 @@ class Func
 
         return self::$instance;
     }
-    #
-    private $checkAccess = 'null';
     /**
      * Return users access to page
      * @return bool
      */
     public function checkAccess(): bool
     {
-        if ($this->checkAccess == 'null') {
+        if ($this->checkAccess === 'null') {
 
             $this->checkAccess = false;
 

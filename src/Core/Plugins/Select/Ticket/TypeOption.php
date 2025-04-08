@@ -11,12 +11,7 @@ namespace Core\Plugins\Select\Ticket;
 
 defined('AIW_CMS') or die;
 
-use Core\{
-    Auth,
-    Config,
-    Trl
-};
-use Core\Plugins\Check\GroupAccess;
+use Core\Trl;
 use Core\Plugins\Name\TicketType as Ttn;
 use App\Contacts\Index\Req\Func;
 
@@ -37,7 +32,6 @@ class TypeOption
         return self::$instance;
     }
     /**
-     * Undocumented function
      * @return array
      */
     private static function getAllTypes(): array

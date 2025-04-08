@@ -15,25 +15,29 @@ use Core\DB;
 
 class CheckSearchBotsIp
 {
-    private static $ipAccess    = false;
-    private static $ipWhiteList = null;
-
-    public static function getIpAccess($ip): bool
+    private static $ipAccess     = false;
+    private static $searchBotsIp = null;
+    /**
+     * Check current user is search bot or not
+     * @param string $ip
+     * @return boolean
+     */
+    public static function getIpAccess(string $ip): bool
     {
-        $ipWhiteList = self::ipWhiteList();
+        $searchBotsIp = self::searchBotsIp();
 
         $ipLong = ip2long($ip);
 
-        foreach ($ipWhiteList as $key => $value) {
+        foreach ($searchBotsIp as $key => $value) {
 
             if (
-                $ipLong >= $ipWhiteList[$key]['start_range'] &&
-                $ipLong <= $ipWhiteList[$key]['end_range']
+                $ipLong >= $searchBotsIp[$key]['start_range'] &&
+                $ipLong <= $searchBotsIp[$key]['end_range']
             ) {
                 self::$ipAccess = true;
                 break;
             }
-            if ($ipLong < $ipWhiteList[$key]['end_range']) {
+            if ($ipLong < $searchBotsIp[$key]['end_range']) {
                 break;
             }
         }
@@ -42,21 +46,21 @@ class CheckSearchBotsIp
         return self::$ipAccess;
     }
     /**
-     * Return …
+     * Return all search bots ip from database
      * @return array
      */
-    private static function ipWhiteList(): array
+    private static function searchBotsIp(): array
     {
-        if (self::$ipWhiteList === null) {
+        if (self::$searchBotsIp === null) {
 
-            self::$ipWhiteList = DB::getAll(
+            self::$searchBotsIp = DB::getAll(
                 "SELECT `start_range`, `end_range`, `engine_name` FROM `search_bots_ip` ORDER BY `start_range` ASC",
                 []
-            );;
+            );
             #
         }
 
-        return self::$ipWhiteList;
+        return self::$searchBotsIp;
     }
     #
 }

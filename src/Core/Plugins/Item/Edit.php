@@ -26,13 +26,13 @@ class Edit
     {
         if (Func::getI()->checkAccess() === true) {
             /**
-             * Get default content values
-             */
-            $this->content = Item::getI()->itemParams();
-            /**
              * Check edit note
              */
             if (EditNote::getI()->checkNote() === true) {
+                /**
+                 * Get default content values
+                 */
+                $this->content = Item::getI()->itemParams();
                 /**
                  * Check variables in $_POST
                  */
@@ -64,7 +64,7 @@ class Edit
                             /**
                              * If item content in this language is false
                              */
-                            elseif (Item::getI()->checkContentInCurrentLanguage() === false) {
+                            elseif (Item::getI()->getItemCurLangId() === 0) {
                                 /**
                                  * Save intro image in this content language
                                  */

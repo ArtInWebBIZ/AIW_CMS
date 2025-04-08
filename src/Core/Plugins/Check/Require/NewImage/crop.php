@@ -10,8 +10,8 @@
 defined('AIW_CMS') or die;
 
 /**
- * Определяем пропорции обработки изображения
- * и отступы вырезания по осям
+ * Determine the proportions of the image processing
+ * and indentation of cutting along the axes
  */
 /**
  * Square

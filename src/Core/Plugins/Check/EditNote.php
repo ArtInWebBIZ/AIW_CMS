@@ -11,24 +11,18 @@ namespace Core\Plugins\Check;
 
 defined('AIW_CMS') or die;
 
-use Core\Auth;
-use Core\Config;
+use Core\{Auth, Config, Router, Session};
 use Core\Plugins\Model\DB;
-use Core\Router;
-use Core\Session;
-
-// use Core\Plugins\Check\EditNote;
+use Core\Plugins\ParamsToSql;
 
 class EditNote
 {
     private $checkNote       = 'null';
     private $iData           = [];
     private static $instance = null;
-    private $checkNotesItem  = 'null';
+    private $checkNotesItem  = null;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function getI(): EditNote
     {
@@ -48,51 +42,58 @@ class EditNote
 
         return $this->iData;
     }
-
     /**
      * Checked current edited notes
      * @return boolean // true or false
      */
-    public function checkNote()
+    public function checkNote(): bool
     {
-        if ($this->checkNote == 'null') {
-
+        if ($this->checkNote === 'null') {
             /**
-             * Удаляем старые записи
+             * We delete the old notes
              */
             $this->delOldNotes();
-
             /**
-             * Проверяем запись в таблице
+             * Check the entry in the table
              */
-            if ( // Если запись существует, но создана не этим пользователем
+            if (
+                /**
+                 * If the record exists, but not created by this user
+                 */
                 isset($this->checkNotesItem()['editor_id']) &&
                 $this->checkNotesItem()['editor_id'] != Auth::getUserId()
             ) {
-
-                $this->checkNote = false;
-            } else {
-
                 /**
-                 * Если запись НЕ существует
+                 * Set value to $this->checkNote
+                 */
+                $this->checkNote = false;
+                #
+            } else {
+                /**
+                 * If the recording does NOT exist
                  */
                 if ($this->checkNotesItem() === false) {
                     /**
-                     * Создаём новую запись
+                     * We create a new record
                      */
                     $this->addNote();
-
+                    /**
+                     * Set value to $this->checkNote
+                     */
                     $this->checkNote = true;
+                    #
                 }
                 /**
-                 * Если запись существует, и она создана ЭТИМ пользователем
+                 * If the record exists and it is created by THIS user
                  */
                 else {
                     /**
-                     * Редактируем существующую запись
+                     * We edit the existing entry
                      */
                     $this->updateNote();
-
+                    /**
+                     * Set value to $this->checkNote
+                     */
                     $this->checkNote = true;
                 }
             }
@@ -100,107 +101,115 @@ class EditNote
 
         return $this->checkNote;
     }
-
-    private function checkNotesItem()
+    /**
+     * Check in database note items
+     * Return note items or false
+     * @return array|boolean
+     */
+    private function checkNotesItem(): array|bool
     {
-        if ($this->checkNotesItem == 'null') {
+        if ($this->checkNotesItem === null) {
 
             $this->checkNotesItem = DB::getI()->getRow(
                 [
                     'table_name' => 'edit_note',
-                    'where'      => '
-                        `content_type` = :content_type AND
-                        `edited_id` = :edited_id
-                    ',
-                    'array'      => [
-                        'content_type' => $this->iData()['content_type'],
-                        'edited_id'    => $this->iData()['edited_id'],
-                    ],
+                    'where'      => ParamsToSql::getSql(
+                        $where = [
+                            'content_type' => $this->iData()['content_type'],
+                            'edited_id'    => $this->iData()['edited_id'],
+                        ]
+                    ),
+                    'array'      => $where,
                 ]
             );
         }
 
         return $this->checkNotesItem;
     }
-
-    public function addNote()
+    /**
+     * Add note edit this content to database
+     * @return integer
+     */
+    public function addNote(): int
     {
         return DB::getI()->add(
             [
                 'table_name' => 'edit_note',
-                'set'        => '
-                    `token` = :token,
-                    `content_type` = :content_type,
-                    `edited_id` = :edited_id,
-                    `editor_id` = :editor_id,
-                    `enabled_to` = :enabled_to
-                ',
-                'array'      => [
-                    'token'        => Session::getToken(),
-                    'content_type' => $this->iData()['content_type'],
-                    'edited_id'    => $this->iData()['edited_id'],
-                    'editor_id'    => Auth::getUserId(),
-                    'enabled_to'   => time() + Config::getCfg('CFG_NOTE_ENABLED_TO'),
-                ],
+                'set'        => ParamsToSql::getSet(
+                    $set = [
+                        'token'        => Session::getToken(),
+                        'content_type' => $this->iData()['content_type'],
+                        'edited_id'    => $this->iData()['edited_id'],
+                        'editor_id'    => Auth::getUserId(),
+                        'enabled_to'   => time() + Config::getCfg('CFG_NOTE_ENABLED_TO'),
+                    ]
+                ),
+                'array'      => $set,
             ]
         );
     }
-
-    private function delOldNotes()
+    /**
+     * Delete old edit notes
+     * @return boolean
+     */
+    private function delOldNotes(): bool
     {
         return DB::getI()->delete(
             [
                 'table_name' => 'edit_note',
-                'where'      => '`enabled_to` < :enabled_to',
-                'array'      => ['enabled_to' => time()],
+                'where'      => ParamsToSql::getSql(
+                    $where = ['enabled_to' => time()]
+                ),
+                'array'      => $where,
             ]
         );
     }
-
-    private function updateNote()
+    /**
+     * Update edit note for this user and this content type
+     * @return boolean
+     */
+    private function updateNote(): bool
     {
         return DB::getI()->update(
             [
                 'table_name' => 'edit_note',
-                'set'        => '
-                    `token` = :token,
-                    `enabled_to` = :enabled_to
-                ',
-                'where'      => '
-                    `edited_id` = :edited_id
-                ',
-                'array'      => [
-                    'token'      => Session::getToken(),
-                    'enabled_to' => time() + Config::getCfg('CFG_NOTE_ENABLED_TO'),
-                    'edited_id'  => $this->iData()['edited_id'],
-                ],
+                'set'        => ParamsToSql::getSet(
+                    $set = [
+                        'token'      => Session::getToken(),
+                        'enabled_to' => time() + Config::getCfg('CFG_NOTE_ENABLED_TO'),
+                    ]
+                ),
+                'where'      => ParamsToSql::getSql(
+                    $where = [
+                        'content_type' => $this->iData()['content_type'],
+                        'edited_id'    => $this->iData()['edited_id'],
+                    ]
+                ),
+                'array'      => array_merge($set, $where),
             ]
         );
     }
-
-    public function deleteNote()
+    /**
+     * Delete edit note after successfully edited this content
+     * @return boolean
+     */
+    public function deleteNote(): bool
     {
         return DB::getI()->delete(
             [
                 'table_name' => 'edit_note',
-                'where'      => '
-                    `content_type` = :content_type AND
-                    `edited_id` = :edited_id AND
-                    `editor_id` = :editor_id
-                ',
-                'array'      => [
-                    'content_type' => $this->iData()['content_type'],
-                    'edited_id'    => $this->iData()['edited_id'],
-                    'editor_id'    => Auth::getUserId(),
-                ],
+                'where'      => ParamsToSql::getSql(
+                    $where = [
+                        'content_type' => $this->iData()['content_type'],
+                        'edited_id'    => $this->iData()['edited_id'],
+                        'editor_id'    => Auth::getUserId(),
+                    ]
+                ),
+                'array'      => $where,
             ]
         );
     }
 
-    private function __clone()
-    {
-    }
-    public function __wakeup()
-    {
-    }
+    private function __clone() {}
+    public function __wakeup() {}
 }

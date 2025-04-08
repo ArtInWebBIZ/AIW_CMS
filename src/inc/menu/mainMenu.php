@@ -23,22 +23,6 @@ return [
             'icon'           => '/img/icons-menu/editor.svg',
         ],
         [
-            'label'          => 'EXCURSION_EXCURSIONS',
-            'access'         => true,
-            'controller_url' => 'excursion',
-            'action_url'     => '',
-            'page_alias'     => '',
-            'icon'           => '/img/icons-menu/guide-board.svg',
-        ],
-        [
-            'label'          => 'SERVICE_SERVICE',
-            'access'         => true,
-            'controller_url' => 'service',
-            'action_url'     => '',
-            'page_alias'     => '',
-            'icon'           => '/img/icons-menu/airplane.svg',
-        ],
-        [
             'label'          => 'REVIEW_REVIEWS',
             'access'         => true,
             'controller_url' => 'review',

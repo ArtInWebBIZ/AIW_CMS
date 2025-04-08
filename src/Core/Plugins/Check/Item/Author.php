@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @package    ArtInWebCMS.Core
+ *
+ * @copyright  (C) 2024 Igor Kruk <https://cms.artinweb.biz>
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
 namespace Core\Plugins\Check\Item;
 
 defined('AIW_CMS') or die;
@@ -52,7 +59,7 @@ class Author
         return self::$author;
     }
     /**
-     * Return …
+     * Return full item author name
      * @return string
      */
     public static function authorName(): string

@@ -15,7 +15,7 @@ defined('AIW_CMS') or die;
 
 return [
     'OV_SITE_NAME'                 => 'Portugal inside out',
-    'OV_USER_NAME'                 => 'Sergey Ransky',
+    'OV_OWNER_NAME'                 => 'Sergey Ransky',
     'OV_SITE_FULL_NAME'            => 'Portugal inside out with Sergey Ransky',
     'OV_SITE_SHORT_NAME'           => '«Portugal inside out»',
     'OV_OTHER_COUNTRY'             => 'We are in other countries',
@@ -23,10 +23,8 @@ return [
     'OV_CONTACTS'                  => 'Contacts',
     'OV_PAGE_TITLE'                => 'Page title',
     'OV_ABOUT_US'                  => 'About us',
-    'OV_COUNTRY'                   => 'Portugal',
-    'OV_REGION'                    => 'Algarve',
-    'OV_LOCALITY_0'                => 'Lisbon',
-    'OV_LOCALITY_1'                => 'Albufeira',
+    'OV_COUNTRY'                   => 'Ukraine',
+    'OV_REGION'                    => 'Ternopil',
     /**
      * yes or no
      */

@@ -15,11 +15,12 @@ use Core\{Clean, Router, Session, Languages};
 
 class BaseUrl
 {
-    private static $baseUrl    = 'null';
-    private static $fullUrl    = null;
-    private static $setBaseUrl = null;
-    private static $setFullUrl = null;
-    private static $getOnlyUrl = 'null';
+    private static $baseUrl       = 'null';
+    private static $fullUrl       = null;
+    private static $setBaseUrl    = null;
+    private static $setFullUrl    = null;
+    private static $getOnlyUrl    = 'null';
+    private static $getLangToLink = 'null';
 
     private static function setFullUrl()
     {
@@ -81,11 +82,10 @@ class BaseUrl
         return '/' . $lang . '/' . self::setBaseUrl();
     }
 
-    private static $getLangToLink = 'null';
 
     public static function getLangToLink()
     {
-        if (self::$getLangToLink == 'null') {
+        if (self::$getLangToLink === 'null') {
 
             if (count(Languages::langList()) > 1) {
                 self::$getLangToLink = '/' . Session::getLang() . '/';

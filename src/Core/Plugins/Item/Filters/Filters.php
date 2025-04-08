@@ -199,10 +199,14 @@ class Filters
 
         return $this->getFiltersValues;
     }
-    #
-    private function saveNote($getFiltersValues)
+    /**
+     * Save filters values to `control_post_note` table
+     * @param array $getFiltersValues
+     * @return integer
+     */
+    private function saveNote(array $getFiltersValues): int
     {
-        return DB::getI()->add(
+        return (int) DB::getI()->add(
             [
                 'table_name' => 'control_post_note',
                 'set'        => ParamsToSql::getSet(
@@ -218,8 +222,12 @@ class Filters
             ]
         );
     }
-    #
-    private function updateNote($getFiltersValues)
+    /**
+     * Update filters value in `control_post_note` table
+     * @param [type] $getFiltersValues
+     * @return boolean
+     */
+    private function updateNote($getFiltersValues): bool
     {
         return DB::getI()->update(
             [
@@ -232,7 +240,7 @@ class Filters
                 ),
                 'where'      => ParamsToSql::getSql(
                     $where = [
-                        'token'        => Session::getToken(),
+                        'token'           => Session::getToken(),
                         'controller_name' => Router::getRoute()['controller_name'],
                         'action_name'     => Router::getRoute()['action_name'],
                     ]
@@ -255,8 +263,11 @@ class Filters
             ]
         );
     }
-    #
-    public function viewFiltersForm()
+    /**
+     * Get filters html to page render
+     * @return string
+     */
+    public function viewFiltersForm(): string
     {
         if ($this->getFiltersList() != []) {
 
@@ -358,8 +369,7 @@ class Filters
 
         return $this->getFiltersList;
     }
-    #
-    #
+
     private function __clone() {}
     public function __wakeup() {}
 }

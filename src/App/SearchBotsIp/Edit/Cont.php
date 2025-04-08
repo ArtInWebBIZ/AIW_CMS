@@ -28,26 +28,27 @@ class Cont
 
         if (Func::getI()->checkAccess() === true) {
             /**
-             * Check global variable $_POST
+             * Check edit note
              */
-            if (GV::post() === null) {
+            if (EditNote::getI()->checkNote() === true) {
                 /**
-                 * View edit form
+                 * Check global variable $_POST
                  */
-                $this->content['content'] .= Func::getI()->viewForm();
-            }
-            /**
-             * If $_POST variable is NOT empty
-             */
-            else {
-                /**
-                 * Check form token
-                 */
-                if (CheckToken::checkToken() === true) {
+                if (GV::post() === null) {
                     /**
-                     * Check edit note
+                     * View edit form
                      */
-                    if (EditNote::getI()->checkNote() === true) {
+                    $this->content['content'] .= Func::getI()->viewForm();
+                    #
+                }
+                /**
+                 * If $_POST variable is NOT empty
+                 */
+                else {
+                    /**
+                     * Check form token
+                     */
+                    if (CheckToken::checkToken() === true) {
                         /**
                          * Check form fields
                          */
@@ -94,20 +95,20 @@ class Cont
                             $this->errorToForm(Func::getI()->checkForm()['msg']);
                         }
                     }
-                    /**
-                     * If this content edited another user
-                     */
-                    else {
-                        /**
-                         * View message
-                         */
-                        $this->content['msg'] .= Msg::getMsg_('warning', 'MSG_EDIT_NOTE_ERROR');
-                        /**
-                         * Redirect to this content page
-                         */
-                        $this->content['redirect'] = Ssl::getLinkLang() . Router::getRoute()['controller_url'] . '/' . Router::getPageAlias() . '.html';
-                    }
                 }
+            }
+            /**
+             * If this content edited another user
+             */
+            else {
+                /**
+                 * View message
+                 */
+                $this->content['msg'] .= Msg::getMsg_('warning', 'MSG_EDIT_NOTE_ERROR');
+                /**
+                 * Redirect to this content page
+                 */
+                $this->content['redirect'] = Ssl::getLinkLang() . Router::getRoute()['controller_url'] . '/' . Router::getPageAlias() . '.html';
             }
             #
         } else {

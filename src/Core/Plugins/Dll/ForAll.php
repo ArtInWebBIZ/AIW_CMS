@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @package    ArtInWebCMS.Core
+ *
+ * @copyright  (C) 2024 Igor Kruk <https://cms.artinweb.biz>
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
 namespace Core\Plugins\Dll;
 
 defined('AIW_CMS') or die;
@@ -35,21 +42,18 @@ class ForAll
     }
     /**
      * Get in array params list from needed file
-     * @param string|null $controllerUrl
+     * @param string|null $incDir
      * @param string|null $paramsFile
      * @return array
      */
-    public static function valueFromKey(string $controllerUrl = null, string $paramsFile = null): array
+    public static function valueFromKey(string $incDir, string $paramsFile): array
     {
-        $controllerDir = $controllerUrl === null ? Router::getRoute()['controller_url'] : $controllerUrl;
-        $paramsFile    = $paramsFile === null ? 'status' : $paramsFile;
-
         if (
-            file_exists(PATH_INC . $controllerDir . DS . $paramsFile . '.php')
+            file_exists(PATH_INC . $incDir . DS . $paramsFile . '.php')
         ) {
-            return require PATH_INC . $controllerDir . DS . $paramsFile . '.php';
+            return require PATH_INC . $incDir . DS . $paramsFile . '.php';
         } else {
-            return require PATH_INC . 'item' . DS . $paramsFile . '.php';
+            return [];
         }
     }
     /**

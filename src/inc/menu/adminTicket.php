@@ -11,7 +11,7 @@ return [
     'menu_list'   => [
         [
             'label'          => 'OV_CONTROL',
-            'access'         => GroupAccess::check([2, 5]),
+            'access'         => GroupAccess::check([5]),
             'controller_url' => 'ticket',
             'action_url'     => 'control',
             'page_alias'     => '',

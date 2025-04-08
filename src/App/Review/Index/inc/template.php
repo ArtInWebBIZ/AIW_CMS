@@ -13,9 +13,6 @@ use Core\{Content, Trl};
 use Core\Modules\Pagination\Pagination;
 use App\Review\Add\Req\Func;
 use Core\Plugins\View\Style;
-use Core\Plugins\View\Tpl;
-
-$body = $v['control_body'] == '' ? Tpl::view(PATH_INC . 'content' . DS . 'noResult.php') : $v['control_body'];
 
 ?>
 <?= Content::getContentStart(Style::content()['section_css'], Style::content()['container_css'], Style::content()['overflow_css']) ?>
@@ -27,6 +24,6 @@ $body = $v['control_body'] == '' ? Tpl::view(PATH_INC . 'content' . DS . 'noResu
     <?php } ?>
 </div>
 <?= Pagination::getPagination($v['count'], $v['paginationStep']) ?>
-<?= $body ?>
+<?= $v['control_body'] ?>
 <?= Pagination::getPagination($v['count'], $v['paginationStep']) ?>
 <?= Content::getContentEnd() ?>

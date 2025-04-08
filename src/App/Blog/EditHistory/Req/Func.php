@@ -32,7 +32,7 @@ class Func
     public function checkAccess()
     {
         return Auth::getUserStatus() === 1 &&
-            GroupAccess::check([2, 5]) ?
+            GroupAccess::check([5]) ?
             true : false;
     }
 

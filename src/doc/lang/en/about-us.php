@@ -17,7 +17,7 @@ use Core\Trl;
     <div class="uk-margin-medium uk-flex uk-flex-middle uk-margin" uk-grid>
         <div class="uk-width-expand" uk-lightbox>
             <a href="/img/fase.png">
-                <img alt="<?= Trl::_('OV_USER_NAME') ?>" src="/img/fase.png" class="" itemprop="image">
+                <img alt="<?= Trl::_('OV_OWNER_NAME') ?>" src="/img/fase.png" class="" itemprop="image">
             </a>
         </div>
         <div class="uk-width-1-1 uk-margin-medium uk-width-1-2@s uk-text-center">

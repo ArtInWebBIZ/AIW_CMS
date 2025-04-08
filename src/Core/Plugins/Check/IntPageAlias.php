@@ -9,9 +9,9 @@
 
 namespace Core\Plugins\Check;
 
-use Core\{Clean, Router};
-
 defined('AIW_CMS') or die;
+
+use Core\{Clean, Router};
 
 class IntPageAlias
 {

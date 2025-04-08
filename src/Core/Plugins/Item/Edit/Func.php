@@ -13,17 +13,17 @@ defined('AIW_CMS') or die;
 
 use Core\{Config, Router};
 use Core\Plugins\Check\Item;
-use Core\Plugins\Check\Item\Form;
-use Core\Plugins\Check\Item\SaveItemEditLog;
 use Core\Plugins\Model\DB;
 use Core\Plugins\ParamsToSql;
 
 class Func
 {
     private static $instance   = null;
+    private $checkAccess = 'null';
     private $saveIntroImage    = null;
     private $checkItemLang     = 'null';
     private $checkEditedFields = null;
+    private $newItemLang = 'null';
 
     private function __construct() {}
 
@@ -35,15 +35,13 @@ class Func
 
         return self::$instance;
     }
-
-    private $checkAccess = 'null';
     /**
      * Return users access to edit this item
      * @return boolean
      */
     public function checkAccess(): bool
     {
-        if ($this->checkAccess == 'null') {
+        if ($this->checkAccess === 'null') {
 
             $this->checkAccess = false;
 
@@ -59,7 +57,7 @@ class Func
         return $this->checkAccess;
     }
     /**
-     * View items form
+     * View items edit form
      * @return string
      */
     public function viewForm(): string
@@ -74,8 +72,11 @@ class Func
 
         return Item::getI()->viewForm($v);
     }
-    #
-    private function fieldsList()
+    /**
+     * Get item edit fields list
+     * @return array
+     */
+    private function fieldsList(): array
     {
         return require PATH_APP . Router::getRoute()['controller_name'] . DS . Router::getRoute()['action_name'] . DS . 'inc' . DS . 'fields.php';
     }
@@ -117,7 +118,7 @@ class Func
         return $this->checkEditedFields;
     }
     /**
-     * Undocumented function
+     * Change 'intro_img' param to $this->checkEditedFields
      * @param string $value // 'save' or 'unset'
      * @return array
      */
@@ -131,7 +132,10 @@ class Func
 
         return $this->checkEditedFields;
     }
-    #
+    /**
+     * Update changed items value in currently language in table `item_lang`
+     * @return boolean
+     */
     public function updItemLang(): bool
     {
         $editedFields = $this->checkEditedFields();
@@ -147,6 +151,7 @@ class Func
         unset($key, $value);
 
         if (isset($new)) {
+
             $return = DB::getI()->update(
                 [
                     'table_name' => 'item_lang',
@@ -188,15 +193,13 @@ class Func
 
         return $this->checkItemLang;
     }
-    #
-    private $newItemLang = 'null';
     /**
-     * Return …
+     * Create new row to `item_lang` in currently language values
      * @return bool
      */
     public function newItemLang(): bool
     {
-        if ($this->newItemLang == 'null') {
+        if ($this->newItemLang === 'null') {
 
             $return = DB::getI()->add(
                 [
@@ -254,8 +257,12 @@ class Func
 
         return $this->newItemLang;
     }
-    #
-    private function updateItemStatus(string $status)
+    /**
+     * Update items status
+     * @param string $status
+     * @return boolean
+     */
+    private function updateItemStatus(string $status): bool
     {
         return DB::getI()->update(
             [
@@ -270,8 +277,11 @@ class Func
             ]
         );
     }
-    #
-    public function checkEditedItemsFields()
+    /**
+     * Update edited fields in table `item`
+     * @return boolean
+     */
+    public function checkEditedItemsFields(): bool
     {
         $result = true;
 
@@ -286,6 +296,7 @@ class Func
         unset($key, $value);
 
         if (isset($new)) {
+
             $result = DB::getI()->update(
                 [
                     'table_name' => 'item',
@@ -300,8 +311,11 @@ class Func
 
         return $result;
     }
-    #
-    public function checkEditedFieldsetFields()
+    /**
+     * Update edited fields for fieldset fields type
+     * @return boolean
+     */
+    public function checkEditedFieldsetFields(): bool
     {
         $editedFields = $this->checkEditedFields();
 
@@ -330,6 +344,7 @@ class Func
                 $new = array_diff($this->checkEditedFields()[$key], $oldFieldsetValues);
 
                 if ($new != []) {
+
                     $result = DB::getI()->fieldset(
                         [
                             'table_name'  => 'item_' . $key,
@@ -345,8 +360,11 @@ class Func
 
         return $result;
     }
-    #
-    public function checkEditedFiltersFields()
+    /**
+     * Update filters fields changed values
+     * @return boolean
+     */
+    public function checkEditedFiltersFields(): bool
     {
         $result = true;
 
@@ -361,6 +379,7 @@ class Func
         unset($key, $value);
 
         if (isset($new)) {
+
             $result = DB::getI()->update(
                 [
                     'table_name' => 'item_' . Item::getI()->currControllerName(),
@@ -375,8 +394,11 @@ class Func
 
         return $result;
     }
-    #
-    public function saveToEditLog()
+    /**
+     * Save edited values to `item_edit_log` table
+     * @return boolean
+     */
+    public function saveToEditLog(): bool
     {
         $editedFields = $this->checkEditedFields();
 
@@ -389,8 +411,11 @@ class Func
 
         return true;
     }
-    #
-    public function changeItemEditedDate()
+    /**
+     * Change item edited date
+     * @return boolean
+     */
+    public function changeItemEditedDate(): bool
     {
         return DB::getI()->update(
             [
@@ -405,7 +430,7 @@ class Func
             ]
         );
     }
-    #
+
     private function __clone() {}
     public function __wakeup() {}
 }

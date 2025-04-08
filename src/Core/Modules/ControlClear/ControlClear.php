@@ -27,9 +27,8 @@ class ControlClear
             '',
             PATH_APP . Router::getRoute()['controller_name'] . DS . Router::getRoute()['action_name'] . DS . 'inc' . DS . 'params.php'
         );
-
         /**
-         * Удаляем запись фильтров из БД
+         * We delete filters from the database
          */
         DB::getI()->delete(
             [
@@ -45,7 +44,7 @@ class ControlClear
             ]
         );
         /**
-         * Перенаправляем на страницу управления
+         * We redirect the control page
          */
         $this->content['redirect'] = Ssl::getLinkLang() . $params['page_link'];
 

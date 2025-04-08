@@ -48,7 +48,7 @@ class Func
                         Auth::getUserStatus() === 1 &&
                         (
                             (int) $this->checkItem()['author_id'] === Auth::getUserId() ||
-                            GroupAccess::check([2, 5])
+                            GroupAccess::check([5])
                         )
                     )
                 )
