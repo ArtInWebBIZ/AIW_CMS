@@ -14,7 +14,7 @@ use Core\Trl;
 ?>
 <tr>
     <td class="uk-text-center uk-text-bold">ID</td>
-    <td class="uk-text-center uk-text-bold"><?= Trl::_('WIP_START') ?></td>
-    <td class="uk-text-center uk-text-bold"><?= Trl::_('WIP_END') ?></td>
-    <td class="uk-text-center uk-text-bold"><?= Trl::_('WIP_ENGINE_NAME') ?></td>
+    <td class="uk-text-center uk-text-bold"><?= Trl::_('SBIP_START') ?></td>
+    <td class="uk-text-center uk-text-bold"><?= Trl::_('SBIP_END') ?></td>
+    <td class="uk-text-center uk-text-bold"><?= Trl::_('SBIP_ENGINE_NAME') ?></td>
 </tr>

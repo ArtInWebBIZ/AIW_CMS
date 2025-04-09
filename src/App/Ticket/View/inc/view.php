@@ -73,12 +73,6 @@ use Core\Trl;
                     <td><strong><?= $v['ticket_confirm_code'] ?></strong></td>
                 </tr>
             <?php } ?>
-            <?php if ($v['users_balance'] != '') { ?>
-                <tr>
-                    <td class="uk-text-right"><em><?= Trl::_('USER_BALANCE') ?></em></td>
-                    <td><strong><?= $v['users_balance'] ?></strong> <span class="uk-text-muted"><?= Config::getCfg('CFG_CURRENCY_SHORT_NAME') ?></span></td>
-                </tr>
-            <?php } ?>
             <tr>
                 <td colspan="2">
                     <div class="uk-card uk-card-default uk-card-body uk-width-1-1 grey-border">
@@ -95,14 +89,6 @@ use Core\Trl;
                     <a class="uk-accordion-title uk-alert-success" href="#"><?= Trl::_('TICKET_ANSWER_FORM') ?></a>
                     <div class="uk-accordion-content">
                         <?= $v['answer_form'] ?>
-                    </div>
-                </li>
-            <?php } ?>
-            <?php if ($v['bring_to_card_form'] != '') { ?>
-                <li>
-                    <a class="uk-accordion-title uk-alert-primary" href="#"><?= Trl::_('TICKET_BRING_TO_CARD') ?></a>
-                    <div class="uk-accordion-content">
-                        <?= $v['bring_to_card_form'] ?>
                     </div>
                 </li>
             <?php } ?>

@@ -15,7 +15,7 @@ use Core\Plugins\Dll\ForAll;
 return
     [
         'tpl'                 => 'admin',
-        'title'               => 'WIP_CONTROL',
+        'title'               => 'SBIP_CONTROL',
         'access'              => Func::getI()->checkAccess(),
         'content_type'        => 'search_bots_ip',
         'page_link'           => 'search-bots-ip/',

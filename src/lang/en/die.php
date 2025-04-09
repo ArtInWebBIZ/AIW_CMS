@@ -24,4 +24,6 @@ return [
     'DIE_LIMIT_PAGE_VIEWS'          => 'The site page view limit is exceeded',
     'DIE_LIMIT_PAGE_VIEWS_INFO'     => 'The page view limit for unregistered users has been exceeded.' . $endInfo . '<br><br><strong>To avoid such blockages in the future, please register and log in.</strong>',
     'DIE_SITE_AVAILABLE_AFTER'      => 'The site will be available to you after',
+    'DIE_PRESUMABLY'                => 'Presumably the wrong way to the image file',
+    'DIE_PROBABLY'                  => 'Perhaps the error arose here',
 ];

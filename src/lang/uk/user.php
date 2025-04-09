@@ -116,13 +116,6 @@ return [
     'USER_REGISTRATION_DATE'             => 'Дата реєстрації',
     'USER_EDITED'                        => 'Відредагований',
     'USER_LATEST_VISIT'                  => 'Був на сайті',
-    'USER_REFERRAL_LINK'                 => 'Реферальне посилання',
-    'USER_REFERRAL'                      => 'Реферал користувача',
-    'USER_REFERRALS'                     => 'Реферали користувача',
-    'USER_REFERRAL_COUNT'                => 'Кількість рефералів',
-    'USER_BALANCE'                       => 'Баланс користувача',
-    'USER_SAVE_TO_BALANCE_ERROR'         => 'Ваш баланс було поповнено. Але, при запису у базу даних змін балансу користувача стався збій. Ми знаємо про цю проблему, і вже докладаємо всіх зусиль для її вирішення.',
-    'USER_ADVERTISING'                   => 'Реклама користувача',
     /**
      * edit
      */
@@ -144,26 +137,10 @@ return [
     'USER_EDITED_TO'                     => 'Дата редагування - <span class="uk-text-small uk-text-muted">(раніше ніж…)</span>',
     'USER_NOT_SELECTED'                  => '- Користувача на вибрано -',
     'USER_SELECT'                        => '- Вибрати користувача',
-    'USER_NET'                           => 'Мережа користувача',
-    'USER_NET_USERS'                     => 'Учасники мережі користувача',
-    'USER_NET_GENERATED'                 => 'Згенеровано',
-    'USER_NET_NEXT_GENERATED'            => 'Наступна генерація може бути створена після ',
-    /**
-     * balance
-     */
-    'USER_PAID_ID'                       => 'ID платежу',
-    'USER_PAID_TO'                       => 'Отримувач',
-    'USER_PAID_FROM'                     => 'Платник',
-    'USER_PAID_SUM'                      => 'Сума платежу',
-    'USER_PAID_TYPE'                     => 'Тип платежу',
-    'USER_PAID_TYPE_NOT_SELECTED'        => '- Тип платежу не вибрано -',
-    'USER_PAID_DATE'                     => 'Дата платежу',
-    'USER_ITEM_ID'                       => 'ID типу контента',
     /**
      * type
      */
     'USER_TYPE'     => 'Тип користувача',
     'USER_PERSON'   => 'Людина',
     'USER_BUSINESS' => 'Бізнес',
-    'USER_AGENCY'   => 'Рекламна агенція',
 ];

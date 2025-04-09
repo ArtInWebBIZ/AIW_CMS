@@ -82,7 +82,7 @@ class Item
             'class'       => 'uk-input',
             'placeholder' => Trl::_('OV_EXAMPLE') . Trl::_('ITEM_HEADING_EXAMPLE'),
             'value'       => $value,
-            'info'        => Trl::_('OV_OBLIGATORY_FIELD') . Trl::sprintf('ITEM_HEADING_INFO', ...[
+            'info'        => Trl::_('OV_REQUIRED_FIELD') . Trl::sprintf('ITEM_HEADING_INFO', ...[
                 Config::getCfg('CFG_MIN_HEADING_LEN'),
                 Config::getCfg('CFG_MAX_HEADING_LEN'),
             ]),
@@ -103,7 +103,7 @@ class Item
             'class'       => 'uk-input',
             'placeholder' => Trl::_('OV_EXAMPLE') . Trl::_('ITEM_KEYWORDS_EXAMPLE'),
             'value'       => $value,
-            'info'        => Trl::_('OV_OBLIGATORY_FIELD') . Trl::sprintf('ITEM_KEYWORDS_INFO', ...[
+            'info'        => Trl::_('OV_REQUIRED_FIELD') . Trl::sprintf('ITEM_KEYWORDS_INFO', ...[
                 Config::getCfg('CFG_MIN_HEADING_LEN'),
                 Config::getCfg('CFG_MAX_HEADING_LEN'),
             ]),
@@ -160,7 +160,7 @@ class Item
             'class'       => 'uk-input',
             'placeholder' => '',
             'value'       => $value,
-            'info'        => Trl::_('OV_OBLIGATORY_FIELD') . Trl::sprintf('ITEM_DESCRIPTION_INFO', ...[
+            'info'        => Trl::_('OV_REQUIRED_FIELD') . Trl::sprintf('ITEM_DESCRIPTION_INFO', ...[
                 Config::getCfg('CFG_MIN_HEADING_LEN'),
                 Config::getCfg('CFG_MAX_HEADING_LEN'),
             ]),
@@ -182,7 +182,7 @@ class Item
             'rows'        => Config::getCfg('CFG_TEXTAREA_ROWS'),
             'placeholder' => '',
             'value'       => $value,
-            'info'        => Trl::_('OV_OBLIGATORY_FIELD') . Trl::sprintf('ITEM_INTRO_TEXT_INFO', ...[
+            'info'        => Trl::_('OV_REQUIRED_FIELD') . Trl::sprintf('ITEM_INTRO_TEXT_INFO', ...[
                 Config::getCfg('CFG_MIN_INTRO_TEXT_LEN'),
                 Config::getCfg('CFG_MAX_INTRO_TEXT_LEN'),
             ]),
@@ -204,7 +204,7 @@ class Item
             'rows'        => Config::getCfg('CFG_TEXTAREA_ROWS'),
             'placeholder' => '',
             'value'       => $value,
-            'info'        => Trl::_('OV_OBLIGATORY_FIELD') . Trl::sprintf('ITEM_TEXT_INFO', ...[
+            'info'        => Trl::_('OV_REQUIRED_FIELD') . Trl::sprintf('ITEM_TEXT_INFO', ...[
                 Config::getCfg('CFG_MIN_TEXT_LEN'),
                 Config::getCfg('CFG_MAX_TEXT_LEN'),
                 'https://editorhtmlonline.com/'

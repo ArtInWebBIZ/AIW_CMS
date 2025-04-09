@@ -25,7 +25,7 @@ class Cont
     {
         $this->content          = Content::getDefaultValue();
         $this->content['tpl']   = 'admin';
-        $this->content['title'] = 'WIP_ADD';
+        $this->content['title'] = 'SBIP_ADD';
 
         if (Func::getI()->checkAccess() === true) {
             /**

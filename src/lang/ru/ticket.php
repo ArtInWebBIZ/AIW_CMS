@@ -42,11 +42,10 @@ return [
      */
     'TICKET_TYPE'                      => 'Тип тикета',
     'TICKET_TYPE_NOT_SELECTED'         => '- Тип тикета не выбран -',
-    'TICKET_MESSAGE_TO_SITE_MASTER'    => 'Письмо для гида',
+    'TICKET_MESSAGE_TO_SITE_MASTER'    => 'Письмо для владельца сайта',
     'TICKET_MESSAGE_TO_ADMINISTRATOR'  => 'Письмо администраторам',
     'TICKET_MESSAGE_TO_SUPPORT'        => 'Письмо в техподдержку',
     'TICKET_USER_DELETE'               => 'Удалить пользователя',
-    'TICKET_BRING_TO_CARD'             => 'Вывести на карту',
     /**
      * view
      */

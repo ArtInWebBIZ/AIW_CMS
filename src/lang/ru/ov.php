@@ -14,10 +14,10 @@ defined('AIW_CMS') or die;
  */
 
 return [
-    'OV_SITE_NAME'                 => '«AIW CMS» – экскурсии по Португалии',
-    'OV_SITE_FULL_NAME'            => '«ArtInWeb CMS» — экскурсии по центральной Португалии',
-    'OV_SITE_SHORT_NAME'           => '«ArtInWeb CMS»',
-    'OV_OWNER_NAME'                 => 'Владимир и Ольга Грязновы',
+    'OV_SITE_NAME'                 => '«ArtInWeb CMS»',
+    'OV_SITE_FULL_NAME'            => '«ArtInWeb CMS» — система управления контентом',
+    'OV_SITE_SHORT_NAME'           => '«AIW CMS»',
+    'OV_OWNER_NAME'                 => '«Студия полного цикла ArtInWeb.biz»',
     'OV_HOME'                      => 'Главная',
     'OV_CONTACTS'                  => 'Контакты',
     'OV_PAGE_TITLE'                => 'Заголовок страницы',
@@ -56,7 +56,7 @@ return [
     /**
      * other
      */
-    'OV_OBLIGATORY_FIELD'          => '<strong>* Обязательное поле</strong><br><br>',
+    'OV_REQUIRED_FIELD'          => '<strong>* Обязательное поле</strong><br><br>',
     'OV_FORM_FILL_AGAIN'           => 'Пожалуйста, заполните форму ещё раз.',
     'OV_CREATE'                    => 'Создать',
     'OV_CREATED'                   => 'Создано',

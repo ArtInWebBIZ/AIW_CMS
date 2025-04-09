@@ -106,21 +106,24 @@ class Func
         return $this->saveConfirmCode;
     }
 
-    public function sendEmail()
+    public function sendEmail(int $ticketType)
     {
-        return (new \Core\Modules\Email)->sendEmail(
-            Auth::getUserEmail(),
-            Trl::_('EMAIL_CONFIRM_PAY_TO_CARD'),
-            Trl::sprintf(
-                'EMAIL_CONFIRM_PAY_TO_CARD_TEXT',
-                ...[
-                    $this->createConfirmPayCode(),
-                    Ssl::getLinkLang() . 'ticket/' . $this->saveNewTicket() . '.html',
-                    $this->saveNewTicket(),
-                    Ssl::getLinkLang() . 'contacts/',
-                ]
-            )
-        );
+        if ($ticketType === 6) {
+
+            return (new \Core\Modules\Email)->sendEmail(
+                Auth::getUserEmail(),
+                Trl::_('EMAIL_CONFIRM_USER_DELETE'),
+                Trl::sprintf(
+                    'EMAIL_CONFIRM_USER_DELETE_TEXT',
+                    ...[
+                        $this->createConfirmPayCode(),
+                        Ssl::getLinkLang() . 'ticket/' . $this->saveNewTicket() . '.html',
+                        $this->saveNewTicket(),
+                        Ssl::getLinkLang() . 'contacts/',
+                    ]
+                )
+            );
+        }
     }
 
     public function sendToManagerEmail(string $email)

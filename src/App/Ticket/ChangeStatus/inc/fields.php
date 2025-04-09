@@ -41,6 +41,6 @@ return [
         'class'       => 'uk-select',
         'placeholder' => '',
         'value'       => StatusOption::getI()->option(),
-        'info'        => Trl::_('OV_OBLIGATORY_FIELD'),
+        'info'        => Trl::_('OV_REQUIRED_FIELD'),
     ],
 ];

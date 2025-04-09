@@ -194,6 +194,59 @@ class Func
         return $this->newFilters;
     }
 
+    private $compareLangFile = 'null';
+    /**
+     * Return …
+     * @return string
+     */
+    public function compareLangFile(string $fileName, string $firstLang, string $secondLang): string
+    {
+        if ($this->compareLangFile == 'null') {
+
+            $firstLangArray  = require PATH_LANG . $firstLang . DS . $fileName . '.php';
+            $secondLangArray = require PATH_LANG . $secondLang . DS . $fileName . '.php';
+
+            // debug(__FILE__ . ' - ' . __LINE__);
+            // debug($firstLangArray);
+            // die;
+
+            $html = '';
+
+            $html .= '<table class="uk-table uk-table-striped uk-table-middle">';
+
+            foreach ($firstLangArray as $key => $value) {
+                $secondLangValue = isset($secondLangArray[$key]) ? $secondLangArray[$key] : '';
+                $html .= '
+                <tr>
+                    <td style="text-align: right;">' . $value . '</td>
+                    <td style="text-align: center;">' . $key . '</td>
+                    <td>' . $secondLangValue . '</td>
+                </tr>';
+                unset($secondLangArray[$key]);
+            }
+            unset($key, $value);
+
+            if ($secondLangArray != []) {
+                foreach ($secondLangArray as $key => $value) {
+                    $html .= '
+                    <tr>
+                        <td></td>
+                        <td style="text-align: center;">' . $key . '</td>
+                        <td>' . $value . '</td>
+                    </tr>';
+                }
+                unset($key, $value);
+            }
+
+            $html .= '</table>';
+
+            $this->compareLangFile = $html;
+        }
+
+        return $this->compareLangFile;
+    }
+    #
+
     private function __clone() {}
     public function __wakeup() {}
 }

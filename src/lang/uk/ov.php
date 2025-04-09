@@ -56,7 +56,7 @@ return [
     /**
      * other
      */
-    'OV_OBLIGATORY_FIELD'    => '<strong>* Обов\'язкове поле</strong><br><br>',
+    'OV_REQUIRED_FIELD'    => '<strong>* Обов\'язкове поле</strong><br><br>',
     'OV_FORM_FILL_AGAIN'     => 'Будь-ласка, заповніть форму ще раз.',
     'OV_CREATE'              => 'Створити',
     'OV_CREATED'             => 'Створено',

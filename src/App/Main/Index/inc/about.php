@@ -21,8 +21,8 @@ $linkToPage = Ssl::getLinkLang() . 'doc/about-us.html';
         <div class="uk-child-width-expand@s uk-flex uk-flex-middle" uk-grid uk-scrollspy="target: > div; cls: uk-animation-fade; delay: 500">
             <div>
                 <div class="uk-card uk-card-body" uk-scrollspy="cls: uk-animation-slide-left; repeat: true">
-                    <h2 class="uk-text-center"><?= Trl::_('MP_01') ?></h2>
-                    <p><?= Trl::_('MP_01_TEXT') ?></p>
+                    <h2 class="uk-text-center"><?= Trl::_('MAIN_01') ?></h2>
+                    <p><?= Trl::_('MAIN_01_TEXT') ?></p>
                 </div>
             </div>
             <div>

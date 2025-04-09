@@ -116,13 +116,6 @@ return [
     'USER_REGISTRATION_DATE'             => 'Дата регистрации',
     'USER_EDITED'                        => 'Отредактирован',
     'USER_LATEST_VISIT'                  => 'Был на сайте',
-    'USER_REFERRAL_LINK'                 => 'Реферальная ссылка',
-    'USER_REFERRAL'                      => 'Реферал пользователя',
-    'USER_REFERRALS'                     => 'Рефералы пользователя',
-    'USER_REFERRAL_COUNT'                => 'Количество рефералов',
-    'USER_BALANCE'                       => 'Баланс пользователя',
-    'USER_SAVE_TO_BALANCE_ERROR'         => 'Ваш баланс был пополнен. Однако, при записи в базу данных изменений баланса пользователя произошёл сбой.<br><br>Мы знаем об этой проблеме, и уже прилагаем все усилия для её решения.',
-    'USER_ADVERTISING'                   => 'Реклама пользователя',
     /**
      * edit
      */
@@ -144,21 +137,6 @@ return [
     'USER_EDITED_TO'                     => 'Дата редактирования - <span class="uk-text-small uk-text-muted">(раньше чем…)</span>',
     'USER_NOT_SELECTED'                  => 'Пользователь не выбран',
     'USER_SELECT'                        => 'Выбрать пользователя',
-    'USER_NET'                           => 'Сеть пользователя',
-    'USER_NET_USERS'                     => 'Участники сети пользователя',
-    'USER_NET_GENERATED'                 => 'Сгенерировано',
-    'USER_NET_NEXT_GENERATED'            => 'Следующая генерация может быть сделана после ',
-    /**
-     * balance
-     */
-    'USER_PAID_ID'                       => 'ID платежа',
-    'USER_PAID_TO'                       => 'Получатель',
-    'USER_PAID_FROM'                     => 'Плательщик',
-    'USER_PAID_SUM'                      => 'Сумма платежа',
-    'USER_PAID_TYPE'                     => 'Тип платежа',
-    'USER_PAID_TYPE_NOT_SELECTED'        => '- Тип платежа не выбран -',
-    'USER_PAID_DATE'                     => 'Дата платежа',
-    'USER_ITEM_ID'                       => 'ID типа контента',
     /**
      * type
      */

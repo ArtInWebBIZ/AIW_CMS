@@ -164,18 +164,6 @@ class Func
         } else {
             $ticketConfirmCode = '';
         }
-        /**
-         * If ticket type is bring to card
-         */
-        if (
-            (int) $this->getTicket()['ticket_type'] === 1 &&
-            (int) $this->getTicket()['ticket_status'] === 1 &&
-            GroupAccess::check([4])
-        ) {
-            $bringToCardForm = Tpl::view(PATH_APP . 'Ticket' . DS . 'View' . DS . 'inc' . DS . 'bringToCardForm.php');
-        } else {
-            $bringToCardForm = '';
-        }
 
         $authorsBalance = (int) $this->getTicket()['ticket_type'] === 1 && GroupAccess::check([4]) ? $this->getTicketsAuthor()['balance'] : '';
 
@@ -195,7 +183,6 @@ class Func
                 'users_balance'             => $authorsBalance,
                 'ticket_text'               => $this->getTicket()['text'],
                 'answer_form'               => $this->viewAnswerForm(),
-                'bring_to_card_form'        => $bringToCardForm,
                 'ticket_change_status_form' => $this->ticketAnswersList() != '' ? $ticketChangeStatusForm : '',
                 'ticket_answers_list'       => $this->ticketAnswersList(),
                 'answers_pagination'        => Pagination::getPagination($this->countAnswersId(), Config::getCfg('CFG_PAGINATION')),

@@ -21,9 +21,7 @@ class Func
 {
     private static $instance = null;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function getI(): Func
     {
@@ -71,12 +69,12 @@ class Func
                     'button_id'           => '',
                     'h'                   => 'h1', // title weight
                     'h_margin'            => 'uk-margin-large', // title style
-                    'title'               => 'WIP_ADD', // or null
+                    'title'               => 'SBIP_ADD', // or null
                     'url'                 => Router::getRoute()['controller_url'] . '/add/',
                     'cancel_url'          => Router::getRoute()['controller_url'],
                     'v_image'             => null, // or image path
                     'fields'              => require PATH_APP . Router::getRoute()['controller_name'] . DS . 'Add' . DS . 'inc' . DS . 'fields.php',
-                    'button_label'        => 'WIP_ADD',
+                    'button_label'        => 'SBIP_ADD',
                     'include_after_form'  => '', // include after form
                 ]
             );
@@ -137,10 +135,6 @@ class Func
         return $this->saveToDb;
     }
     #
-    private function __clone()
-    {
-    }
-    public function __wakeup()
-    {
-    }
+    private function __clone() {}
+    public function __wakeup() {}
 }

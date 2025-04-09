@@ -43,11 +43,10 @@ return [
      */
     'TICKET_TYPE'                      => 'Ticket type',
     'TICKET_TYPE_NOT_SELECTED'         => '- The ticket type is not selected -',
-    'TICKET_MESSAGE_TO_SITE_MASTER'    => 'Letter to gid',
+    'TICKET_MESSAGE_TO_SITE_MASTER'    => 'Letter to website owner',
     'TICKET_MESSAGE_TO_ADMINISTRATOR'  => 'An email to the administrator',
     'TICKET_MESSAGE_TO_SUPPORT'        => 'Email to technical support',
     'TICKET_USER_DELETE'               => 'Delete user',
-    'TICKET_BRING_TO_CARD'             => 'Bring to card',
     /**
      * view
      */
@@ -64,8 +63,9 @@ return [
     /**
      * menu
      */
-    'TICKET_CONTROL' => 'Ticket control',
-    'TICKET_TICKETS' => 'Tickets',
+    'TICKET_CONTROL'    => 'Ticket control',
+    'TICKET_TICKETS'    => 'Tickets',
+    'TICKET_MY_TICKETS' => 'My tickets',
     /**
      * control
      */

@@ -15,8 +15,12 @@ defined('AIW_CMS') or die;
 
 return [
     'EXAMPLE_EMAIL'         => 'myname@domain.com', // DO NOT TRANSLATE !!!
-    'EXAMPLE_USER_NAME'     => 'Степан', // DO NOT TRANSLATE !!!
-    'EXAMPLE_USER_LASTNAME' => 'Степанович', // DO NOT TRANSLATE !!!
-    'EXAMPLE_USER_SURNAME'  => 'Сердюк', // DO NOT TRANSLATE !!!
+    'EXAMPLE_USER_NAME'     => 'John', // DO NOT TRANSLATE !!!
+    'EXAMPLE_USER_LASTNAME' => 'Dow', // DO NOT TRANSLATE !!!
+    'EXAMPLE_USER_SURNAME'  => 'Trump', // DO NOT TRANSLATE !!!
     'EXAMPLE_USER_PHONE'    => '380674502132', // DO NOT TRANSLATE !!!
+    'EXAMPLE_YOUTUBE'       => '@artinweb-biz', // DO NOT TRANSLATE !!!
+    'EXAMPLE_WEBSITE'       => 'artinweb.biz', // DO NOT TRANSLATE !!!
+    'EXAMPLE_SOC_NET_PAGE'  => 'www.facebook.com/artinwebbiz', // DO NOT TRANSLATE !!!
+    'EXAMPLE_YOUTUBE_SHARE' => 'https://youtu.be/bZbXyaOoyR4?si=PKISd2yCTEy8vjRC', // DO NOT TRANSLATE !!!
 ];

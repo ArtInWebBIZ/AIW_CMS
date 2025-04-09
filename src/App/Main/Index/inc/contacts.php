@@ -41,7 +41,7 @@ $cardClass = 'uk-text-center uk-card uk-card-default uk-card-body';
             <div class="<?= $class ?>">
                 <div class="<?= $cardClass ?>">
                     <h2><span uk-icon="icon: location; ratio: 4"></span></h2>
-                    <p class="uk-text-center"><?= Trl::_('OV_COUNTRY') ?>, <?= Trl::_('PLACE_LISBON') ?></p>
+                    <p class="uk-text-center"><?= Trl::_('OV_COUNTRY') ?>, <?= Trl::_('OV_REGION') ?></p>
                 </div>
             </div>
         </div>

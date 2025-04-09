@@ -42,5 +42,6 @@ return [
     'MSG_INVALID_FILE_TYPE'           => '%s - Недопустимый тип файла.',
     'MSG_INVALID_CONTROLLER_URL'      => 'Такой URL контроллера уже существует',
     'MSG_ERROR_CONTROLLER_URL'        => 'Такого URL контроллера не существует',
+    'MSG_EDIT_NOTE_ERROR'             => 'Этот контент сейчас редактируется другим пользователем',
     'MSG_ERROR_SAVE_TO_USER_EDIT_LOG' => 'Сбой записи в лог изменений',
 ];

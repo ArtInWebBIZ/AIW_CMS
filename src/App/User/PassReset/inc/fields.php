@@ -25,7 +25,7 @@ return [
         'class'       => 'uk-input',
         'placeholder' => '',
         'value'       => isset($v['email']) ? $v['email'] : '',
-        'info'        => Trl::_('OV_OBLIGATORY_FIELD') . Trl::_('INFO_PASSRESET'),
+        'info'        => Trl::_('OV_REQUIRED_FIELD') . Trl::_('INFO_PASSRESET'),
 
     ]
 ];

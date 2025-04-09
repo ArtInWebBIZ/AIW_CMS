@@ -24,7 +24,7 @@ $ukPanel = 'uk-position-center slider uk-panel uk-padding-large uk-background-mu
                 <div class="uk-cover-container">
                     <img src="/img/slider/slider-01.jpg" alt="" uk-cover>
                     <div class="<?= $ukPanel ?>">
-                        <h1 class="<?= $h1Class ?>"><?= Trl::_('MP_01') ?></h1>
+                        <h1 class="<?= $h1Class ?>"><?= Trl::_('MAIN_01') ?></h1>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@ $ukPanel = 'uk-position-center slider uk-panel uk-padding-large uk-background-mu
                 <div class="uk-cover-container">
                     <img src="/img/slider/slider-02.jpg" alt="" uk-cover>
                     <div class="<?= $ukPanel ?>">
-                        <h1 class="<?= $h1Class ?>"><?= Trl::_('MP_02') ?></h1>
+                        <h1 class="<?= $h1Class ?>"><?= Trl::_('MAIN_02') ?></h1>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@ $ukPanel = 'uk-position-center slider uk-panel uk-padding-large uk-background-mu
                 <div class="uk-cover-container">
                     <img src="/img/slider/slider-03.jpg" alt="" uk-cover>
                     <div class="<?= $ukPanel ?>">
-                        <h1 class="<?= $h1Class ?>"><?= Trl::_('MP_03') ?></h1>
+                        <h1 class="<?= $h1Class ?>"><?= Trl::_('MAIN_03') ?></h1>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@ $ukPanel = 'uk-position-center slider uk-panel uk-padding-large uk-background-mu
                 <div class="uk-cover-container">
                     <img src="/img/slider/slider-04.jpg" alt="" uk-cover>
                     <div class="<?= $ukPanel ?>">
-                        <h1 class="<?= $h1Class ?>"><?= Trl::_('MP_04') ?></h1>
+                        <h1 class="<?= $h1Class ?>"><?= Trl::_('MAIN_04') ?></h1>
                     </div>
                 </div>
             </div>

@@ -80,7 +80,7 @@ class Review
             'rows'        => Config::getCfg('CFG_TEXTAREA_ROWS'),
             'placeholder' => '',
             'value'       => $value,
-            'info'        => Trl::_('OV_OBLIGATORY_FIELD') . Trl::sprintf('ITEM_TEXT_INFO', ...[
+            'info'        => Trl::_('OV_REQUIRED_FIELD') . Trl::sprintf('ITEM_TEXT_INFO', ...[
                 Config::getCfg('CFG_MIN_TICKET_ANSWER_LEN'),
                 Config::getCfg('CFG_MAX_TICKET_ANSWER_LEN'),
                 'https://editorhtmlonline.com/'

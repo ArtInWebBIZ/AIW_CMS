@@ -70,7 +70,7 @@ class UserFields
             'class'       => 'uk-input',
             'placeholder' => Trl::_('OV_EXAMPLE') . Trl::_('EXAMPLE_USER_NAME'),
             'value'       => $value,
-            'info'        => Trl::_('OV_OBLIGATORY_FIELD') . Trl::sprintf(
+            'info'        => Trl::_('OV_REQUIRED_FIELD') . Trl::sprintf(
                 'INFO_USER_NAME',
                 ...[
                     Config::getCfg('CFG_MIN_NAME_LEN'),
@@ -154,7 +154,7 @@ class UserFields
             'class'       => 'uk-input',
             'placeholder' => Trl::_('OV_EXAMPLE') . Trl::_('EXAMPLE_EMAIL'),
             'value'       => $value,
-            'info'        => Trl::_('OV_OBLIGATORY_FIELD') . Trl::sprintf(
+            'info'        => Trl::_('OV_REQUIRED_FIELD') . Trl::sprintf(
                 'INFO_USER_EMAIL_DEMANDS',
                 ...[
                     Config::getCfg('CFG_MIN_EMAIL_LEN'),
@@ -182,7 +182,7 @@ class UserFields
             'class'       => 'uk-input',
             'placeholder' => Trl::_('OV_EXAMPLE') . Trl::_('EXAMPLE_USER_PHONE'),
             'value'       => $value,
-            'info'        => Trl::_('OV_OBLIGATORY_FIELD') . Trl::_('INFO_USER_PHONE'),
+            'info'        => Trl::_('OV_REQUIRED_FIELD') . Trl::_('INFO_USER_PHONE'),
         ];
     }
     /**

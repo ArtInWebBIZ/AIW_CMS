@@ -14,10 +14,10 @@ defined('AIW_CMS') or die;
  */
 
 return [
-    'OV_SITE_NAME'                 => 'Portugal inside out',
-    'OV_OWNER_NAME'                 => 'Sergey Ransky',
-    'OV_SITE_FULL_NAME'            => 'Portugal inside out with Sergey Ransky',
-    'OV_SITE_SHORT_NAME'           => '«Portugal inside out»',
+    'OV_SITE_NAME'                 => '«ArtInWeb CMS»',
+    'OV_OWNER_NAME'                 => 'Full cycle studio ArtInWeb.biz',
+    'OV_SITE_FULL_NAME'            => '«ArtInWeb CMS» - content management system',
+    'OV_SITE_SHORT_NAME'           => '«AIW CMS»',
     'OV_OTHER_COUNTRY'             => 'We are in other countries',
     'OV_HOME'                      => 'Home',
     'OV_CONTACTS'                  => 'Contacts',
@@ -57,7 +57,7 @@ return [
     /**
      * other
      */
-    'OV_OBLIGATORY_FIELD'          => '<strong>* Required field</strong><br><br>',
+    'OV_REQUIRED_FIELD'          => '<strong>* Required field</strong><br><br>',
     'OV_FORM_FILL_AGAIN'           => 'Please fill out the form again.',
     'OV_CREATE'                    => 'Create',
     'OV_CREATED'                   => 'Created by',
@@ -80,6 +80,9 @@ return [
      */
     'OV_INFORMATION'               => 'Information',
     'OV_COPYRIGHT'                 => 'Copyrights',
+    'OV_WE_IN_SOC_NET'                 => 'We are on social networks',
+    'OV_INSTAGRAM'                 => 'We\'re on Instagram',
+    'OV_FACEBOOK'                 => 'We\'re on Facebook',
     /**
      * menu
      */
@@ -105,4 +108,6 @@ return [
     'OV_EDITED_FROM'               => 'Date of editing - <span class="uk-text-small uk-text-muted">(later than…)</span>',
     'OV_EDITED_TO'                 => 'Date of editing - <span class="uk-text-small uk-text-muted">(before the…)</span>',
     'OV_ATTENDANCE'                => 'Attendance',
+    'OV_ATTENDANCE_MANAGERS'       => 'Attendance of managers',
+    'OV_ATTENDANCE_INDEX'          => 'Indexing',
 ];

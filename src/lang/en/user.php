@@ -50,6 +50,10 @@ return [
     'USER_EMAIL'                         => 'Email',
     'USER_PHONE'                         => 'Phone',
     'USER_AVATAR'                        => 'Logo or avatar',
+    'USER_AVATAR_DELETE'                 => 'Delete logo or avatar',
+    'USER_YOUTUBE'                       => 'YouTube channel',
+    'USER_WEBSITE'                       => 'Website',
+    'USER_SOC_NET_PAGE'                  => 'Page in social networks',
     'USER_PHONE_YOUR'                    => 'Your phone number',
     'USER_EMAIL_YOUR'                    => 'Your email',
     'USER_EMAIL_ALREADY_EXISTS'          => 'The user with this email address already exists',
@@ -112,13 +116,6 @@ return [
     'USER_REGISTRATION_DATE'     => 'Date of registration',
     'USER_EDITED'                => 'Edited',
     'USER_LATEST_VISIT'          => 'Visited the site',
-    'USER_REFERRAL_LINK'         => 'Referral link',
-    'USER_REFERRAL'              => 'User referral',
-    'USER_REFERRALS'             => 'User referrals',
-    'USER_REFERRAL_COUNT'        => 'Number of referrals',
-    'USER_BALANCE'               => 'User balance',
-    'USER_SAVE_TO_BALANCE_ERROR' => 'Your balance has been topped up. However, there was a failure while writing the changes to the user\'s balance to the database. We are aware of this issue and are working hard to resolve it',
-    'USER_ADVERTISING'           => 'User advertising',
     /**
      * edit
      */
@@ -140,21 +137,6 @@ return [
     'USER_EDITED_TO'          => 'Date edited - <span class="uk-text-small uk-text-muted">(before...)</span>',
     'USER_NOT_SELECTED'       => '- The user is not selected -',
     'USER_SELECT'             => '- Select user',
-    'USER_NET'                => 'User network',
-    'USER_NET_USERS'          => 'Members of the user\'s network',
-    'USER_NET_GENERATED'      => 'Generated',
-    'USER_NET_NEXT_GENERATED' => 'The next generation can be created after ',
-    /**
-     * balance
-     */
-    'USER_PAID_ID'                => 'Payment ID',
-    'USER_PAID_TO'                => 'Recipient',
-    'USER_PAID_FROM'              => 'Payer',
-    'USER_PAID_SUM'               => 'Payment amount',
-    'USER_PAID_TYPE'              => 'Payment type',
-    'USER_PAID_TYPE_NOT_SELECTED' => '- Payment type not selected -',
-    'USER_PAID_DATE'              => 'Date of payment',
-    'USER_ITEM_ID'                => 'Content type ID',
     /**
      * type
      */

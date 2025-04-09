@@ -24,7 +24,7 @@ return [
     'MSG_SAVE_CHANGE_ERROR'           => 'There was a failure while saving the changes. Please try filling out and submitting the form again.',
     'MSG_SAVE_TO_DATABASE_ERROR'      => 'There was a failure while writing to the database. Please try filling out and submitting the form again.',
     'MSG_FILE_SIZE_EXCEEDED'          => 'The size of the file being uploaded has been exceeded.',
-    'MSG_FILE_RECEIVED_PARTIALLY'     => 'Файл було отримано лише частково.',
+    'MSG_FILE_RECEIVED_PARTIALLY'     => 'The file was only partially received.',
     'MSG_FILE_WAS_NOT_LOADED'         => 'File was not uploaded.',
     'MSG_NO_TEMPORARY_DIRECTORY'      => 'The file is not loaded - the temporary directory is missing.',
     'MSG_FAILED_WRITE_FILE_TO_DISK'   => '%s - The file could not be written to disk.',
@@ -39,5 +39,6 @@ return [
     'MSG_INVALID_FILE_TYPE'           => '%s - Invalid file type.',
     'MSG_INVALID_CONTROLLER_URL'      => 'This controller URL already exists',
     'MSG_ERROR_CONTROLLER_URL'        => 'There is no such URL controller',
+    'MSG_EDIT_NOTE_ERROR'             => 'This content is now being edited by another user',
     'MSG_ERROR_SAVE_TO_USER_EDIT_LOG' => 'Change logging failure',
 ];

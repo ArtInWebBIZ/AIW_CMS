@@ -43,7 +43,7 @@ class ItemController
             'class'       => 'uk-input',
             'placeholder' => Trl::_('OV_EXAMPLE') . 'controller-name',
             'value'       => $value,
-            'info'        => Trl::_('OV_OBLIGATORY_FIELD') . Trl::sprintf('ITEM_CONTROLLER_URL_INFO', ...[
+            'info'        => Trl::_('OV_REQUIRED_FIELD') . Trl::sprintf('ITEM_CONTROLLER_URL_INFO', ...[
                 Config::getCfg('CFG_MIN_ITEM_CONTROLLER_URL_LEN'),
                 Config::getCfg('CFG_MAX_ITEM_CONTROLLER_URL_LEN'),
             ]),

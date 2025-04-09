@@ -13,6 +13,7 @@ return [
     'REVIEW_REVIEW'          => 'Review',
     'REVIEW_REVIEWS'         => 'Reviews',
     'REVIEW_ALL_REVIEWS'     => 'All reviews',
+    'REVIEW_MY_REVIEWS'      => 'My reviews',
     'REVIEW_ADD'             => 'Add a review',
     'REVIEW_EDIT'            => 'Edit review',
     'REVIEW_TEXT'            => 'Review text',

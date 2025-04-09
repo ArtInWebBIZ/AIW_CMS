@@ -19,7 +19,7 @@ use Core\Trl;
     <table class="uk-table-middle footer-table-contacts">
         <tr>
             <td class="uk-margin-small-left"><img src="/img/icons-white/road-sign-both.svg" alt="" class="icon-menu uk-margin-small-right"></td>
-            <td><?= Trl::_('OV_COUNTRY') ?>,<br><?= Trl::_('PLACE_LISBON') ?></td>
+            <td><?= Trl::_('OV_COUNTRY') ?>,<br><?= Trl::_('OV_REGION') ?></td>
         </tr>
         <tr>
             <td class="uk-margin-small-left"><img src="/img/icons-white/iphone.svg" alt="" class="icon-menu uk-margin-small-right"></td>

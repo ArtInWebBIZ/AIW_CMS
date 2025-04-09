@@ -43,11 +43,10 @@ return [
      */
     'TICKET_TYPE'                      => 'Тип тікета',
     'TICKET_TYPE_NOT_SELECTED'         => '- Тип тікета не вибрано -',
-    'TICKET_MESSAGE_TO_SITE_MASTER'    => 'Лист для гіду',
+    'TICKET_MESSAGE_TO_SITE_MASTER'    => 'Лист для власника сайту',
     'TICKET_MESSAGE_TO_ADMINISTRATOR'  => 'Лист адміністраторам',
     'TICKET_MESSAGE_TO_SUPPORT'        => 'Лист у техпідтримку',
     'TICKET_USER_DELETE'               => 'Видалити користувача',
-    'TICKET_BRING_TO_CARD'             => 'Вивести на карту',
     /**
      * view
      */

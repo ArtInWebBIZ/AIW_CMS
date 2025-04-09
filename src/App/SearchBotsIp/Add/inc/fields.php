@@ -13,7 +13,7 @@ use Core\{Config, Trl};
 
 return [
     'start_range'     => [
-        'label'       => Trl::_('WIP_START'),
+        'label'       => Trl::_('SBIP_START'),
         'name'        => 'start_range',
         'type'        => 'text',
         'clean'       => 'str',
@@ -27,7 +27,7 @@ return [
         'info'        => '',
     ],
     'end_range'     => [
-        'label'       => Trl::_('WIP_END'),
+        'label'       => Trl::_('SBIP_END'),
         'name'        => 'end_range',
         'type'        => 'text',
         'clean'       => 'str',
@@ -41,7 +41,7 @@ return [
         'info'        => '',
     ],
     'engine_name'     => [
-        'label'       => Trl::_('WIP_ENGINE_NAME'),
+        'label'       => Trl::_('SBIP_ENGINE_NAME'),
         'name'        => 'engine_name',
         'type'        => 'text',
         'clean'       => 'str',

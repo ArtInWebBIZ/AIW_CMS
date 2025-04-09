@@ -12,7 +12,7 @@ namespace App\Ticket\NewTicket;
 defined('AIW_CMS') or die;
 
 use App\Ticket\NewTicket\Req\Func;
-use Core\{Config, GV, Content};
+use Core\{Config, GV, Content, Trl};
 use Core\Plugins\{Msg, Ssl};
 
 class Cont
@@ -44,10 +44,9 @@ class Cont
                      */
                     if (Func::getI()->saveNewTicket() > 0) {
                         /**
-                         * If ticket type is sand to card
+                         * If ticket type is delete user
                          */
                         if (
-                            Func::getI()->checkForm()['ticket_type'] == 1 ||
                             Func::getI()->checkForm()['ticket_type'] == 6
                         ) {
                             /**
@@ -57,17 +56,11 @@ class Cont
                             /**
                              * Send email to creators user
                              */
-                            Func::getI()->sendEmail();
+                            Func::getI()->sendEmail(6);
                             /**
                              * Send email to manager
                              */
-                            if (Func::getI()->checkForm()['ticket_type'] == 1) {
-                                Func::getI()->sendToManagerEmail(Config::getCfg('CFG_ACCOUNTANT_EMAIL'));
-                            }
-
-                            if (Func::getI()->checkForm()['ticket_type'] == 6) {
-                                Func::getI()->sendToManagerEmail(Config::getCfg('CFG_TECH_SUPPORT_USER_EMAIL'));
-                            }
+                            Func::getI()->sendToManagerEmail(Config::getCfg('CFG_TECH_SUPPORT_USER_EMAIL'));
                             #
                         } elseif (Func::getI()->checkForm()['ticket_type'] == 3) {
                             Func::getI()->sendToManagerEmail(Config::getCfg('CFG_REPLY_TO'));

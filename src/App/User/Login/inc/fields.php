@@ -25,7 +25,7 @@ return [
         'class'       => 'uk-input',
         'placeholder' => '',
         'value'       => '',
-        'info'        => Trl::_('OV_OBLIGATORY_FIELD') . Trl::sprintf(
+        'info'        => Trl::_('OV_REQUIRED_FIELD') . Trl::sprintf(
             'INFO_USER_EMAIL',
             ...[
                 Config::getCfg('CFG_MIN_EMAIL_LEN'),
@@ -44,7 +44,7 @@ return [
         'class'       => 'uk-input',
         'placeholder' => '',
         'value'       => '',
-        'info'        => Trl::_('OV_OBLIGATORY_FIELD') . Trl::sprintf('INFO_USER_PASSWORD_DEMANDS', ...[
+        'info'        => Trl::_('OV_REQUIRED_FIELD') . Trl::sprintf('INFO_USER_PASSWORD_DEMANDS', ...[
             Config::getCfg('CFG_MIN_PASS_LEN'),
             Config::getCfg('CFG_MAX_PASS_LEN'),
         ]),

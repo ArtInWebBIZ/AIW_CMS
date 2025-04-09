@@ -9,11 +9,11 @@ use Core\Trl;
 <div class="uk-margin-medium uk-flex uk-flex-middle uk-margin" uk-grid>
     <div class="uk-width-expand" uk-lightbox>
         <a href="/img/logo_h80.png">
-            <img alt="<?= Trl::_('OV_OWNER_NAME') ?>" src="/img/logo_h80.png" itemprop="image">
+            <img alt="<?= Trl::_('OV_SITE_FULL_NAME') ?>" src="/img/logo_h80.png" itemprop="image">
         </a>
     </div>
     <div class="uk-width-1-1 uk-margin-medium uk-width-1-2@s uk-text-center">
-        <h3 class="contact-h3" itemprop="name"><?= Trl::_('OV_OWNER_NAME') ?></h3>
+        <h3 class="contact-h3" itemprop="name"><?= Trl::_('OV_SITE_NAME') ?></h3>
         <p class="uk-text-center uk-text-italic">
             <span class="profession" itemprop="jobTitle"><?= Trl::_('OV_OWNER_NAME') ?></span><br>
             <span itemprop="address"><?= Trl::_('OV_REGION') ?></span><br>

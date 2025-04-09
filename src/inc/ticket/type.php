@@ -10,7 +10,6 @@
 defined('AIW_CMS') or die;
 
 return [
-    // 'TICKET_BRING_TO_CARD'            => 1,
     // 'TICKET_PICKAWIN_MODERATED'       => 2,
     'TICKET_MESSAGE_TO_SITE_MASTER'   => 3,
     'TICKET_MESSAGE_TO_ADMINISTRATOR' => 4,

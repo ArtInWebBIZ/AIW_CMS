@@ -46,11 +46,9 @@ class Cont
     public function getContent()
     {
         $this->content        = Content::getDefaultValue();
-        $this->content['tpl'] = 'test';
+        $this->content['tpl'] = 'admin';
 
-        $config = require PATH_BASE . 'config.php';
-
-        $this->content['content'] = $config;
+        $this->content['content'] = Func::getI()->compareLangFile('sbip', 'ru', 'en');
 
         return $this->content;
     }

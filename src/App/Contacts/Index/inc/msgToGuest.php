@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @package    ArtInWebCMS.inc
+ * @package    ArtInWebCMS.App
  *
  * @copyright  (C) 2024 Igor Kruk <https://cms.artinweb.biz>
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
@@ -9,7 +9,7 @@
 
 defined('AIW_CMS') or die;
 
-return [
-    'USER_PERSON'   => 0,
-    // 'USER_BUSINESS' => 1,
-];
+use Core\Trl;
+
+?>
+<h4 class="uk-text-center"><?= Trl::_('CONTACTS_TO_GUEST_MESSAGE') ?></h4>

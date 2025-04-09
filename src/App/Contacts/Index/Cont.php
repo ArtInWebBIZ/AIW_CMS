@@ -44,7 +44,7 @@ class Cont
                     userDate(Config::getCfg('CFG_DATE_TIME_FORMAT'), (Func::getI()->latestTicketsCreate() + Config::getCfg('CFG_NEW_TICKET_TIME'))),
                 ]
             ) . '</h4>';
-            $this->content['content'] .= Tpl::view(ForAll::contIncPath() . 'schema.php');;
+            $this->content['content'] .= Tpl::view(ForAll::contIncPath() . 'schema.php');
             $this->content['content'] .= Content::getContentEnd();
             #
         } elseif (Func::getI()->checkAccess() === 'true') {
@@ -59,7 +59,8 @@ class Cont
 
             $this->content['content'] .= Content::getContentStart($section, $container, $overflow);
             $this->content['content'] .= $contactTitle;
-            $this->content['content'] .= Tpl::view(ForAll::contIncPath() . 'schema.php');;
+            $this->content['content'] .= Tpl::view(ForAll::contIncPath() . 'schema.php');
+            $this->content['content'] .= Tpl::view(ForAll::contIncPath() . 'msgToGuest.php');
             $this->content['content'] .= Content::getContentEnd();
         }
 

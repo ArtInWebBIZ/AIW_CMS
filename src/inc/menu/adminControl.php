@@ -37,14 +37,14 @@ return [
             'page_alias'     => '',
         ],
         [
-            'label'          => 'WIP_CONTROL',
+            'label'          => 'SBIP_CONTROL',
             'access'         => GroupAccess::check([5]),
             'controller_url' => 'search-bots-ip',
             'action_url'     => '',
             'page_alias'     => '',
         ],
         [
-            'label'          => 'WIP_ADD',
+            'label'          => 'SBIP_ADD',
             'access'         => GroupAccess::check([5]),
             'controller_url' => 'search-bots-ip',
             'action_url'     => 'add',
