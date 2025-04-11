@@ -1,7 +1,6 @@
 sitemap.txt
 alphabet.php
 numbers.php
-App/Test/*
 node_modules/
 package.json
 package-lock.json

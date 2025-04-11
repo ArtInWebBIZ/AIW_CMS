@@ -23,7 +23,7 @@ use Core\Trl;
         </tr>
         <tr>
             <td class="uk-margin-small-left"><img src="/img/icons-white/iphone.svg" alt="" class="icon-menu uk-margin-small-right"></td>
-            <td>+351&#160;968&#160;310&#160;387 - (Viber, WhatsApp)</td>
+            <td>+987 654 321 987 - (Viber, WhatsApp)</td>
         </tr>
         <tr>
             <td class="uk-margin-small-left"><img src="/img/icons-white/accept-email.svg" alt="" class="icon-menu uk-margin-small-right"></td>
