@@ -1,12 +1,12 @@
 <h1>«ArtInWeb» - content management system</h1>
 <h3>safety, speed, simplicity</h3>
 <hr>
-````php
+```php
 /**
  * @copyright  (C) 2024 Igor Kruk <https://cms.artinweb.biz>
  * @license    GNU General Public License version - see LICENSE.txt
  */
-````
+```
 <hr>
 <h3>V 0.1.1</h3>
 <p>Edit License in README page.</p>
