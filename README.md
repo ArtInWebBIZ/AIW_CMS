@@ -4,13 +4,15 @@
 
 ```php
 /**
+ * @package    ArtInWebCMS
+ * 
  * @copyright  (C) 2024 Igor Kruk <https://cms.artinweb.biz>
- * @license    GNU General Public License version - see LICENSE.txt
+ * @license    GNU General Public License version 3 - see LICENSE.txt
  */
 ```
 
 <hr>
-<h3>V 0.1.12</h3>
+<h3>V 0.1.1-13</h3>
 <p>Edit License in README page.</p>
 <hr>
 <h3>V 0.1.05</h3>

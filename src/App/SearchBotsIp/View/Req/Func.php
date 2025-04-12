@@ -4,7 +4,7 @@
  * @package    ArtInWebCMS.App
  *
  * @copyright  (C) 2024 Igor Kruk <https://cms.artinweb.biz>
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @license    GNU General Public License version 3 - see LICENSE.txt
  */
 
 namespace App\SearchBotsIp\View\Req;
@@ -15,9 +15,7 @@ class Func
 {
     private static $instance = null;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function getI(): Func
     {
@@ -40,10 +38,6 @@ class Func
         return $this->checkAccess;
     }
 
-    private function __clone()
-    {
-    }
-    public function __wakeup()
-    {
-    }
+    private function __clone() {}
+    public function __wakeup() {}
 }
