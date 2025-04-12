@@ -4,7 +4,7 @@
  * @package    ArtInWebCMS.Core
  *
  * @copyright  (C) 2024 Igor Kruk <https://cms.artinweb.biz>
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @license    GNU General Public License version 3 - see LICENSE.txt
  */
 
 namespace Core\Plugins\Select\User;
@@ -20,9 +20,7 @@ class Type
     private static $allType = 'null';
     private $checkToForm      = null;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function getI(): Type
     {
@@ -64,10 +62,6 @@ class Type
         return $optionHtml;
     }
 
-    private function __clone()
-    {
-    }
-    public function __wakeup()
-    {
-    }
+    private function __clone() {}
+    public function __wakeup() {}
 }

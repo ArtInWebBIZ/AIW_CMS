@@ -72,6 +72,7 @@ $header = Tpl::view(PATH_INC . 'doc' . DS . 'about-us.php');
         <p><strong>In this same repository you get:</strong></p>
         <ul>
             <li>a system for managing multilingual or monolingual website content;</li>
+            <li>content caching system;</li>
             <li>a user registration and management system with multiple combinations of user types and conditions for access and editing content;</li>
             <li>template system (one for many or unique (in any combination)) for any type of content;</li>
             <li>universal templates for &#34;Privacy Policy&#34;, &#34;User Agreement&#34;, &#34;Terms of Use of Cookies&#34; and &#34;HTML Tags Allowed and Prohibited on the Site&#34;. The first three pages are mandatory for placement on all EU websites;</li>
