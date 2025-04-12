@@ -12,6 +12,7 @@ namespace Core\Plugins\View;
 defined('AIW_CMS') or die;
 
 use Core\{App, Auth, BaseUrl, Config, GV, Router, Session};
+use Core\Plugins\Check\GroupAccess;
 use Core\Plugins\Check\TimeDifference;
 use Core\Plugins\Model\DB;
 use Core\Plugins\ParamsToSql;
@@ -62,6 +63,17 @@ class Render
                         'time_difference'  => $this->getTimeDifference(),
                     ]
                 );
+
+                if (App::content()['redirect'] === '') {
+
+                    if (GroupAccess::managerGroups()) {
+                        ViewLog::saveToLog('view_management_log', (int) $this->getPageParams()['id']);
+                    } elseif (Session::getSearchBotsIp() === 1) {
+                        ViewLog::saveToLog('view_index_log', (int) $this->getPageParams()['id']);
+                    } else {
+                        ViewLog::saveToLog('view_log', (int) $this->getPageParams()['id']);
+                    }
+                }
                 #
             } else {
                 /**

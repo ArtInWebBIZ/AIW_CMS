@@ -22,13 +22,15 @@ class ViewLog
      * @param string $logTable
      * @return integer
      */
-    public static function saveToLog(string $logTable): int
+    public static function saveToLog(string $logTable, int $urlId = null): int
     {
         self::deleteOldLogs($logTable);
 
+        $urlId = $urlId === null ? self::getUrl()['id'] : $urlId;
+
         $set = [
             'lang'    => array_search(Session::getLang(), Languages::langCodeList()),
-            'url_id'  => self::getUrl()['id'],
+            'url_id'  => $urlId,
             'user_ip' => ip2long(Session::getUserIp()),
             'token'   => substr(Session::getToken(), 0, 11),
             'created' => time(),

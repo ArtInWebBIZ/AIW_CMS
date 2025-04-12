@@ -57,6 +57,9 @@
 <p><strong>All of the above is far from a complete set!</strong></p>
 
 <hr>
+<h3>V 0.1.16</h3>
+<p>Bug fixes in pages cash system.</p>
+<hr>
 <h3>V 0.1.1-15</h3>
 <p>Edit License in copyright.</p>
 <hr>

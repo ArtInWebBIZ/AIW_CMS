@@ -19,7 +19,10 @@ unset($files[0], $files[1]);
 
 if (count($files) > 0) {
     foreach ($files as $key => $value) {
-        if (filemtime(PATH_TMP . $files[$key]) < time() - 600) {
+        if (
+            $files[$key] != 'index.html' &&
+            filemtime(PATH_TMP . $files[$key]) < time() - 600
+        ) {
             unlink(PATH_TMP . $files[$key]);
         }
     }
