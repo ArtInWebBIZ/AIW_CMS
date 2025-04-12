@@ -200,7 +200,7 @@ class Filters
         return $this->getFiltersValues;
     }
     /**
-     * Save filters values to `control_post_note` table
+     * Save filters values to `filter_value_note` table
      * @param array $getFiltersValues
      * @return integer
      */
@@ -208,7 +208,7 @@ class Filters
     {
         return (int) DB::getI()->add(
             [
-                'table_name' => 'control_post_note',
+                'table_name' => 'filter_value_note',
                 'set'        => ParamsToSql::getSet(
                     $set = [
                         'token'        => Session::getToken(),
@@ -223,7 +223,7 @@ class Filters
         );
     }
     /**
-     * Update filters value in `control_post_note` table
+     * Update filters value in `filter_value_note` table
      * @param [type] $getFiltersValues
      * @return boolean
      */
@@ -231,7 +231,7 @@ class Filters
     {
         return DB::getI()->update(
             [
-                'table_name' => 'control_post_note',
+                'table_name' => 'filter_value_note',
                 'set'        => ParamsToSql::getSet(
                     $set = [
                         'post_note'  => json_encode($getFiltersValues),
@@ -257,7 +257,7 @@ class Filters
     {
         return DB::getI()->delete(
             [
-                'table_name' => 'control_post_note',
+                'table_name' => 'filter_value_note',
                 'where'      => '`enabled_to` < :enabled_to',
                 'array'      => ['enabled_to' => time()],
             ]

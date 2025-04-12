@@ -10,6 +10,7 @@
 defined('AIW_CMS') or die;
 
 define('PATH_BASE', __DIR__ . DS);
+define('PATH_CASH', PATH_BASE . 'cash' . DS);
 define('PATH_TMP', PATH_BASE . 'tmp' . DS);
 define('PATH_INC', PATH_BASE . 'inc' . DS);
 define('PATH_LOG', PATH_BASE . 'log' . DS);

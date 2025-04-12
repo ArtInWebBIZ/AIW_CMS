@@ -32,7 +32,7 @@ class ControlClear
          */
         DB::getI()->delete(
             [
-                'table_name' => 'control_post_note',
+                'table_name' => 'filter_value_note',
                 'where'      => ParamsToSql::getSql(
                     $where = [
                         'token'           => Session::getToken(),

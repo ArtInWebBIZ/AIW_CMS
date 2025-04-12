@@ -9,7 +9,7 @@
 
 defined('AIW_CMS') or die;
 
-use Core\{Trl};
+use Core\Trl;
 use Core\Plugins\Ssl;
 use Core\Plugins\View\Tpl;
 
@@ -28,6 +28,6 @@ use Core\Plugins\View\Tpl;
         </div>
     </div>
     <div class="uk-text-center uk-margin-medium-top">
-        <span class="uk-text-small">©&nbsp;2016-<?= userDate("Y", time()) ?><br>©&nbsp;<?= Trl::_('OV_SITE_FULL_NAME') ?><br>© All rights reserved<br>Developed by <a href="https://artinweb.biz" target="_blank" rel="noopener noreferrer">ArtInWeb.biz</a></span><br><a href="<?= Ssl::getLink() ?>/sitemap.txt">sitemap.txt</a>
+        <span class="uk-text-small">©&nbsp;2024-<?= userDate("Y", time()) ?><br>©&nbsp;<?= Trl::_('OV_SITE_FULL_NAME') ?><br>© All rights reserved<br>Developed by <a href="https://artinweb.biz" target="_blank">ArtInWeb.biz</a></span><br><a href="<?= Ssl::getLink() ?>/sitemap.txt">sitemap.txt</a>
     </div>
 </footer>

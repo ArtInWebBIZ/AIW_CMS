@@ -9,9 +9,6 @@
 
 defined('AIW_CMS') or die;
 
-// use Core\Plugins\Model\DB;
-// use Core\Plugins\ParamsToSql;
-
 function debug($data)
 {
     echo '<pre>' . print_r($data, true) . '</pre>';

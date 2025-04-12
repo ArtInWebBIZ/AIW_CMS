@@ -9,7 +9,7 @@
 
 defined('AIW_CMS') or die;
 
-use Core\{App, Auth, BaseUrl, Config, GV, Session, Plugins\Ssl, Router};
+use Core\{App, BaseUrl, Config, GV, Session, Plugins\Ssl};
 use Core\Modules\View\MsgInTmp;
 use Core\Plugins\Check\GroupAccess;
 use Core\Plugins\View\ViewLog;

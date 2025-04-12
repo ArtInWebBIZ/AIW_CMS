@@ -6,6 +6,8 @@ INSERT INTO `config_control` (
     )
 VALUES ('CFG_DEBUG', '1', 'boolean', '5'),
     ('CFG_SECURE_COOKIE', '0', 'boolean', '5'),
+    ('CFG_CONTENT_CASH', '0', 'boolean', '5'),
+    ('CFG_CONTENT_CASH_TIME', '900', 'int', '5'),
     (
         'CFG_VIEW_RECONSTRUCTION_PAGE',
         '0',

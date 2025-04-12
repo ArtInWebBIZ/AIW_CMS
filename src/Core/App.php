@@ -11,6 +11,7 @@ namespace Core;
 
 defined('AIW_CMS') or die;
 
+use Core\Plugins\View\Render;
 use Core\Router;
 
 class App
@@ -37,8 +38,8 @@ class App
         return self::$content;
     }
 
-    public static function render()
+    public static function render(): void
     {
-        include_once PATH_TPL . DS . self::content()['tpl'] . '.php';
+        Render::getI()->render();
     }
 }

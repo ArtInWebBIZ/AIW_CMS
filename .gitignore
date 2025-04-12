@@ -2,6 +2,8 @@ sitemap.txt
 alphabet.php
 numbers.php
 node_modules/
+src/cash/*.php
+src/tmp/*.txt
 package.json
 package-lock.json
 yarn.lock

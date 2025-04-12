@@ -9,14 +9,12 @@
 
 defined('AIW_CMS') or die;
 
-use Core\{App, BaseUrl, ErrorHandler as Errors, GV, Session, Trl, Languages};
+use Core\{App, BaseUrl, ErrorHandler as Errors, Session, Trl, Languages};
 use Core\Modules\LangMenu\LangMenu;
 use Core\Modules\MainMenu\MainMenu;
 use Core\Modules\UserMenu\UserMenu;
-use Core\Plugins\Check\TimeDifference;
 use Core\Plugins\{Ssl, View\Tpl};
 use Core\Modules\Breadcrumbs;
-use Core\Plugins\View\Alternate;
 
 include PATH_TPL . 'index' . DS . 'redirect.php';
 
@@ -112,28 +110,14 @@ $rtl = Session::getRtl() == 1 ? '-rtl' : '';
 
     <?= Tpl::view(PATH_TPL . 'index' . DS . 'footer.php') ?>
 
-    <?php if ((!isset(GV::cookie()['messages_cookies']) || GV::cookie()['messages_cookies'] != 'true') && Session::getUserId() == 0) { ?>
-        <div id="messages_cookies" class="uk-position-bottom uk-position-fixed uk-background-muted">
-            <div class="messages_cookies-wrp uk-flex uk-flex-middle uk-flex-column">
-                <div class="uk-padding uk-padding-remove-left uk-padding-remove-right">
-                    <span class="uk-text-small"><?= Trl::_('MSG_COOKIE_MSG') ?></span>
-                </div>
-                <div class="uk-margin-bottom uk-text-center">
-                    <button class="uk-button uk-button-primary uk-button-small messages_cookies-close">OK</button>
-                </div>
-            </div>
-        </div>
-        <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
-        <script src="/js/cookie_mc.js"></script>
-    <?php } ?>
+    <?= '<!-- messages_cookies -->' ?>
 
     <?php if (App::content()['toBottomScript'] != '') { ?>
         <?= App::content()['toBottomScript'] ?>
     <?php } ?>
 
-    <?php if (Session::getTimeDifference() === null) { ?>
-        <?= TimeDifference::viewScript() ?>
-    <?php } ?>
+    <?= '<!-- time_difference -->' ?>
+
     <script>
         function loadedHiding() {
             document.body.classList.add('loaded_hiding');

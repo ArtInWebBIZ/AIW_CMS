@@ -376,7 +376,7 @@ class Func
     {
         return DB::getI()->add(
             [
-                'table_name' => 'control_post_note',
+                'table_name' => 'filter_value_note',
                 'set'        => ParamsToSql::getSet(
                     $where = [
                         'token'           => Session::getToken(),
@@ -399,7 +399,7 @@ class Func
     {
         return DB::getI()->update(
             [
-                'table_name' => 'control_post_note',
+                'table_name' => 'filter_value_note',
                 'set'        => ParamsToSql::getSet(
                     $set = [
                         'post_note'  => json_encode($getFiltersValues),

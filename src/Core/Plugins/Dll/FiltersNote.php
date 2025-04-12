@@ -39,7 +39,7 @@ class FiltersNote
     {
         return DB::getI()->delete(
             [
-                'table_name' => 'control_post_note',
+                'table_name' => 'filter_value_note',
                 'where'      => '`enabled_to` < :enabled_to',
                 'array'      => ['enabled_to' => time()],
             ]
@@ -55,7 +55,7 @@ class FiltersNote
 
             $this->getFiltersNote = DB::getI()->getRow(
                 [
-                    'table_name' => 'control_post_note',
+                    'table_name' => 'filter_value_note',
                     'where'      => ParamsToSql::getSql(
                         $where = [
                             'token'           => Session::getToken(),
