@@ -57,8 +57,8 @@
 <p><strong>All of the above is far from a complete set!</strong></p>
 
 <hr>
-<h3>V 0.1.1-14</h3>
-<p>Edit License in README page.</p>
+<h3>V 0.1.1-15</h3>
+<p>Edit License in copyright.</p>
 <hr>
 <h3>V 0.1.05</h3>
 <p>Create indexing pages cash system.</p>

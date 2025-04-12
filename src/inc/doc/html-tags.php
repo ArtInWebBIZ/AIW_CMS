@@ -4,7 +4,7 @@
  * @package    ArtInWebCMS.doc
  *
  * @copyright  (C) 2024 Igor Kruk <https://cms.artinweb.biz>
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @license    GNU General Public License version 3 - see LICENSE.txt
  */
 
 defined('AIW_CMS') or die;
@@ -30,7 +30,7 @@ $ukH3Class = 'uk-text-center';
 
                 <h3 class="<?= $ukH3Class ?>">A</h3>
                 <ul class="<?= $ukClass ?>">
-                    <li><span class="c-red" uk-icon="icon: check"></span>&nbsp;&lt;a&gt;</li>
+                    <li><span class="c-red" uk-icon="icon: close"></span>&nbsp;&lt;a&gt;</li>
                     <li><span class="c-red" uk-icon="icon: close"></span>&nbsp;&lt;abbr&gt;</li>
                     <li><span class="c-lime" uk-icon="icon: check"></span>&nbsp;&lt;acronym&gt;</li>
                     <li><span class="c-lime" uk-icon="icon: check"></span>&nbsp;&lt;address&gt;</li>
@@ -198,7 +198,7 @@ $ukH3Class = 'uk-text-center';
                     <li><span class="c-red" uk-icon="icon: close"></span>&nbsp;&lt;section&gt;</li>
                     <li><span class="c-red" uk-icon="icon: close"></span>&nbsp;&lt;select&gt;</li>
                     <li><span class="c-lime" uk-icon="icon: check"></span>&nbsp;&lt;small&gt;</li>
-                    <li><span class="c-red" uk-icon="icon: check"></span>&nbsp;&lt;span&gt;</li>
+                    <li><span class="c-red" uk-icon="icon: close"></span>&nbsp;&lt;span&gt;</li>
                     <li><span class="c-red" uk-icon="icon: close"></span>&nbsp;&lt;source&gt;</li>
                     <li><span class="c-red" uk-icon="icon: close"></span>&nbsp;&lt;strike&gt;</li>
                     <li><span class="c-lime" uk-icon="icon: check"></span>&nbsp;&lt;strong&gt;</li>
