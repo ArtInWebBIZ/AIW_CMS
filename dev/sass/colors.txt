@@ -1,0 +1,12 @@
+Basic color:
+				
+#A1CE53	#819B55	#5E861B	#C0E77F	#CBE79B
+Secondary color A:
+				
+#45AA56	#468050	#166F26	#75D586	#8FD59B
+Secondary color B:
+				
+#DE635A	#A7625C	#91261D	#EF8C84	#EFA6A0
+Additional color:
+				
+#B74A81	#894C6B	#771848	#DB79AB	#DB93B8

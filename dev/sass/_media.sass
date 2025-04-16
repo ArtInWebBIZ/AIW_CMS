@@ -1,0 +1,81 @@
+@use 'global'
+
+// UiKit device
+// no @ - affects device widths to 640px                @media (max-width: 639px)
+// @s Only affects device widths of 640px and higher.   @media (min-width: 640px)
+// @m Only affects device widths of 960px and higher.   @media (min-width: 960px)
+// @l Only affects device widths of 1200px and higher.  @media (min-width: 1200px)
+// @xl Only affects device widths of 1600px and higher. @media (min-width: 1600px)
+
+@media (max-width: 639px)
+    .uk-grid>*
+        margin-left: 30px
+        padding-left: 0px
+    .uk-grid+.uk-grid,
+    .uk-grid>.uk-grid-margin,
+    *+.uk-grid-margin
+        margin-top: 30px
+    .uk-offcanvas-bar
+        &.uk-visible
+            display: block !important
+        &.uk-grid>*
+            margin-left: 10px
+    .uk-container
+        border-radius: 10px
+    .border-radius-30px
+        border-radius: 10px
+    .uk-first-column
+        padding-left: 0
+    .uk-modal-dialog
+        max-width: 90%
+    .uk-grid-divider
+        margin-left: -30px
+    .uk-grid-divider.uk-grid-stack > .uk-grid-margin::before
+        top: -30px
+        left: 0
+
+@media (min-width: 640px)
+    .uk-container
+        border-radius: 15px
+    .border-radius-30px
+        border-radius: 15px
+    .uk-modal-dialog
+        max-width: 80%
+
+@media (max-width: 959px)
+    .nav-div
+        flex-direction: column
+        padding-bottom: 10px
+    .border-radius-30px
+        border-radius: 20px
+    .uk-modal-dialog
+        max-width: 80%
+
+@media (min-width: 960px)
+    .nav-div
+        flex-direction: row
+        padding-bottom: 0
+    .uk-countdown-number
+        font-size: 4rem
+    .footer-table-contacts
+        margin: inherit
+    .uk-container
+        border-radius: 20px
+    .uk-modal-dialog
+        width: 750px
+
+@media (min-width: 1200px)
+    .uk-container
+        border-radius: 30px
+    .border-radius-30px
+        border-radius: 25px
+    .uk-modal-dialog
+        width: 960px
+
+@media (min-width: 1600px)
+    .uk-container
+        border-radius: 40px
+    .border-radius-30px
+        border-radius: 30px
+    .uk-modal-dialog
+        width: 1200px
