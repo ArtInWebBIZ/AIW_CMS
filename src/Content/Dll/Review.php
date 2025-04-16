@@ -7,7 +7,7 @@
  * @license    GNU General Public License version 3 - see LICENSE.txt
  */
 
-namespace Core\Plugins\Dll;
+namespace Content\Dll;
 
 defined('AIW_CMS') or die;
 

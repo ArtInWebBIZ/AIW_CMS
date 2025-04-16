@@ -7,12 +7,11 @@
  * @license    GNU General Public License version 3 - see LICENSE.txt
  */
 
-namespace Core\Plugins\Dll;
+namespace Content\Dll;
 
 defined('AIW_CMS') or die;
 
 use Core\{Auth, Session};
-use Core\Modules\Randomizer;
 use Core\Plugins\Model\DB;
 use Core\Plugins\ParamsToSql;
 

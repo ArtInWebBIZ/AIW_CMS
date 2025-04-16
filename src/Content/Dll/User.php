@@ -7,7 +7,7 @@
  * @license    GNU General Public License version 3 - see LICENSE.txt
  */
 
-namespace Core\Plugins\Dll;
+namespace Content\Dll;
 
 defined('AIW_CMS') or die;
 
@@ -15,7 +15,7 @@ use Core\Modules\Randomizer;
 use Core\Plugins\Create\GetHash\GetHash;
 use Core\Plugins\{ParamsToSql, Crypt\CryptText, Model\DB};
 use Core\{Session, Config};
-use Core\Plugins\Dll\User\Check;
+use Content\Dll\User\Check;
 
 class User
 {

@@ -7,7 +7,7 @@
  * @license    GNU General Public License version 3 - see LICENSE.txt
  */
 
-namespace Core\Plugins\Fields;
+namespace Content\Plugins\Fields;
 
 use Core\{Trl};
 use Core\Plugins\Select\Blog\Status;

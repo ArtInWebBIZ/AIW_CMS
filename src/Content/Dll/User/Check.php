@@ -7,13 +7,13 @@
  * @license    GNU General Public License version 3 - see LICENSE.txt
  */
 
-namespace Core\Plugins\Dll\User;
+namespace Content\Dll\User;
 
 defined('AIW_CMS') or die;
 
 use Core\{Clean, Config, GV};
 use Core\Plugins\Create\GetHash\GetHash;
-use Core\Plugins\Dll\User;
+use Content\Dll\User;
 use Core\Plugins\Model\DB;
 use Core\Plugins\ParamsToSql;
 
