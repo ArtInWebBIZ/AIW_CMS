@@ -43,6 +43,6 @@ gulp.task('default', gulp.parallel('watch'));
 
 // Installation of all additions for GULP
 // yarn init
-// yarn add --save-dev gulp gulp-sass sass gulp-autoprefixer browserslist gulp-clean-css gulp-rename gulp-sourcemaps
+// yarn add --save-dev gulp gulp-sass sass gulp-clean-css gulp-rename gulp-sourcemaps
 // npm install gulp
 // gulp
