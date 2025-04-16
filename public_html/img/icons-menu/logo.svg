@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="48px" height="48px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 48.03 48" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style type="text/css">
+        .str0 {
+            stroke: white;
+            stroke-width: 0.04;
+            stroke-miterlimit: 22.9256
+        }
+
+        .fil0 {
+            fill: none
+        }
+
+        .fil1 {
+            fill: #B1BAC1
+        }
+    </style>
+    <rect class="fil0" width="48" height="48" />
+    <polygon class="fil1" points="1.85,8.73 21.82,8.73 19.97,13.09 0,13.09 " />
+    <polygon class="fil1 str0" points="19.3,17.45 21.82,17.45 21.82,29.09 30.55,8.73 34.91,8.73 34.91,29.09 43.64,8.73 48,8.73 34.91,39.27 30.55,39.27 30.55,19.6 21.82,39.27 17.45,39.27 17.45,21.82 " />
+    <polygon class="fil1" points="11.24,39.27 7.38,39.27 7.38,21.82 9.22,17.45 13.09,17.45 13.09,34.91 " />
+</svg>
