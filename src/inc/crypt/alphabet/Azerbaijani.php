@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * @package    ArtInWebCMS.inc
+ *
+ * @copyright  (C) 2024 Igor Kruk <https://cms.artinweb.biz>
+ * @license    GNU General Public License version 3 - see LICENSE.txt
+ */
+
+defined('AIW_CMS') or die;
+
+return [
+    'A',
+    'a',
+    'B',
+    'b',
+    'C',
+    'c',
+    'Ç',
+    'ç',
+    'D',
+    'd',
+    'E',
+    'e',
+    'Ә',
+    'ә',
+    'F',
+    'f',
+    'G',
+    'g',
+    'Ğ',
+    'ğ',
+    'H',
+    'h',
+    'X',
+    'x',
+    'I',
+    'ı',
+    'İ',
+    'i',
+    'J',
+    'j',
+    'K',
+    'k',
+    'Q',
+    'q',
+    'L',
+    'l',
+    'M',
+    'm',
+    'N',
+    'n',
+    'O',
+    'o',
+    'Ö',
+    'ö',
+    'P',
+    'p',
+    'R',
+    'r',
+    'S',
+    's',
+    'Ş',
+    'ş',
+    'T',
+    't',
+    'U',
+    'u',
+    'Ü',
+    'ü',
+    'V',
+    'v',
+    'Y',
+    'y',
+    'Z',
+    'z'
+];

@@ -1,0 +1,235 @@
+@use "global"
+
+html, body
+    font-family: global.$glFf
+    color: global.$glFc
+
+.uk-link, a
+    // border-bottom: 1px dashed
+    &:focus,
+    &:hover,
+    &:active
+        text-decoration: none
+
+em, i
+    color: inherit
+
+.preloader
+    position: fixed
+    left: 0
+    top: 0
+    right: 0
+    bottom: 0
+    overflow: hidden
+    background: global.$glBg
+    z-index: 1001
+
+.preloader__image
+    position: relative
+    top: 50%
+    left: 50%
+    width: 70px
+    height: 70px
+    margin-top: -35px
+    margin-left: -35px
+    text-align: center
+    animation: preloader-rotate 3s infinite linear
+
+@keyframes preloader-rotate
+    100%
+        transform: rotate(360deg)
+
+.loaded_hiding .preloader
+    transition: 0.3s opacity
+    opacity: 0.3
+
+.loaded .preloader
+    display: none
+
+.uk-navbar-nav>li>a,
+.uk-navbar-nav>li>a:hover,
+.uk-navbar-nav>li>a:focus,
+.uk-logo
+    border-bottom: none
+
+// .uk-logo
+//     & > img
+//         height: 50px
+
+.line-color
+    color: global.$glLineColor
+
+a
+    &.uk-totop
+        display: flex
+        position: fixed
+        color: global.$glLineColor
+        right: 20px
+        bottom: 20px
+        width: 40px
+        height: 40px
+        border: 1px solid global.$glLineColor
+        justify-content: center
+        align-content: center
+        border-radius: 50%
+        z-index: 999
+        &:focus,
+        &:hover
+            color: global.$lightBg
+            background-color: global.$glBg
+    &.uk-active
+        color: global.$glTitleColor !important
+    &.menu-icon
+        background-color: global.$glBg
+        &.main
+            top: 0
+            left: 0px
+        &.search
+            top: 0
+            left: 70px
+        &.lang
+            top: 0
+            right: 70px
+        &.user
+            top: 0
+            right: 0px
+    &.uk-inline
+        border-bottom: none
+
+.uk-subnav.line-menu > * > :first-child
+    font-family: global.$glHf
+    color: global.$glPrimary
+    font-size: 1.2rem
+
+.uk-subnav.line-menu > .uk-active > :first-child,
+.uk-subnav.line-menu > *:hover > :first-child,
+.uk-dropdown-nav > li.uk-active > a,
+.uk-dropdown-nav > li > a:hover
+    color: global.$glTitleColor
+
+.uk-nav li > a
+    display: inherit
+
+.uk-divider-vertical
+    height: 40px
+
+img
+    &.avatar
+        padding: 4px
+        border: 1px solid #e5e5e5
+    &.first-page-icon
+        display: block
+        margin: auto
+        height: 80px
+
+.grey-border
+    border: 1px solid #e5e5e5
+
+h1, h2, h3, h4
+    font-family: global.$glHf
+    color: global.$glTitleColor
+    // font-weight: 600
+
+.error-page
+    display: flex
+    width: 90%
+    height: 100vh
+    align-items: center
+    padding: 0 5%
+    &-img
+        width: 40%
+    &-text
+        width: 56%
+        padding: 2%
+    &-no-access
+        display: flex
+        width: 90%
+        height: 100vh
+        align-items: center
+        padding: 0 5%
+        background-color: #771848
+        .exclamation-mark
+            width: 15%
+            h2
+                color: global.$glBg
+        .text
+            width: 80%
+            padding: 2.5%
+            h5
+                color: global.$glBg
+
+.content-section
+    min-height: 60vh
+
+p
+    text-align: justify
+
+.filters-div
+    display: block
+    overflow: hidden
+    width: 100%
+    padding: 1px
+
+.filters-buttons-div
+    display: grid
+    grid-template-rows: auto auto
+    grid-template-columns: 100%
+    grid-gap: 10px
+
+.intro-image
+    padding: 4px
+    border: 1px solid #e5e5e5
+    border-radius: 20px
+
+.color-orange
+    color: global.$glLineColor
+
+.color-gold
+    color: #ffd700
+
+.bg-orange
+    background: global.$glLineColor
+
+.color-title
+    color: global.$glTitleColor !important
+
+.color-white
+    color: global.$glBg
+
+.color-primary
+    color: global.$glPrimary
+
+.bg-text-white
+    text-shadow: 0 0 2px global.$glBg
+
+.edit-icon-div
+    margin-bottom: -65px
+    color: global.$glPrimary
+
+.w20px
+    width: 20px
+
+.icon-menu
+    height: 22px
+
+.overflow-hidden
+    overflow: hidden
+    min-height: 60vh
+
+.vh100
+    height: 100vh
+
+.text-shadow-white
+    text-shadow: #fff 4px 0px 4px, #fff 0px 4px 4px, #fff 0px -4px 4px, #fff -4px 0px 4px
+
+.text-shadow-purple
+    text-shadow: #4B0082 4px 0px 4px, #4B0082 0px 4px 4px, #4B0082 0px -4px 4px, #4B0082 -4px 0px 4px
+
+fieldset
+    border: none
+
+.slider-title
+    text-shadow: 3px 3px 1px rgba(0,0,0,.3)
+
+.slider.uk-panel
+    background: rgba(255,255,255,.3)

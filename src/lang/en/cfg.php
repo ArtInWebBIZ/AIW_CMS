@@ -1,0 +1,73 @@
+<?php
+
+/**
+ * @package    ArtInWebCMS.lang
+ *
+ * @copyright  (C) 2024 Igor Kruk <https://cms.artinweb.biz>
+ * @license    GNU General Public License version 3 - see LICENSE.txt
+ */
+
+defined('AIW_CMS') or die;
+
+return [
+    'CFG_DEBUG'                     => 'Setting mode (0 - off; 1 - on)',
+    'CFG_VIEW_RECONSTRUCTION_PAGE'  => 'Website reconstruction page (0 - off; 1 - on)',
+    'CFG_MAIL_FROM'                 => 'Email from which emails from the site are sent',
+    'CFG_REPLY_TO'                  => 'Email to which automatic replies to emails from the site are sent',
+    'CFG_REPLY_TO_NAME'             => 'Name of the company on behalf of which the emails are sent from the site',
+    'CFG_PAGINATION'                => 'Default pagination step',
+    'CFG_HISTORY_PAGINATION'        => 'Pagination step for lists',
+    'CFG_IMAGES_LIST_PAGINATION'    => 'Pagination step for images',
+    'CFG_MIN_SESSION_TIME'          => 'Minimum session time for an unauthorized user in seconds (15 minutes by default)',
+    'CFG_MAX_SESSION_TIME'          => 'Maximum session time for an authorized user in seconds (default - 14 days)',
+    'CFG_USER_PHONE_LEN'            => 'Number of characters in the country phone number',
+    'CFG_TEXTAREA_ROWS'             => 'Height of the text input field',
+    'CFG_MIN_INTEGER_LEN'           => 'Minimum number of characters in integers',
+    'CFG_MAX_INTEGER_LEN'           => 'Maximum number of characters in integers',
+    'CFG_MIN_PASS_LEN'              => 'Minimum number of characters in passwords',
+    'CFG_MAX_PASS_LEN'              => 'Maximum number of characters in passwords',
+    'CFG_MIN_NAME_LEN'              => 'Minimum number of characters in the username',
+    'CFG_MAX_NAME_LEN'              => 'Maximum number of characters in the username',
+    'CFG_MIN_FILTER_NAME_LEN'       => 'Minimum number of characters in the filter name',
+    'CFG_MAX_FILTER_NAME_LEN'       => 'Maximum number of characters in the filter name',
+    'CFG_MIN_EMAIL_LEN'             => 'Minimum number of characters in an email address',
+    'CFG_MAX_EMAIL_LEN'             => 'Maximum number of characters in an email address',
+    'CFG_MIN_TICKET_ANSWER_LEN'     => 'Minimum number of characters in ticket replies',
+    'CFG_MAX_TICKET_ANSWER_LEN'     => 'Maximum number of characters in ticket replies',
+    'CFG_USER_ACTIVATION_TIME'      => 'The maximum time to activate a new user in seconds (24 hours by default)',
+    'CFG_NOTE_ENABLED_TO'           => 'Maximum edit blocking time in seconds (5 minutes by default)',
+    'CFG_NEW_TICKET_TIME'           => 'The time in seconds after which the creation of a new ticket will be available (by default - 24 hours)',
+    'CFG_SECURE_COOKIE'             => 'Cookie encryption mode (0 - off; 1 - on)',
+    'CFG_DATE_FORMAT'               => 'Default date display format',
+    'CFG_DATE_TIME_FORMAT'          => 'Format of date and time display',
+    'CFG_DATE_TIME_SECONDS_FORMAT'  => 'Date and time display format with seconds',
+    'CFG_DATE_TIME_MYSQL_FORMAT'    => 'Date and time display format in MySQL format',
+    'CFG_TECH_SUPPORT_USER_EMAIL'   => 'Super administrator email',
+    'CFG_MIN_REF_CODE_LEN'      => 'Minimum length of the referral code',
+    'CFG_MAX_REF_CODE_LEN'      => 'Maximum length of the referral code',
+    'CFG_TIME_REFRESH'          => 'Time in seconds for automatic reloading of the website page for service employees (5 minutes by default)',
+    'CFG_ENABLED_VIEW_LOG_TIME' => 'Time for storing page view records in logs',
+    'CFG_MAX_IMAGES_SIZE'       => 'Maximum image file size for uploading in bytes',
+    'CFG_IMAGES_PATH'           => 'Name of the directory to upload and store photos',
+    'CFG_MAX_THUMB_SIZE'        => 'Maximum height and width of photo thumbnails in pixels',
+    'CFG_MIN_HEADING_LEN'       => 'Minimum number of characters in the title',
+    'CFG_MAX_HEADING_LEN'       => 'Maximum number of characters in the title',
+    'CFG_MIN_INTRO_TEXT_LEN'    => 'Minimum number of characters in the announcement text',
+    'CFG_MAX_INTRO_TEXT_LEN'    => 'Maximum number of characters in the announcement text',
+    'CFG_MIN_TEXT_LEN'          => 'Minimum number of characters in the text',
+    'CFG_MAX_TEXT_LEN'          => 'Maximum number of characters in the text',
+    'CFG_MIN_ITEM_CONTROLLER_URL_LEN' => 'Minimum number of characters in the content type controller link',
+    'CFG_MAX_ITEM_CONTROLLER_URL_LEN' => 'Maximum number of characters in the content type controller link',
+    'CFG_INTRO_IMAGE_PATH'    => 'Directory for announcement images',
+    'CFG_INTRO_IMAGE_WIDTH'   => 'Image width for announcement',
+    'CFG_INTRO_IMAGE_HEIGHT'  => 'Image height for announcement',
+    'CFG_SCHEMA_TIME_FORMAT'  => 'Time format in the schema.org standard',
+    'CFG_USER_AVATAR_PATH'    => 'Directory of user avatar or logo files',
+    'CFG_AVATAR_SIDE_SIZE'    => 'Side size of user logo or avatar',
+    'CFG_MIN_GET_VALUES_LEN' => 'The minimum number of signs in the request GET',
+    'CFG_MAX_GET_VALUES_LEN' => 'The maximum number of signs in the request GET',
+    'CFG_MIN_LINK_LEN'       => 'The minimum number of signs in the link',
+    'CFG_MAX_LINK_LEN'       => 'The maximum number of signs in the link',
+    'CFG_CONTENT_CASH'       => 'Content caching (0 - off.; 1 - on.)',
+    'CFG_CONTENT_CASH_TIME'  => 'Default caching time',
+];

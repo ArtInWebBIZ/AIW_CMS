@@ -1,0 +1,17 @@
+﻿User-agent: *
+Disallow: /css/
+Disallow: /img/
+Disallow: /js/
+Disallow: /upl/
+Disallow: /index.php
+Disallow: /index.html
+Disallow: /*config
+Disallow: /*ticket-answer
+Disallow: /*view-log
+Disallow: /*.pdf
+Disallow: /*.swf
+Disallow: /*print=1
+Disallow: /*=atom
+Disallow: /*=rss
+
+Sitemap: http://artinweb.cms/sitemap.txt
