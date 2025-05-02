@@ -11,7 +11,8 @@
  */
 ```
 
-<p><strong>In this repository:</strong></p>
+<details><summary><strong>In this repository:</strong></summary>
+
 <ul>
     <li>a system for managing multilingual or monolingual website content;</li>
     <li>content caching system;</li>
@@ -57,7 +58,11 @@
     <li>page no access.</li>
 </ul>
 <p><strong>All of the above is far from a complete set!</strong></p>
-<p>Adaptive files for languages:</p>
+
+</details>
+
+<details><summary><strong>Adaptive files for languages:</strong></summary>
+
 <ul>
     <li>ukrainian;</li>
     <li>armenian;</li>
@@ -81,6 +86,8 @@
     <li>spanish;</li>
     <li>russian.</li>
 </ul>
+
+</details>
 
 <hr>
 <h3>V 1.0</h3>
