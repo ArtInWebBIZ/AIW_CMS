@@ -1,0 +1,14 @@
+sitemap.txt
+alphabet.php
+numbers.php
+salt.php
+node_modules/
+src/cash/*.php
+src/tmp/*.txt
+package.json
+package-lock.json
+yarn.lock
+README.html
+App/Test/
+*Copy.php
+*.zip
