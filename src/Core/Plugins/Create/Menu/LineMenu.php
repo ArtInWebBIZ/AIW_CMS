@@ -39,7 +39,7 @@ class LineMenu
 
             $html = '';
 
-            $html .= Tpl::view(PATH_TPL . 'menu' . DS . 'lineMenu' . DS . 'header.php');
+            $html .= Tpl::view(PATH_TPL . 'menu' . DS . 'line' . DS . 'header.php');
 
             foreach ($params as $key => $value) {
 
@@ -64,7 +64,7 @@ class LineMenu
             }
             unset($key, $value);
 
-            $html .= Tpl::view(PATH_TPL . 'menu' . DS . 'lineMenu' . DS . 'footer.php');
+            $html .= Tpl::view(PATH_TPL . 'menu' . DS . 'line' . DS . 'footer.php');
 
             return $html;
             #
@@ -111,7 +111,7 @@ class LineMenu
         $link .= $params['page_alias'] != '' ? $params['page_alias'] . '.html' : '';
 
         return Tpl::view(
-            PATH_TPL . 'menu' . DS . 'lineMenu' . DS . 'li.php',
+            PATH_TPL . 'menu' . DS . 'line' . DS . 'li.php',
             [
                 'active'     => $activeLink,
                 'link'       => $link,
@@ -143,7 +143,7 @@ class LineMenu
         unset($key, $value);
 
         return Tpl::view(
-            PATH_TPL . 'menu' . DS . 'lineMenu' . DS . 'parent.php',
+            PATH_TPL . 'menu' . DS . 'line' . DS . 'parent.php',
             [
                 'active'      => $activeLink,
                 'parent_name' => Trl::_($params['menu_title']),

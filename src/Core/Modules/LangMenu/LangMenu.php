@@ -12,6 +12,8 @@ namespace Core\Modules\LangMenu;
 defined('AIW_CMS') or die;
 
 use Core\Languages;
+use Core\Modules\LangPageLinks;
+use Core\Plugins\View\Tpl;
 
 class LangMenu
 {
@@ -23,7 +25,12 @@ class LangMenu
             self::$menuView === null &&
             count(Languages::langList()) > 1
         ) {
-            require PATH_MODULES . 'LangMenu' . DS . 'view.php';
+            self::$menuView =  Tpl::view(
+                PATH_TPL . 'menu' . DS . 'lang' . DS . 'view.php',
+                [
+                    'lang_li' => LangPageLinks::renderLinks(),
+                ]
+            );
         }
 
         return self::$menuView;

@@ -17,6 +17,6 @@ class MainMenu
 {
     public static function getMenuView(): string
     {
-        return Tpl::view(PATH_MODULES . 'MainMenu' . DS . 'view.php');
+        return Tpl::view(PATH_TPL . 'menu' . DS . 'main' . DS . 'view.php');
     }
 }
