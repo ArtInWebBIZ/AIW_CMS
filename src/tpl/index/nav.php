@@ -10,7 +10,7 @@
 defined('AIW_CMS') or die;
 
 use Core\{BaseUrl, Trl};
-use Core\Modules\LineMenu\LineMenu;
+use Core\Modules\Menu\LineMenu;
 
 $cardClass = 'uk-card uk-card-small uk-card-body';
 

@@ -10,8 +10,8 @@
 defined('AIW_CMS') or die;
 
 use Core\{App, BaseUrl, ErrorHandler as Errors, Session, Trl, Languages};
-use Core\Modules\LangMenu\LangMenu;
-use Core\Modules\MainMenu\MainMenu;
+use Core\Modules\Menu\LangMenu;
+use Core\Modules\Menu\MainMenu;
 use Core\Modules\UserMenu\UserMenu;
 use Core\Plugins\{Ssl, View\Tpl};
 use Core\Modules\Breadcrumbs;
@@ -73,11 +73,7 @@ $rtl = Session::getRtl() == 1 ? '-rtl' : '';
     <?php } ?>
 
     <?= UserMenu::getMenuView() ?>
-
-    <?php if (count(Languages::langList()) > 1) { ?>
-        <?= LangMenu::getMenuView() ?>
-    <?php } ?>
-
+    <?= LangMenu::getMenuView() ?>
     <?= MainMenu::getMenuView() ?>
 
     <?= Tpl::view(PATH_TPL . 'index' . DS . 'nav.php') ?>
@@ -85,15 +81,7 @@ $rtl = Session::getRtl() == 1 ? '-rtl' : '';
     <?= Breadcrumbs::getI()->getHtml() ?>
 
     <?php if ($msg !== '') { ?>
-        <section class="uk-section uk-section-xsmall">
-            <div class="uk-container uk-container-xsmall">
-                <div class="uk-grid uk-flex uk-flex-center">
-                    <div class="uk-width-1-1">
-                        <?= $msg ?>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <?= Tpl::view(PATH_TPL . 'index' . DS . 'message.php', ['msg' => $msg]) ?>
     <?php } ?>
 
     <?php if (!is_array(App::content()['content'])) { ?>

@@ -7,7 +7,7 @@
  * @license    GNU General Public License version 3 - see LICENSE.txt
  */
 
-namespace Core\Modules\LangMenu;
+namespace Core\Modules\Menu;
 
 defined('AIW_CMS') or die;
 
@@ -31,6 +31,8 @@ class LangMenu
                     'lang_li' => LangPageLinks::renderLinks(),
                 ]
             );
+        } else {
+            self::$menuView = '';
         }
 
         return self::$menuView;

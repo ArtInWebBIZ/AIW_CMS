@@ -32,14 +32,14 @@ use Core\Plugins\View\Tpl;
 use Core\Plugins\ParamsToSql;
 use Core\Modules\Pagination\Pagination;
 use App\PhotoPrint\View\Req\ZipCreate;
-use Core\Modules\MainMenu\MainMenu;
+use Core\Modules\Menu\MainMenu;
 use Core\Plugins\Lib\ForAll;
 use Core\Plugins\Model\DB;
 use Core\Plugins\Ssl;
 use Core\Plugins\Name\Competition\Category;
 use Core\Plugins\Save\ToLog;
 use Comp\User\Lib\Select\Fields;
-use Core\Modules\LineMenu\LineMenu;
+use Core\Modules\Menu\LineMenu;
 
 class Cont
 {

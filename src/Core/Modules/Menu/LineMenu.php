@@ -7,7 +7,7 @@
  * @license    GNU General Public License version 3 - see LICENSE.txt
  */
 
-namespace Core\Modules\LineMenu;
+namespace Core\Modules\Menu;
 
 defined('AIW_CMS') or die;
 
