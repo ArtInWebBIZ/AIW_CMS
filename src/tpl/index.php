@@ -10,9 +10,7 @@
 defined('AIW_CMS') or die;
 
 use Core\{App, BaseUrl, ErrorHandler as Errors, Session, Trl, Languages};
-use Core\Modules\Menu\LangMenu;
-use Core\Modules\Menu\MainMenu;
-use Core\Modules\Menu\UserMenu;
+use Core\Modules\Menu\{LangMenu, MainMenu, UserMenu};
 use Core\Plugins\{Ssl, View\Tpl};
 use Core\Modules\Breadcrumbs;
 

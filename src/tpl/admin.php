@@ -10,9 +10,7 @@
 defined('AIW_CMS') or die;
 
 use Core\{App, BaseUrl, ErrorHandler as Errors, GV, Session, Trl, Languages};
-use Core\Modules\Menu\LangMenu;
-use Core\Modules\Menu\MainMenu;
-use Core\Modules\Menu\UserMenu;
+use Core\Modules\Menu\{LangMenu, MainMenu, UserMenu};
 use Core\Plugins\{Ssl, Check\TimeDifference};
 use Core\Plugins\View\Tpl;
 
