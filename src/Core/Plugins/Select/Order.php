@@ -21,7 +21,7 @@ class Order
     private static function getAllOrder(): array
     {
         if (self::$allOrder === null) {
-            self::$allOrder = array_flip(require PATH_INC . 'for-all' . DS . 'order.php');
+            self::$allOrder = require PATH_INC . 'for-all' . DS . 'order.php';
         }
 
         return self::$allOrder;
@@ -41,6 +41,6 @@ class Order
      */
     public static function option($orderBy = null)
     {
-        return OptionTpl::labelFromValue(self::clear(), $orderBy);
+        return OptionTpl::labelFromKey(self::clear(), $orderBy);
     }
 }

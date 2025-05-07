@@ -26,8 +26,8 @@ $style = Style::control();
 ?>
 <?= Content::getContentStart($style['section_css'], $style['container_css'], $style['overflow_css'],) ?>
 <h1 class="<?= $style['h1_css'] ?>"><?= Trl::_($v['title']) ?></h1>
-<?php if ($v['item_title'] != '') { ?>
-    <h2 class="uk-text-center uk-margin-medium-bottom"><?= Trl::_($v['item_title']) ?></h2>
+<?php if ($v['item_heading'] != '') { ?>
+    <h2 class="uk-text-center uk-margin-medium-bottom"><?= Trl::_($v['item_heading']) ?></h2>
 <? } ?>
 <?= Pagination::getPagination($v['count'], $v['paginationStep']) ?>
 <table class="uk-table uk-table-striped uk-table-small">

@@ -126,7 +126,8 @@ class Func
                         $set = [
                             'controller_url' => $this->checkForm()['controller_url'],
                             'filters_table'  => $this->checkForm()['filters_table'],
-                            'created'        => time()
+                            'created'        => time(),
+                            'edited'         => time(),
                         ]
                     ),
                     'array'      => $set,

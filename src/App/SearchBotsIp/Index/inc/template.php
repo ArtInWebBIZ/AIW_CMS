@@ -13,11 +13,8 @@ use Core\{Content, Trl};
 use Core\Modules\Pagination\Pagination;
 
 ?>
-<?= Content::getContentStart('uk-padding-remove', 'uk-container-xlarge uk-background-default uk-padding-large') ?>
-<h1 class="uk-text-bold color-purple uk-text-center uk-margin-medium-top uk-margin-large-bottom"><?= Trl::_($v['title']) ?></h1>
-<?php if ($v['item_heading'] != '') { ?>
-    <h2 class="uk-text-center uk-margin-medium-bottom"><?= Trl::_($v['item_heading']) ?></h2>
-<?php } ?>
+<?= Content::getContentStart('uk-padding-remove uk-margin-large-bottom', 'uk-container-xlarge uk-background-default') ?>
+<h1 class="uk-text-center uk-margin-medium-top uk-margin-bottom"><?= Trl::_($v['title']) ?></h1>
 <div class="uk-text-center uk-margin-small-top">
     <a href="/search-bots-ip/add/" class="uk-button uk-button-default"><?= Trl::_('SBIP_ADD') ?></a>
 </div>

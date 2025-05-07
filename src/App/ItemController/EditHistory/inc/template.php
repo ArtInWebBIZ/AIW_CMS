@@ -15,21 +15,16 @@ use Core\Plugins\View\Style;
 
 $style = Style::control();
 
-/**
- * !!! ATTENTION !!!
- * if enabled ['example_key'] in variable $v in this template,
- * KEY VARIABLE ['example_key'] IS REQUIRED TO INCLUDE ON THIS TEMPLATE !!!
- * elsewhere, return empty page
- */
-
 ?>
-<?= Content::getContentStart($style['section_css'], $style['container_css'], $style['overflow_css']) ?>
+<?= Content::getContentStart($style['section_css'], $style['container_css'], $style['overflow_css'],) ?>
 <h1 class="<?= $style['h1_css'] ?>"><?= Trl::_($v['title']) ?></h1>
 <?php if ($v['item_heading'] != '') { ?>
     <h2 class="uk-text-center uk-margin-medium-bottom"><?= Trl::_($v['item_heading']) ?></h2>
 <? } ?>
 <?= Pagination::getPagination($v['count'], $v['paginationStep']) ?>
-<?= $v['control_header'] ?>
-<?= $v['control_body'] ?>
+<table class="uk-table uk-table-striped uk-table-small">
+    <?= $v['control_header'] ?>
+    <?= $v['control_body'] ?>
+</table>
 <?= Pagination::getPagination($v['count'], $v['paginationStep']) ?>
 <?= Content::getContentEnd() ?>

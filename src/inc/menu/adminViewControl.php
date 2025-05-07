@@ -1,8 +1,13 @@
 <?php
 
-defined('AIW_CMS') or die;
+/**
+ * @package    ArtInWebCMS.Core
+ *
+ * @copyright  (C) 2024 Igor Kruk <https://cms.artinweb.biz>
+ * @license    GNU General Public License version 3 - see LICENSE.txt
+ */
 
-use Core\Plugins\Check\GroupAccess;
+defined('AIW_CMS') or die;
 
 return [
     'menu_access' => true,
@@ -27,27 +32,6 @@ return [
             'access'         => true,
             'controller_url' => 'view-log',
             'action_url'     => 'control-index',
-            'page_alias'     => '',
-        ],
-        [
-            'label'          => 'ITEM_CONTROLLER_URL',
-            'access'         => GroupAccess::check([5]),
-            'controller_url' => 'item-controller',
-            'action_url'     => '',
-            'page_alias'     => '',
-        ],
-        [
-            'label'          => 'SBIP_CONTROL',
-            'access'         => GroupAccess::check([5]),
-            'controller_url' => 'search-bots-ip',
-            'action_url'     => '',
-            'page_alias'     => '',
-        ],
-        [
-            'label'          => 'SBIP_ADD',
-            'access'         => GroupAccess::check([5]),
-            'controller_url' => 'search-bots-ip',
-            'action_url'     => 'add',
             'page_alias'     => '',
         ],
     ],

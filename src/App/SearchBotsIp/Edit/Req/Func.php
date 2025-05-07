@@ -113,17 +113,12 @@ class Func
     {
         if ($this->saveToDb == 'null') {
 
-            $set = [];
-
-            foreach ($this->checkEditedFields() as $key => $value) {
-                $set[$key] = $key == 'start_range' || $key == 'end_range' ? ip2long($value) : $value;
-            }
-            unset($key, $value);
-
             $this->saveToDb = DB::getI()->update(
                 [
                     'table_name' => 'search_bots_ip',
-                    'set'        => ParamsToSql::getSet($set),
+                    'set'        => ParamsToSql::getSet(
+                        $set = $this->checkEditedFields()
+                    ),
                     'where'      => ParamsToSql::getSet(
                         $where = ['id' => $this->checkItem()['id']]
                     ),
@@ -189,7 +184,7 @@ class Func
                     'editor_id'    => Auth::getUserId(),
                     'edited_field' => $key,
                     'old_value'    => $this->checkItem()[$key],
-                    'new_value'    => $key == 'start_range' || $key == 'end_range' ? ip2long($value) : $value,
+                    'new_value'    => $value,
                     'edited'       => time(),
                 ];
             }

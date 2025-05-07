@@ -124,6 +124,6 @@ class Cont
         /**
          * Update errors count in user`s session
          */
-        Session::updSession(['block_counter' > Session::getSession()['block_counter'] + 1]);
+        Session::updSession(['block_counter' => Session::getSession()['block_counter'] + 1]);
     }
 }

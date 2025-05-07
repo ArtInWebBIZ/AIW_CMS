@@ -24,7 +24,7 @@ class GroupAccess
      */
     public static function check(array $groups): bool
     {
-        return in_array(Auth::getUserGroup(), $groups, true);
+        return Auth::getUserStatus() === 1 ? in_array(Auth::getUserGroup(), $groups, true) : false;
     }
     /**
      * Return true or false current users group in managers list

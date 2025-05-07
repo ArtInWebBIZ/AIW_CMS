@@ -1,18 +1,18 @@
 <?php
 
 /**
- * @package    ArtInWebCMS.example
+ * @package    ArtInWebCMS.App
  *
  * @copyright  (C) 2024 Igor Kruk <https://cms.artinweb.biz>
  * @license    GNU General Public License version 3 - see LICENSE.txt
  */
 
-namespace App\ContentType\Edit\Req;
+namespace App\ItemController\Edit\Req;
 
 defined('AIW_CMS') or die;
 
 use Core\{Auth, Router};
-use Core\Plugins\Check\{CheckForm, CheckToken, IntPageAlias};
+use Core\Plugins\Check\{CheckForm, CheckToken, GroupAccess, IntPageAlias};
 use Core\Plugins\Lib\ForAll;
 use Core\Plugins\Model\DB;
 use Core\Plugins\ParamsToSql;
@@ -50,10 +50,8 @@ class Func
             $this->checkAccess = false;
 
             if (
-                is_array($this->checkItem())
-                /**
-             * !!! SET OTHER CHECK USER`S ACCESS SELECTION CONDITIONS !!!
-             */
+                is_array($this->checkItem()) &&
+                GroupAccess::check([5])
             ) {
                 $this->checkAccess = true;
             }
@@ -92,8 +90,8 @@ class Func
                     'button_id'           => '',
                     'h'                   => 'h1', // title weight
                     'title'               => 'TITLE_CONSTANT', // or null
-                    'url'                 => Router::getRoute()['controller_url'] . '/edit/',
-                    'cancel_url'          => null, // or '/controller/action/' or 'hidden'
+                    'url'                 => Router::getRoute()['controller_url'] . '/edit/' . IntPageAlias::check() . '.html',
+                    'cancel_url'          => Router::getRoute()['controller_url'] . '/',
                     'v_image'             => null, // or image path
                     'fields'              => require ForAll::contIncPath() . 'fields.php',
                     'button_label'        => 'CONSTANT_BUTTON_LABEL',

@@ -109,23 +109,12 @@ class Func
     {
         if ($this->saveToDb == 'null') {
 
-            $set = [];
-
-            foreach ($this->checkForm() as $key => $value) {
-                if (
-                    $key == 'start_range' ||
-                    $key == 'end_range'
-                ) {
-                    $set[$key] = ip2long($value);
-                } else {
-                    $set[$key] = $value;
-                }
-            }
-
             $this->saveToDb = (int) DB::getI()->add(
                 [
                     'table_name' => 'search_bots_ip',
-                    'set'        => ParamsToSql::getSet($set),
+                    'set'        => ParamsToSql::getSet(
+                        $set = $this->checkForm()
+                    ),
                     'array'      => $set,
                 ]
             );

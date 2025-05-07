@@ -45,7 +45,7 @@ class Clean
      * @return boolean
      * @return null
      */
-    public static function bool(bool $bool)
+    public static function bool(bool $bool): bool|null
     {
         if (gettype($bool) == 'boolean') {
             return $bool;
@@ -64,7 +64,7 @@ class Clean
         $int = self::_prepare(strval($value));
         $int = mb_ereg_replace('[\s]', '', $int);
         $int = preg_replace('/[^0-9]/', '', $int);
-        $int = mb_strlen($value) > 0 && $value[0] === '-' ? '-' . $int : $int;
+        $int = mb_strlen($int) > 0 && $value[0] === '-' ? '-' . $int : $int;
         return $int == '' || $int == '-' ? false : (int) $int;
     }
     /**
@@ -79,7 +79,7 @@ class Clean
         $int = mb_ereg_replace('[\s]', '', $int);
         $int = preg_replace('/[^0-9]/', '', $int);
         $int = str_replace('-', '', $int);
-        return mb_strlen($value) > 0 ? (int) $int : false;
+        return mb_strlen($int) > 0 ? (int) $int : false;
     }
     /**
      * Floating point number. May be negative.
@@ -125,9 +125,9 @@ class Clean
     /**
      * Return correct html text
      * @param string $value
-     * @return string
+     * @return string // string or empty string ''
      */
-    public static function text(string $value)
+    public static function text(string $value): string
     {
         $value = self::_prepare($value);
         $value = str_ireplace(["\t"], ' ', $value);
@@ -152,9 +152,9 @@ class Clean
     /**
      * Return correct string value
      * @param string $value
-     * @return string
+     * @return string // string or empty string ''
      */
-    public static function str(string $value)
+    public static function str(string $value): string
     {
         $value = self::text($value);
         $value = mb_ereg_replace('[\s]+', ' ', $value);
@@ -169,7 +169,7 @@ class Clean
      * @return string
      * @return false
      */
-    public static function name(string $value)
+    public static function name(string $value): string|false
     {
         $value = self::str($value);
         $value = str_replace(['%', '!', '@', '#', '$', '^', '&', '*', '(', ')', '_', '+', '=', ':', ';', '"', '\'', '\\', '|', '<', '>', ',', '.', '?', '`', '~', '[', ']', '{', '}', '/'], '', $value);
@@ -178,9 +178,9 @@ class Clean
     /**
      * Return correct ulr
      * @param string $value
-     * @return string
+     * @return string // string or empty string ''
      */
-    public static function url(string $value)
+    public static function url(string $value): string
     {
         if ($value == '') {
             return '';
@@ -207,7 +207,7 @@ class Clean
      * @return string
      * @return false
      */
-    public static function link(string $value)
+    public static function link(string $value): string|false
     {
         if ($value == '') {
             return '';
@@ -227,7 +227,7 @@ class Clean
      * @return string
      * @return false
      */
-    public static function filename($value)
+    public static function filename($value): string|false
     {
         if ($value == '') {
             return false;
@@ -244,7 +244,7 @@ class Clean
      * @return integer
      * @return false
      */
-    public static function time($value)
+    public static function time($value): int|false
     {
         $value = self::str($value);
         $value = strtotime($value);
@@ -256,7 +256,7 @@ class Clean
      * @return string
      * @return false
      */
-    public static function email(string $value)
+    public static function email(string $value): string|false
     {
         $email    = '';
         $email    = explode("@", self::str($value));
@@ -275,7 +275,7 @@ class Clean
      * @return string
      * @return false
      */
-    public static function password(string $value)
+    public static function password(string $value): string|false
     {
         $password = '';
         $password = self::str($value);
@@ -283,50 +283,48 @@ class Clean
         return (!empty($password) ? $password : false);
     }
     /**
+     * Check value type Ip4V
+     * @param string $value
+     * @return integer|false
+     */
+    public static function ip4v(string $value): int|false
+    {
+        $value = self::str($value);
+        $value = $value != '' ? $value : false;
+
+        if ($value !== false) {
+            $value = explode(".", $value);
+            if (count($value) === 4) {
+                foreach ($value as $key => $keyValue) {
+                    $value[$key] = self::unsInt($keyValue);
+                    if (
+                        !is_int($value[$key]) ||
+                        $value[$key] > 255
+                    ) {
+                        $value = false;
+                        break;
+                    }
+                }
+                unset($key, $keyValue);
+                $value = is_array($value) ? ip2long(implode(".", $value)) : $value;
+            } else {
+                $value = false;
+            }
+        }
+
+        return $value;
+    }
+    /**
      * Check value
      * @param mixed $value
      * @param string $func
-     * @return mixed
+     * @return mixed // value or false
      */
     public static function check(mixed $value, string $func): mixed
     {
-        if ($func == 'raw') {
-            $value = self::raw($value);
-        } elseif ($func == 'bool') {
-            $value = self::bool($value);
-        } elseif ($func == 'int') {
-            $value = self::int($value);
-        } elseif ($func == 'unsInt') {
-            $value = self::unsInt($value);
-        } elseif ($func == 'float') {
-            $value = self::float($value);
-        } elseif ($func == 'price') {
-            $value = self::price($value);
-        } elseif ($func == 'text') {
-            $value = self::text($value);
-        } elseif ($func == 'str') {
-            $value = self::str($value);
-        } elseif ($func == 'name') {
-            $value = self::name($value);
-        } elseif ($func == 'url') {
-            $value = self::url($value);
-        } elseif ($func == 'link') {
-            $value = self::link($value);
-        } elseif ($func == 'filename') {
-            $value = self::filename($value);
-        } elseif ($func == 'time') {
-            $value = self::time($value);
-        } elseif ($func == 'email') {
-            $value = self::email($value);
-        } elseif ($func == 'password') {
-            $value = self::password($value);
-        } else {
-            $value = self::_prepare($value);
-        }
+        $value = self::$func($value);
 
-        if (
-            $value === null
-        ) {
+        if ($value === null) {
             $value = false;
         }
 

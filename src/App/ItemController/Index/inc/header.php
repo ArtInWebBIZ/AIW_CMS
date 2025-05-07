@@ -13,7 +13,7 @@ use Core\Trl;
 
 ?>
 <tr>
-    <td class="uk-text-center uk-text-bold">ID</td>
+    <td class="uk-text-center uk-text-bold" colspan="2">ID</td>
     <td class="uk-text-center uk-text-bold"><?= Trl::_('ITEM_CONTROLLER_URL') ?></td>
     <td class="uk-text-center uk-text-bold"><?= Trl::_('ITEM_FILTERS_TABLE') ?></td>
     <td class="uk-text-center uk-text-bold"><?= Trl::_('OV_CREATED') ?></td>

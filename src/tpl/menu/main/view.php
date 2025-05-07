@@ -65,10 +65,26 @@ $uk_accordion = 'uk-accordion-content uk-margin-remove-top uk-margin-small-botto
                     </li>
                 <? } ?>
                 <?php if (GroupAccess::check([5])) { ?>
-                    <li <?= Router::getRoute()['controller_url'] == 'view-log' || Router::getRoute()['controller_url'] == 'item-controller' || Router::getRoute()['controller_url'] == 'search-bots-ip' ? 'class="uk-open"' : ''; ?>>
-                        <a class="uk-accordion-title" href="#"><img src="/img/icons-menu/setting-config.svg" width="18px" height="18px" alt=""> <?= Trl::_('OV_CONTROL') ?></a>
+                    <li <?= Router::getRoute()['controller_url'] == 'view-log' ? 'class="uk-open"' : ''; ?>>
+                        <a class="uk-accordion-title" href="#"><img src="/img/icons-menu/preview-open.svg" width="18px" height="18px" alt=""> <?= Trl::_('OV_ATTENDANCE') ?></a>
                         <div class="<?= $uk_accordion ?>">
-                            <?= Menu::getI()->createAdminMenu(require PATH_INC . 'menu' . DS . 'adminControl.php') ?>
+                            <?= Menu::getI()->createAdminMenu(require PATH_INC . 'menu' . DS . 'adminViewControl.php') ?>
+                        </div>
+                    </li>
+                <? } ?>
+                <?php if (GroupAccess::check([5])) { ?>
+                    <li <?= Router::getRoute()['controller_url'] == 'item-controller' ? 'class="uk-open"' : ''; ?>>
+                        <a class="uk-accordion-title" href="#"><img src="/img/icons-menu/view-list.svg" width="18px" height="18px" alt=""> <?= Trl::_('ITEM_CONTROLLER_URL') ?></a>
+                        <div class="<?= $uk_accordion ?>">
+                            <?= Menu::getI()->createAdminMenu(require PATH_INC . 'menu' . DS . 'adminItemController.php') ?>
+                        </div>
+                    </li>
+                <? } ?>
+                <?php if (GroupAccess::check([5])) { ?>
+                    <li <?= Router::getRoute()['controller_url'] == 'search-bots-ip' ? 'class="uk-open"' : ''; ?>>
+                        <a class="uk-accordion-title" href="#"><img src="/img/icons-menu/local.svg" width="18px" height="18px" alt=""> <?= Trl::_('SBIP_CONTROL') ?></a>
+                        <div class="<?= $uk_accordion ?>">
+                            <?= Menu::getI()->createAdminMenu(require PATH_INC . 'menu' . DS . 'adminSbIpControl.php') ?>
                         </div>
                     </li>
                 <? } ?>

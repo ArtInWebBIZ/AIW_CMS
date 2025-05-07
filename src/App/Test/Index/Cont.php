@@ -32,6 +32,7 @@ use Core\Plugins\View\Tpl;
 use Core\Plugins\ParamsToSql;
 use Core\Modules\Pagination\Pagination;
 use App\PhotoPrint\View\Req\ZipCreate;
+use Comp\User\Lib\Check;
 use Core\Modules\Menu\MainMenu;
 use Core\Plugins\Lib\ForAll;
 use Core\Plugins\Model\DB;
@@ -93,8 +94,6 @@ class Cont
          * END
          * !!!!!!!!!! REMOVE A COMMENT ON A PRODUCTION SERVER !!!!!!!!!!
          */
-        debug(__FILE__ . ' - ' . __LINE__);
-        debug(CoreLanguages::langCodeList());
         $this->content['content'] .= 'content';
 
         return $this->content;

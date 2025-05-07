@@ -18,25 +18,26 @@ use Core\Plugins\Lib\ForAll;
 return
     [
         'tpl'                 => 'index', // select render page template: index - for all users, or 'admin'
-        'title'               => 'EXAMPLE_PAGE_TITLE',
-        'access'              => Func::getI()->checkAccess(),
-        'content_type'        => 'content_table',
-        'page_link'           => 'ContentType/',
+        'title'               => 'EXAMPLE_PAGE_TITLE', // REQUIRED VALUE
+        'item_heading'        => '', // NOT REQUIRED VALUE
+        'access'              => Func::getI()->checkAccess(), // REQUIRED VALUE
+        'content_type'        => 'content_table', // REQUIRED VALUE
+        'page_link'           => 'ContentType/', // REQUIRED VALUE
         'filters_clear_link'  => 'ContentType/Control-clear/',
         'filter_fields'       => ForAll::contIncPath() . 'filters.php',  // REQUIRED FILE – array or []
         'template'            => ForAll::contIncPath() . 'template.php', // NOT REQUIRED FILE - else include Core\Modules\Control\Require\controlTpl.php
         'control_header'      => ForAll::contIncPath() . 'header.php',   // REQUIRED FILE – value or ''
         'control_body'        => ForAll::contIncPath() . 'body.php',     // REQUIRED FILE
-        'order_by'            => 'DESC',
-        'paginationStep'      => Config::getCfg('CFG_PAGINATION'),
-        'fields_in_body'      => ['id', 'author_id', 'field_name', 'old_value', 'new_value', 'edited'],
+        'order_by'            => 'DESC', // REQUIRED VALUE or 'ASC'
+        'paginationStep'      => Config::getCfg('CFG_PAGINATION'), // REQUIRED VALUE
+        'fields_in_body'      => ['id', 'author_id', 'field_name', 'old_value', 'new_value', 'edited'], // REQUIRED VALUE
         'filter_button_label' => 'LABEL_SELECT',
-        // 'extra'               => [],
-        'extra'               => [
+        // 'extra'               => [], // REQUIRED VALUE - array or empty array []
+        'extra'               => [ // EXAMPLE 
             'status' => [
                 'sql'            => '`status` = :status AND ',
                 'filters_values' => 1,
             ],
         ],
-        'meta_params' => Func::getI()->defPageParams(),
+        'meta_params' => Func::getI()->defPageParams(), // EXAMPLE // NOT REQUIRED VALUE
     ];
