@@ -11,7 +11,6 @@ namespace App\Review\Control\Req;
 
 defined('AIW_CMS') or die;
 
-use Core\Auth;
 use Core\Plugins\Check\GroupAccess;
 
 class Func
@@ -39,10 +38,7 @@ class Func
 
             $this->checkAccess = false;
 
-            if (
-                Auth::getUserStatus() === 1 &&
-                GroupAccess::check([5])
-            ) {
+            if (GroupAccess::check([5])) {
                 $this->checkAccess = true;
             }
         }

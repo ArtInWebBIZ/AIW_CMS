@@ -11,13 +11,11 @@ namespace App\SearchBotsIp\Add\Req;
 
 defined('AIW_CMS') or die;
 
-use Core\Plugins\Check\CheckForm;
-use Core\Plugins\Check\GroupAccess;
+use Core\Plugins\Check\{CheckForm, GroupAccess};
 use Core\Plugins\Lib\ForAll;
 use Core\Plugins\Model\DB;
 use Core\Plugins\ParamsToSql;
-use Core\Plugins\View\Style;
-use Core\Plugins\View\Tpl;
+use Core\Plugins\View\{Style, Tpl};
 use Core\Router;
 
 class Func

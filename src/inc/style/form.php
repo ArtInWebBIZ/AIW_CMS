@@ -16,4 +16,5 @@ return [
     'overflow_css'   => 'overflow-hidden uk-flex uk-flex-column uk-flex-center',
     'h_margin'       => 'uk-margin-large-bottom uk-margin-top',
     'button_div_css' => 'uk-margin-large-top',
+    'submit_button_style' => '',
 ];

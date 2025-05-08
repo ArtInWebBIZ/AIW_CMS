@@ -41,11 +41,11 @@ class Func
     {
         if ($this->checkAccess === 'null') {
 
-            // $this->checkAccess = false;
+            $this->checkAccess = false;
 
-            // if (GroupAccess::check([5])) {
-            $this->checkAccess = true;
-            // }
+            if (GroupAccess::check([5])) {
+                $this->checkAccess = true;
+            }
         }
 
         return $this->checkAccess;

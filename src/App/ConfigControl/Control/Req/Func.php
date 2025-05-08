@@ -31,7 +31,7 @@ class Func
 
     public function checkAccess()
     {
-        return GroupAccess::check([5]) && Auth::getUserStatus() == 1 ? true : false;
+        return GroupAccess::check([5]) ? true : false;
     }
 
     private function __clone() {}

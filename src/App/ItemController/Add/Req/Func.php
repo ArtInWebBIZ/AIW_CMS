@@ -9,9 +9,7 @@
 
 namespace App\ItemController\Add\Req;
 
-use Core\Auth;
-use Core\Plugins\Check\CheckForm;
-use Core\Plugins\Check\GroupAccess;
+use Core\Plugins\Check\{CheckForm, GroupAccess};
 use Core\Plugins\Lib\ForAll;
 use Core\Plugins\Model\DB;
 use Core\Plugins\ParamsToSql;
@@ -46,10 +44,7 @@ class Func
         if ($this->checkAccess === 'null') {
             $this->checkAccess = false;
 
-            if (
-                Auth::getUserStatus() === 1 &&
-                GroupAccess::check([5])
-            ) {
+            if (GroupAccess::check([5])) {
                 $this->checkAccess = true;
             }
         }

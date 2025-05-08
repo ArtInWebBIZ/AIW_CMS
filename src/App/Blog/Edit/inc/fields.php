@@ -26,8 +26,8 @@ return [
     'heading'     => Item::getI()->heading(isset($v['heading']) ? $v['heading'] : ''),
     'keywords'    => Item::getI()->keywords(isset($v['keywords']) ? $v['keywords'] : ''),
     'description' => Item::getI()->description(isset($v['description']) ? $v['description'] : ''),
-    'status'      => Fields::getI()->status(isset($v['status']) ? $v['status'] : ''),
     'intro_text'  => Item::getI()->introText(isset($v['intro_text']) ? $v['intro_text'] : ''),
     'text'        => Item::getI()->text(isset($v['text']) ? $v['text'] : ''),
+    'status'      => Fields::getI()->status(isset($v['status']) ? $v['status'] : ''),
     'self_order'  => Item::getI()->selfOrder(isset($v['self_order']) ? $v['self_order'] : ''),
 ];

@@ -11,7 +11,6 @@ namespace App\ViewLog\Control\Req;
 
 defined('AIW_CMS') or die;
 
-use Core\Auth;
 use Core\Plugins\Check\GroupAccess;
 
 class Func
@@ -34,9 +33,7 @@ class Func
      */
     public function checkAccess(): bool
     {
-        return Auth::getUserStatus() === 1 &&
-            GroupAccess::check([5]) ?
-            true : false;
+        return GroupAccess::check([5]) ? true : false;
     }
 
     private function __clone() {}

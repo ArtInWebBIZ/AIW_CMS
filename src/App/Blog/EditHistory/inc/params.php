@@ -22,6 +22,7 @@ return
         'container_css'       => Style::control()['container_css'],
         'overflow_css'        => Style::control()['overflow_css'],
         'title'               => 'OV_EDIT_HISTORY',
+        'item_heading'        => 'BLOG_BLOG',
         'access'              => Func::getI()->checkAccess(),
         'content_type'        => 'item_edit_log',
         'page_link'           => Router::getRoute()['controller_url'] . '/edit-history/',

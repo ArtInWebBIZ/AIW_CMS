@@ -12,7 +12,6 @@ namespace App\Ticket\Control\Req;
 defined('AIW_CMS') or die;
 
 use Core\Plugins\Check\GroupAccess;
-use Core\{Auth};
 use Core\Plugins\Lib\ForAll;
 
 class Func
@@ -41,9 +40,7 @@ class Func
 
             $this->checkAccess = false;
 
-            if (
-                Auth::getUserStatus() == 1 && GroupAccess::check([5])
-            ) {
+            if (GroupAccess::check([5])) {
 
                 $this->checkAccess =  true;
                 #

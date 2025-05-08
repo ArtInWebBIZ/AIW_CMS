@@ -207,13 +207,13 @@ class AllItemFields
     {
         $tmp = $value;
 
-        $path = $path === null ? Router::getRoute()['controller_url'] : $path;
+        $path = $path === null ? PATH_COMP . Router::getRoute()['controller_url'] . DS . 'inc' : $path;
 
         if (
-            file_exists(PATH_INC . $path . DS . $fieldName . '.php')
+            file_exists($path . DS . $fieldName . '.php')
         ) {
 
-            $return = array_flip(require PATH_INC . $path . DS . $fieldName . '.php');
+            $return = array_flip(require $path . DS . $fieldName . '.php');
 
             if (isset($return[$value])) {
                 $tmp = Trl::_($return[$value]);

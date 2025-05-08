@@ -11,12 +11,12 @@ namespace App\Blog\Edit\Req;
 
 defined('AIW_CMS') or die;
 
-use Core\Auth;
 use Core\Plugins\Check\GroupAccess;
 
 class Func
 {
     private static $instance = null;
+    private $checkAccess     = 'null';
 
     private function __construct() {}
 
@@ -29,18 +29,13 @@ class Func
         return self::$instance;
     }
 
-    private $checkAccess = 'null';
-
-    public function checkAccess()
+    public function checkAccess(): bool
     {
         if ($this->checkAccess === 'null') {
 
             $this->checkAccess = false;
 
-            if (
-                Auth::getUserStatus() === 1 &&
-                GroupAccess::check([5])
-            ) {
+            if (GroupAccess::check([5])) {
                 $this->checkAccess = true;
             }
         }

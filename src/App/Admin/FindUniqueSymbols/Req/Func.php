@@ -9,21 +9,19 @@
 
 namespace App\Admin\FindUniqueSymbols\Req;
 
-use Core\GV;
+use Core\{GV, Router};
 use Core\Plugins\Check\{CheckForm, GroupAccess};
 use Core\Plugins\Lib\ForAll;
 use Core\Plugins\View\{Style, Tpl};
-use Core\Router;
 
 defined('AIW_CMS') or die;
 
 class Func
 {
-    private static $instance = null;
-    private $checkAccess     = 'null';
-    private $view = 'null';
-    private $checkForm = [];
-    private $compareLangFile = 'null';
+    private static $instance    = null;
+    private $checkAccess        = 'null';
+    private $view               = 'null';
+    private $checkForm          = [];
     private $checkUniqueSymbols = 'null';
 
     private function __construct() {}
