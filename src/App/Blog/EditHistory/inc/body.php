@@ -19,7 +19,7 @@ use Core\Plugins\Check\Item\AllItemFields;
     <td class="uk-text-left"><a href="<?= BaseUrl::getLangToLink() ?>blog/<?= $v['item_id'] ?>.html" target="_blank" rel="noopener noreferrer" class="uk-text-primary" uk-icon="icon: link"></a></td>
     <td class="uk-text-right"><a href="<?= GV::addToGet(['editor_id' => $v['editor_id']]) ?>"><?= $v['editor_id'] ?></a></td>
     <td class="uk-text-left"><a href="<?= BaseUrl::getLangToLink() ?>user/<?= $v['editor_id'] ?>.html" class="uk-text-primary" uk-icon="icon: link"></a></td>
-    <td class="uk-text-center"><?= AllItemFields::getAllItemFieldsName()[$v['edited_field']] ?></td>
+    <td class="uk-text-center"><a href="<?= GV::addToGet(['edited_field' => $v['edited_field']]) ?>"><?= AllItemFields::getAllItemFieldsName()[$v['edited_field']] ?></a></td>
     <td class="uk-text-center"><?= AllItemFields::getValueName($v['edited_field'], $v['old_value']) ?></td>
     <td class="uk-text-center"><?= AllItemFields::getValueName($v['edited_field'], $v['new_value']) ?></td>
     <td class="uk-text-center"><?= userDate(Config::getCfg('CFG_DATE_TIME_SECONDS_FORMAT'), $v['edited']) ?></td>

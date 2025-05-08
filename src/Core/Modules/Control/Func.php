@@ -351,17 +351,17 @@ class Func
             $get = GV::get();
 
             $params = [];
+            $fields = require $this->getParams()['filter_fields'];
 
             foreach ($get as $key => $value) {
 
                 if (
-                    is_int(Clean::unsInt($get[$key])) &&
-                    array_search($key, $this->getParams()['fields_in_body']) !== false
+                    array_search($key, $this->getParams()['fields_in_body']) !== false &&
+                    isset($fields[$key])
                 ) {
-                    $params[$key] = Clean::unsInt($get[$key]);
-                } else {
-                    continue;
+                    $params[$key] = Clean::check($value, $fields[$key]['clean']);
                 }
+                #
             }
             unset($key, $value);
 
