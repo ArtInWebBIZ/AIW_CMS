@@ -13,7 +13,6 @@ defined('AIW_CMS') or die;
 
 use App\ItemController\Add\Req\Func;
 use Core\{Content, GV};
-use Core\Plugins\Check\CheckToken;
 use Core\Plugins\{Msg, Ssl};
 
 class Cont
