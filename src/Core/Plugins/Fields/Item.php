@@ -185,6 +185,7 @@ class Item
             'info'        => Trl::_('OV_REQUIRED_FIELD') . Trl::sprintf('ITEM_INTRO_TEXT_INFO', ...[
                 Config::getCfg('CFG_MIN_INTRO_TEXT_LEN'),
                 Config::getCfg('CFG_MAX_INTRO_TEXT_LEN'),
+                'https://editorhtmlonline.com/'
             ]),
         ];
     }
