@@ -96,7 +96,7 @@ class Func
                 'title'               => 'USER_ADD',
                 'url'                 => 'user/add/',
                 'cancel_url'          => null,
-                'fields'              => ForAll::contIncPath() . 'fields.php',
+                'fields'              => require ForAll::contIncPath() . 'fields.php',
                 'button_label'        => 'USER_ADD',
             ]
         );

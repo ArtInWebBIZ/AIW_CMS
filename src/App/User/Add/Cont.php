@@ -26,6 +26,7 @@ class Cont
         $this->content['title'] = 'USER_ADD';
 
         User::getI()->deleteNotActivatedUsers();
+
         /**
          * Check user access
          */
