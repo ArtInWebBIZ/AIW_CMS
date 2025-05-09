@@ -26,12 +26,12 @@ $cardClass = 'uk-text-center uk-card uk-card-default uk-card-body';
                     <table class="uk-table uk-table-small">
                         <tr>
                             <td>
-                                <a href="https://instagram.com/olga_portugal_guide" target="_blank" rel="noopener noreferrer" class="uk-text-primary" uk-icon="icon: instagram; ratio: 2"></a><br>
-                                <a href="https://instagram.com/olga_portugal_guide" target="_blank" rel="noopener noreferrer"><?= Trl::_('OV_INSTAGRAM') ?></a>
+                                <a href="https://instagram.com/artinweb_biz" target="_blank" rel="noopener noreferrer" class="uk-text-primary" uk-icon="icon: instagram; ratio: 2"></a><br>
+                                <a href="https://instagram.com/artinweb_biz" target="_blank" rel="noopener noreferrer"><?= Trl::_('OV_INSTAGRAM') ?></a>
                             </td>
                             <td>
-                                <a href="https://www.facebook.com/andorinhaportugaltours/" target="_blank" rel="noopener noreferrer" class="uk-text-primary" uk-icon="icon: facebook; ratio: 2"></a><br>
-                                <a href="https://www.facebook.com/andorinhaportugaltours/" target="_blank" rel="noopener noreferrer"><?= Trl::_('OV_FACEBOOK') ?></a>
+                                <a href="https://www.facebook.com/artinweb-biz/" target="_blank" rel="noopener noreferrer" class="uk-text-primary" uk-icon="icon: facebook; ratio: 2"></a><br>
+                                <a href="https://www.facebook.com/artinweb-biz/" target="_blank" rel="noopener noreferrer"><?= Trl::_('OV_FACEBOOK') ?></a>
 
                             </td>
                         </tr>
