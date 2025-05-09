@@ -10,6 +10,7 @@
  * @license    GNU General Public License version 3 - see LICENSE.txt
  */
 ```
+<img src="public_html/img/slider/slider-01.jpg" alt="">
 
 <details><summary><strong>In this repository:</strong></summary>
 

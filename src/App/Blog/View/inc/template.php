@@ -9,34 +9,21 @@
 
 defined('AIW_CMS') or die;
 
-use Core\Content;
+use Core\{Content, Trl};
 use Core\Plugins\Check\Item\ItemImg;
 use Core\Plugins\Create\Gallery\Gallery;
 use Core\Plugins\View\Style;
-use Core\Trl;
 
-$cardClass = 'uk-card-body uk-padding-remove uk-flex uk-flex-center uk-flex-middle';
+$style = Style::content();
 
 ?>
-<?= Content::getContentStart(Style::content()['section_css'], Style::content()['container_css'], Style::content()['overflow_css']) ?>
-<div itemscope itemtype="http://schema.org/Offer" uk-grid>
+<?= Content::getContentStart($style['section_css'], $style['container_css'], $style['overflow_css']) ?>
+<div itemscope itemtype="http://schema.org/Article" uk-grid>
     <div>
         <div class="uk-card uk-card-body">
             <p class="uk-text-meta uk-text-right"><span itemprop="seller"><?= Trl::_('OV_SITE_SHORT_NAME') ?> <time itemprop="datePublished" datetime="<?= $v['schema_time'] ?>"></time><?= $v['status'] ?><?= $v['edit_link'] ?></span></p>
-            <div class="div-content uk-grid-match" uk-grid>
-                <div class="uk-width-1-1 uk-width-3-5@m">
-                    <div class="<?= $cardClass ?>">
-                        <div>
-                            <h1 itemprop="headline" class="uk-text-center"><?= $v['heading'] ?></h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="uk-width-expand">
-                    <div class="<?= $cardClass ?>">
-                        <img src="<?= ItemImg::getItemImgPath($v['created'], $v['id'], $v['intro_img']) ?>" alt="" class="intro-image">
-                    </div>
-                </div>
-            </div>
+            <h1 itemprop="headline" class="uk-text-center uk-margin-large-bottom"><?= $v['heading'] ?></h1>
+            <p class="uk-text-center"><img src="<?= ItemImg::getItemImgPath($v['created'], $v['id'], $v['intro_img']) ?>" alt="" class="intro-image"></p>
             <article itemprop="articleBody" class="uk-margin-medium-top">
                 <?= $v['intro_text'] ?>
                 <?= $v['text'] ?>
