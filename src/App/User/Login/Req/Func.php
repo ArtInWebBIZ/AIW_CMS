@@ -42,7 +42,8 @@ class Func
     public function getUser(): array|bool
     {
         if ($this->user == []) {
-            $this->user = User::getI()->getUserFromEmail(Clean::email(GV::post()['login_email']));
+            $this->user = isset(GV::post()['login_email']) ?
+                User::getI()->getUserFromEmail(Clean::email(GV::post()['login_email'])) : false;
         }
         return $this->user;
     }
@@ -50,6 +51,7 @@ class Func
     public function checkUserPassword()
     {
         if (
+            isset(GV::post()['login_password']) &&
             User::getI()->userPasswordHash(Clean::password(GV::post()['login_password'])) ===
             $this->getUser()['password']
         ) {
