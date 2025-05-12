@@ -91,6 +91,6 @@
 </details>
 
 <hr>
-<h3>V 1.3</h3>
+<h3>V 1.4</h3>
 
-<p><a href="https://cms.artinweb.biz/doc/setup.html" target="_blank" rel="noopener noreferrer">Checklist Installation ArtInWeb CMS</a></p>
+<p><a href="https://cms.artinweb.biz/doc/setup.html">Checklist Installation ArtInWeb CMS</a></p>

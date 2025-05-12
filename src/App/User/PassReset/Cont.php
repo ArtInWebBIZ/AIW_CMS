@@ -13,7 +13,8 @@ defined('AIW_CMS') or die;
 
 use App\User\PassReset\Req\Func;
 use Comp\User\Lib\User;
-use Core\{Config, Content, GV, Plugins\Msg, Plugins\Ssl};
+use Core\{Config, Content, GV, Plugins\Msg, Plugins\Ssl, Router, Session};
+use Core\Plugins\Save\ToLog;
 
 class Cont
 {
@@ -42,6 +43,7 @@ class Cont
                  * We display the form of sending a new password
                  */
                 $this->content['content'] = Func::getI()->getView();
+                #
             }
             /**
              * Otherwise, we process the received $_POST data
@@ -67,12 +69,10 @@ class Cont
                              * We enter the data on the change of password to the table pass_reset_note
                              */
                             Func::getI()->saveToPassResetNote();
-
                             /** 
                              * We enter the data on the change of password to the table 
                              */
                             Func::getI()->sendEmail();
-
                             /**
                              * We display a message about the successful sending of the password to the specified email
                              */
@@ -99,6 +99,11 @@ class Cont
                             );
 
                             $this->content['redirect'] = Ssl::getLinkLang();
+                            /**
+                             * Save error to log
+                             */
+                            $this->toLog(__FILE__ . ' - ' . __LINE__);
+                            #
                         }
                     }
                     /**
@@ -120,8 +125,19 @@ class Cont
                  * and display the form of obtaining a new password again
                  */
                 else {
-                    $this->content['msg'] .= Msg::getMsg_('warning', 'USER_EMAIL_NO_CORRECT');
+                    /**
+                     * View error message
+                     */
+                    $this->content['msg'] .= Func::getI()->checkForm()['msg'];
+                    /**
+                     * View pass reset form
+                     */
                     $this->content['content'] = Func::getI()->getView();
+                    /**
+                     * Save error to log
+                     */
+                    $this->toLog(__FILE__ . ' - ' . __LINE__);
+                    #
                 }
             }
             /**
@@ -178,19 +194,42 @@ class Cont
                     else {
 
                         $this->content['msg'] .= Msg::getMsg_('warning', 'USER_NO_CORRECT_RESET_CODE');
-                        $this->content['redirect'] = Ssl::getLinkLang();
+                        /**
+                         * View pass reset form
+                         */
+                        $this->content['content'] = Func::getI()->getView();
+                        /**
+                         * Save error to log
+                         */
+                        $this->toLog(__FILE__ . ' - ' . __LINE__);
+                        #
                     }
                 }
                 /**
                  * If the code is not correct
                  * We display a message about an incorrect code
-                 * Activation of the new user password
+                 * activation of the new user password
                  */
                 else {
 
                     $this->content['msg'] .= Msg::getMsg_('warning', 'USER_NO_CORRECT_RESET_CODE');
-                    $this->content['redirect'] = Ssl::getLinkLang();
+                    /**
+                     * View pass reset form
+                     */
+                    $this->content['content'] = Func::getI()->getView();
+                    /**
+                     * Save error to log
+                     */
+                    $this->toLog(__FILE__ . ' - ' . __LINE__);
+                    #
                 }
+                #
+            } else {
+                /**
+                 * Save error to log
+                 */
+                $this->toLog(__FILE__ . ' - ' . __LINE__);
+                #
             }
         }
         /**
@@ -202,5 +241,21 @@ class Cont
         }
 
         return $this->content;
+    }
+
+    private function toLog(string $fileLine)
+    {
+        /**
+         * Save message about error to log
+         */
+        ToLog::blockCounter($fileLine); // __FILE__ . ' - ' . __LINE__
+        /**
+         * Update errors count in user`s session
+         */
+        Session::updSession(
+            [
+                'block_counter' => Session::getSession()['block_counter'] + 1
+            ]
+        );
     }
 }
