@@ -9,8 +9,7 @@ CREATE TABLE IF NOT EXISTS `item` (
     `edited` INT UNSIGNED NOT NULL,
     `status` TINYINT UNSIGNED NOT NULL DEFAULT 0,
     `self_order` INT UNSIGNED NOT NULL DEFAULT 5000,
-    PRIMARY KEY (`id`),
-    FOREIGN KEY (`author_id`) REFERENCES user (`id`) ON DELETE CASCADE
+    PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 CREATE INDEX idx_item_item_controller_id ON item(`item_controller_id`);
 CREATE INDEX idx_item_author_id ON item(`author_id`);

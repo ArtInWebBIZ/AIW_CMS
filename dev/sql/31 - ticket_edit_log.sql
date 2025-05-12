@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `ticket_edit_log` (
     `new_value` VARCHAR(64) NULL DEFAULT '',
     `edited` INT UNSIGNED NOT NULL,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (editor_id) REFERENCES user (id) ON DELETE CASCADE
+    FOREIGN KEY (`ticket_id`) REFERENCES ticket (`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 CREATE INDEX idx_ticket_edit_log_ticket_id ON ticket_edit_log(`ticket_id`);
 CREATE INDEX idx_ticket_edit_log_ticket_type ON ticket_edit_log(`ticket_type`);
