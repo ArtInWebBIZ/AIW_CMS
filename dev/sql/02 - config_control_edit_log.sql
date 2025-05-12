@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS `config_control_edit_log` (
     `old_value` VARCHAR(64) NULL DEFAULT '',
     `new_value` VARCHAR(64) NULL DEFAULT '',
     `edited` INT UNSIGNED NOT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`edited_id`) REFERENCES config_control (`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 CREATE INDEX idx_config_edit_log_edited_id ON config_control_edit_log(`edited_id`);
 CREATE INDEX idx_config_edit_log_editor_id ON config_control_edit_log(`editor_id`);
