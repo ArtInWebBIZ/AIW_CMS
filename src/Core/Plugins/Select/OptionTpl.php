@@ -32,7 +32,9 @@ class OptionTpl
             $option = '<option value=""' . $selected . '>' . Trl::_('OV_VALUE_NOT_SELECTED') . '</option>';
 
             foreach ($array as $key => $value) {
-                $selected = $value == $currentValue ? ' selected="selected"' : '';
+                if ($currentValue !== null) {
+                    $selected = $value == $currentValue ? ' selected="selected"' : '';
+                }
                 $option .= '
                 <option value="' . $value . '"' . $selected . '>' . Trl::_($key) . '</option>';
             }
@@ -57,7 +59,9 @@ class OptionTpl
             $option = '<option value=""' . $selected . '>' . Trl::_('OV_VALUE_NOT_SELECTED') . '</option>';
 
             foreach ($array as $key => $value) {
-                $selected = $value == $currentValue ? ' selected="selected"' : '';
+                if ($currentValue !== null) {
+                    $selected = $value == $currentValue ? ' selected="selected"' : '';
+                }
                 $option .= '
             <option value="' . $value . '"' . $selected . '>' . Trl::_($value) . '</option>';
             }
