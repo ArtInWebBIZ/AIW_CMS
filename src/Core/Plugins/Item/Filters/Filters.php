@@ -307,7 +307,7 @@ class Filters
             $values['filters_clear_link']  = Router::getRoute()['controller_url'] . '/' . $actionUrl . '-clear/';
 
             return Tpl::view(
-                PATH_MODULES . 'Control' . DS . 'FiltersForm' . DS . 'filtersForm.php',
+                PATH_MODULES . 'Control' . DS . 'Filters' . DS . 'filtersForm.php',
                 $values
             );
             #

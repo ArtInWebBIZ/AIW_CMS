@@ -9,6 +9,8 @@
 
 namespace Core\Plugins\View;
 
+use Core\Config;
+
 defined('AIW_CMS') or die;
 
 class Tpl
@@ -27,7 +29,11 @@ class Tpl
             return ob_get_clean();
             #
         } else {
-            return 'Incorrect file ' . $path;
+            if (Config::getCfg('CFG_DEBUG') === true) {
+                return 'Incorrect file ' . $path;
+            } else {
+                return '';
+            }
         }
     }
 }

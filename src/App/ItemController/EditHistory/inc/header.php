@@ -14,7 +14,7 @@ use Core\Trl;
 ?>
 <tr>
     <td class="uk-text-center uk-text-bold"><?= Trl::_('LABEL_ID') ?></td>
-    <td class="uk-text-center uk-text-bold"><?= Trl::_('LABEL_EDITED_ID') ?></td>
+    <td class="uk-text-center uk-text-bold"><?= Trl::_('ITEM_CONTROLLER_ID') ?></td>
     <td class="uk-text-center uk-text-bold" colspan="2"><?= Trl::_('LABEL_EDITOR_ID') ?></td>
     <td class="uk-text-center uk-text-bold"><?= Trl::_('OV_EDITED_FIELD') ?></td>
     <td class="uk-text-center uk-text-bold"><?= Trl::_('LABEL_OLD_VALUE') ?></td>
