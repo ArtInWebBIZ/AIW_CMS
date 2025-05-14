@@ -9,8 +9,8 @@
 
 defined('AIW_CMS') or die;
 
+use Comp\Ticket\Lib\Select\Status;
 use Core\Plugins\Fields\Filters;
-use Core\Plugins\Select\Ticket\StatusOption;
 use Core\Trl;
 
 return [
@@ -50,15 +50,15 @@ return [
         'label'       => Trl::_('TICKET_STATUS'),
         'name'        => 'ticket_status',
         'type'        => 'select',
-        'clean'       => 'int',
+        'clean'       => 'unsInt',
         'disabled'    => false,
         'required'    => false,
-        'check'       => StatusOption::getI()->clear(),
+        'check'       => Status::getI()->clear(),
         'minlength'   => '',
         'maxlength'   => '',
         'class'       => 'uk-select',
         'placeholder' => '',
-        'value'       => isset($v['ticket_status']) ? StatusOption::getI()->option($v['ticket_status']) : StatusOption::getI()->option(),
+        'value'       => isset($v['ticket_status']) ? Status::getI()->option((int) $v['ticket_status']) : Status::getI()->option(),
         'info'        => '',
     ],
     'order_by'      => Filters::getI()->order(isset($v['order_by']) ? $v['order_by'] : ''),

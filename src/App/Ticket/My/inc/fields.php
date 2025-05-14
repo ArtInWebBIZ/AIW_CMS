@@ -50,7 +50,7 @@ return [
         'label'       => Trl::_('TICKET_STATUS'),
         'name'        => 'ticket_status',
         'type'        => 'select',
-        'clean'       => 'int',
+        'clean'       => 'unsInt',
         'disabled'    => false,
         'required'    => false,
         'check'       => Status::getI()->clear(),
@@ -58,7 +58,7 @@ return [
         'maxlength'   => '',
         'class'       => 'uk-select',
         'placeholder' => '',
-        'value'       => isset($v['ticket_status']) ? Status::getI()->option($v['ticket_status']) : Status::getI()->option(),
+        'value'       => isset($v['ticket_status']) ? Status::getI()->option((int) $v['ticket_status']) : Status::getI()->option(),
         'info'        => '',
     ],
 ];

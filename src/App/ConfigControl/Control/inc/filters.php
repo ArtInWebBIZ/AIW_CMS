@@ -46,7 +46,7 @@ return [
         'maxlength'   => '',
         'class'       => 'uk-select',
         'placeholder' => '',
-        'value'       => isset($v['order_by']) ? Order::option($v['order_by']) : Order::option(),
+        'value'       => isset($v['order_by']) ? Order::option((string) $v['order_by']) : Order::option(),
         'info'        => '',
     ],
 ];

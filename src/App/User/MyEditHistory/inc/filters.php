@@ -41,7 +41,7 @@ return [
         'maxlength'   => Config::getCfg('CFG_MAX_PASS_LEN'),
         'class'       => 'uk-select',
         'placeholder' => '',
-        'value'       => isset($v['edited_field']) ? Fields::getI()->fieldsOptionHtml($v['edited_field']) : Fields::getI()->fieldsOptionHtml(),
+        'value'       => isset($v['edited_field']) ? Fields::getI()->fieldsOptionHtml((string) $v['edited_field']) : Fields::getI()->fieldsOptionHtml(),
         'info'        => '',
     ],
     'edited_from'  => Filters::getI()->editedFrom(isset($v['edited_from']) ? $v['edited_from'] : ''),

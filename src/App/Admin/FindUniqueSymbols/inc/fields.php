@@ -25,7 +25,7 @@ return [
         'check'       => Select::clear(),
         'class'       => 'uk-select',
         'placeholder' => '',
-        'value'       => isset($v['lang_file']) ? Select::option($v['lang_file']) : Select::option(),
+        'value'       => isset($v['lang_file']) ? Select::option((string) $v['lang_file']) : Select::option(),
         'info'        => '',
     ],
 ];

@@ -94,7 +94,7 @@ class Fields
             'label'       => Trl::_('REVIEW_RATING'),
             'name'        => 'rating',
             'type'        => 'select',
-            'clean'       => 'int',
+            'clean'       => 'unsInt',
             'disabled'    => false,
             'required'    => true,
             'minlength'   => Config::getCfg('CFG_MIN_INTEGER_LEN'),
@@ -102,7 +102,7 @@ class Fields
             'check'       => Rating::getI()->clear(),
             'class'       => 'uk-select',
             'placeholder' => '',
-            'value'       => $value != '' ? Rating::getI()->option($value) : Rating::getI()->option(),
+            'value'       => $value != '' ? Rating::getI()->option((int) $value) : Rating::getI()->option(),
             'info'        => '',
         ];
     }
@@ -113,7 +113,7 @@ class Fields
             'label'       => Trl::_('OV_STATUS'),
             'name'        => 'status',
             'type'        => 'select',
-            'clean'       => 'str',
+            'clean'       => 'unsInt',
             'disabled'    => false,
             'required'    => true,
             'minlength'   => Config::getCfg('CFG_MIN_INTEGER_LEN'),
@@ -121,7 +121,7 @@ class Fields
             'check'       => Status::getI()->clear(),
             'class'       => 'uk-select',
             'placeholder' => '',
-            'value'       => $value != '' ? Status::getI()->option($value) : Status::getI()->option(),
+            'value'       => $value != '' ? Status::getI()->option((int) $value) : Status::getI()->option(),
             'info'        => '',
         ];
     }

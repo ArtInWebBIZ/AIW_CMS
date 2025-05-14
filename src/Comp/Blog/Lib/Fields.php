@@ -43,7 +43,7 @@ class Fields
             'check'       => Status::getI()->clearForm(),
             'class'       => 'uk-select',
             'placeholder' => '',
-            'value'       => $value != '' ? Status::getI()->optionForm($value) : Status::getI()->optionForm(),
+            'value'       => $value != '' ? Status::getI()->optionForm((int) $value) : Status::getI()->optionForm(),
             'info'        => '',
         ];
     }

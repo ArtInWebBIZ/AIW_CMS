@@ -32,7 +32,7 @@ return [
         'check'       => FilterFields::clear(),
         'class'       => 'uk-select',
         'placeholder' => '',
-        'value'       => isset($v['edited_field']) ? FilterFields::option($v['edited_field']) : FilterFields::option(),
+        'value'       => isset($v['edited_field']) ? FilterFields::option((string) $v['edited_field']) : FilterFields::option(),
         'info'        => '',
     ],
     'edited_from' => Filters::getI()->editedFrom(isset($v['edited_from']) ? $v['edited_from'] : ''),

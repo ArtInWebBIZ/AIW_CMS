@@ -44,7 +44,7 @@ class Item
             'check'       => Lang::getI()->clear(),
             'class'       => 'uk-select',
             'placeholder' => '',
-            'value'       => $value != '' ? Lang::getI()->option($value) : Lang::getI()->option(),
+            'value'       => $value != '' ? Lang::getI()->option((string) $value) : Lang::getI()->option(),
             'info'        => '',
         ] : null;
     }

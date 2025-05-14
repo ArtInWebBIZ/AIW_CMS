@@ -25,7 +25,7 @@ return [
         'check'       => Select::clear(),
         'class'       => 'uk-select',
         'placeholder' => '',
-        'value'       => isset($v['first_lang']) ? Select::option($v['first_lang']) : Select::option(),
+        'value'       => isset($v['first_lang']) ? Select::option((string) $v['first_lang']) : Select::option(),
         'info'        => '',
     ],
     'second_lang'   => [
@@ -40,7 +40,7 @@ return [
         'check'       => Select::clear(),
         'class'       => 'uk-select',
         'placeholder' => '',
-        'value'       => isset($v['second_lang']) ? Select::option($v['second_lang']) : Select::option(),
+        'value'       => isset($v['second_lang']) ? Select::option((string) $v['second_lang']) : Select::option(),
         'info'        => '',
     ],
     'file_name'   => [
@@ -55,7 +55,7 @@ return [
         'check'       => Select::clearFiles(),
         'class'       => 'uk-select',
         'placeholder' => '',
-        'value'       => isset($v['file_name']) ? Select::optionFiles($v['file_name']) : Select::optionFiles(),
+        'value'       => isset($v['file_name']) ? Select::optionFiles((string) $v['file_name']) : Select::optionFiles(),
         'info'        => '',
     ],
 ];

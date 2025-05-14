@@ -44,7 +44,7 @@ class Filters
             'maxlength'   => '',
             'class'       => 'uk-select',
             'placeholder' => '',
-            'value'       => $value != '' ? Order::option($value) : Order::option(),
+            'value'       => $value != '' ? Order::option((string) $value) : Order::option(),
             'info'        => '',
         ];
     }

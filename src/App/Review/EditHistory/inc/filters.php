@@ -28,7 +28,7 @@ return [
         'maxlength'   => '',
         'class'       => 'uk-select',
         'placeholder' => '',
-        'value'       => isset($v['edited_field']) ? Fields::getI()->option($v['edited_field']) : Fields::getI()->option(),
+        'value'       => isset($v['edited_field']) ? Fields::getI()->option((string) $v['edited_field']) : Fields::getI()->option(),
         'info'        => '',
     ],
     'edited_from'  => Filters::getI()->editedFrom(isset($v['edited_from']) ? $v['edited_from'] : ''),

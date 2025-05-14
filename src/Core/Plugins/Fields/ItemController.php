@@ -64,7 +64,7 @@ class ItemController
             'label'       => Trl::_('ITEM_FILTERS_TABLE'),
             'name'        => 'filters_table',
             'type'        => 'select',
-            'clean'       => 'int',
+            'clean'       => 'unsInt',
             'disabled'    => false,
             'required'    => true,
             'minlength'   => Config::getCfg('CFG_MIN_INTEGER_LEN'),
@@ -72,7 +72,7 @@ class ItemController
             'check'       => NoYes::clear(),
             'class'       => 'uk-select',
             'placeholder' => '',
-            'value'       => $value != '' ? NoYes::option($value) : NoYes::option(),
+            'value'       => $value != '' ? NoYes::option((int) $value) : NoYes::option(),
             'info'        => '',
         ];
     }

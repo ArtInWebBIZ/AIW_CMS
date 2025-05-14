@@ -196,7 +196,7 @@ class Fields
             'label'       => Trl::_('USER_TYPE'),
             'name'        => 'type',
             'type'        => 'select',
-            'clean'       => 'int',
+            'clean'       => 'unsInt',
             'disabled'    => false,
             'required'    => true,
             'minlength'   => Config::getCfg('CFG_MIN_INTEGER_LEN'),
@@ -204,7 +204,7 @@ class Fields
             'check'       => Type::getI()->clear(),
             'class'       => 'uk-select',
             'placeholder' => '',
-            'value'       => $value != '' ? Type::getI()->option($value) : Type::getI()->option(),
+            'value'       => $value != '' ? Type::getI()->option((int) $value) : Type::getI()->option(),
             'info'        => '',
         ];
     }

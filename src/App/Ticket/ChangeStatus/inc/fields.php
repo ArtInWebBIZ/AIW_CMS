@@ -9,8 +9,8 @@
 
 defined('AIW_CMS') or die;
 
+use Comp\Ticket\Lib\Select\Status;
 use Core\Config;
-use Core\Plugins\Select\Ticket\StatusOption;
 use Core\Trl;
 
 return [
@@ -35,12 +35,12 @@ return [
         'clean'       => 'int',
         'disabled'    => false,
         'required'    => true,
-        'check'       => StatusOption::getI()->clear(),
+        'check'       => Status::getI()->clear(),
         'minlength'   => '',
         'maxlength'   => '',
         'class'       => 'uk-select',
         'placeholder' => '',
-        'value'       => StatusOption::getI()->option(),
+        'value'       => Status::getI()->option(),
         'info'        => Trl::_('OV_REQUIRED_FIELD'),
     ],
 ];

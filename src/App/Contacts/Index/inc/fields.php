@@ -17,7 +17,7 @@ return [
         'label'       => Trl::_('TICKET_TYPE'),
         'name'        => 'ticket_type',
         'type'        => 'select',
-        'clean'       => 'int',
+        'clean'       => 'unsInt',
         'disabled'    => false,
         'required'    => true,
         'minlength'   => 1,
@@ -26,7 +26,7 @@ return [
         'class'       => 'uk-select',
         'placeholder' => '',
         'value'       => isset($v['ticket_type']) ?
-            Type::getI()->toContactsOption($v['ticket_type']) :
+            Type::getI()->toContactsOption((int) $v['ticket_type']) :
             Type::getI()->toContactsOption(),
         'info'        => '',
     ],

@@ -43,7 +43,7 @@ return [
         'check'       => Select::clear(),
         'class'       => 'uk-select',
         'placeholder' => '',
-        'value'       => isset($v['value_type']) ? Select::option($v['value_type']) : Select::option(),
+        'value'       => isset($v['value_type']) ? Select::option((string) $v['value_type']) : Select::option(),
         'info'        => '',
     ],
     'group_access' => Auth::getUserGroup() == 5 ? $addFields['group_access'] : null,

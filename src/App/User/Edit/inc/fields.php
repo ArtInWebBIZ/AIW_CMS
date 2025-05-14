@@ -37,7 +37,7 @@ return [
         'label'       => Trl::_('USER_GROUP'),
         'name'        => 'group',
         'type'        => 'select',
-        'clean'       => 'int',
+        'clean'       => 'unsInt',
         'disabled'    => false,
         'required'    => true,
         'check'       => Group::getI()->clear(),
@@ -45,7 +45,7 @@ return [
         'maxlength'   => '',
         'class'       => 'uk-select',
         'placeholder' => '',
-        'value'       => isset($v['group']) ? Group::getI()->optionToForm($v['group']) : Group::getI()->optionToForm(),
+        'value'       => isset($v['group']) ? Group::getI()->optionToForm((int) $v['group']) : Group::getI()->optionToForm(),
         'info'        => '',
     ] : null,
     'status'      => GroupAccess::check([5]) ? [
@@ -60,7 +60,7 @@ return [
         'maxlength'   => '',
         'class'       => 'uk-select',
         'placeholder' => '',
-        'value'       => isset($v['status']) ? Status::getI()->optionToForm($v['status']) :
+        'value'       => isset($v['status']) ? Status::getI()->optionToForm((int) $v['status']) :
             Status::getI()->optionToForm(),
         'info'        => '',
     ] : null,
