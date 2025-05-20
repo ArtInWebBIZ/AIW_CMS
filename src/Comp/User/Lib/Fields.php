@@ -13,7 +13,7 @@ defined('AIW_CMS') or die;
 
 use Core\{Trl, Config};
 use Core\Plugins\Check\GroupAccess;
-use Core\Plugins\Select\User\Type;
+use Comp\User\Lib\Select\Type;
 
 class Fields
 {
@@ -204,7 +204,7 @@ class Fields
             'check'       => Type::getI()->clear(),
             'class'       => 'uk-select',
             'placeholder' => '',
-            'value'       => $value != '' ? Type::getI()->option((int) $value) : Type::getI()->option(),
+            'value'       => Type::getI()->option($value != '' ? (int) $value : 0),
             'info'        => '',
         ];
     }

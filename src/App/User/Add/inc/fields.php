@@ -14,5 +14,5 @@ use Comp\User\Lib\Fields;
 return [
     'name'  => Fields::getI()->name(isset($v['name']) ? $v['name'] : ''),
     'email' => Fields::getI()->email(isset($v['email']) ? $v['email'] : ''),
-    // 'type'  => UserFields::getI()->type(isset($v['type']) ? $v['type'] : ''),
+    // 'type'  => Fields::getI()->type(isset($v['type']) ? $v['type'] : ''),
 ];

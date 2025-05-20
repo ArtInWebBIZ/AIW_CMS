@@ -7,7 +7,7 @@
  * @license    GNU General Public License version 3 - see LICENSE.txt
  */
 
-namespace Core\Plugins\Select\User;
+namespace Comp\User\Lib\Select;
 
 defined('AIW_CMS') or die;
 
