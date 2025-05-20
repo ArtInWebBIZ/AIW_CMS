@@ -11,11 +11,10 @@ namespace App\Ticket\View\Req;
 
 defined('AIW_CMS') or die;
 
-use Comp\Ticket\Lib\Ticket;
-use Comp\User\Lib\Name\Type;
+use Comp\Ticket\Lib\{Ticket, Type};
 use Core\Modules\Pagination\Pagination;
-use Core\Plugins\{View\Tpl, Name\TicketType, Model\DB, Crypt\CryptText, Check\Item,};
-use Core\{Trl, GV, Config, Clean, Auth, BaseUrl};
+use Core\Plugins\{View\Tpl, Model\DB, Crypt\CryptText};
+use Core\{Trl, GV, Config, Clean, Auth};
 use Core\Plugins\Check\{GroupAccess, IntPageAlias};
 use Core\DB as DbCore;
 use Core\Plugins\Lib\ForAll;
@@ -334,8 +333,8 @@ class Func
                     'button_label' => 'TICKET_ANSWER_ADD',
                 ]
             );
+            #
         } else {
-
             return '';
         }
     }

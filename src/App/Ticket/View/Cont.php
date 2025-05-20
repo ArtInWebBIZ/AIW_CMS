@@ -27,22 +27,21 @@ class Cont
         $this->content['tpl']   = GroupAccess::check([5]) ? 'admin' : 'index';
         $this->content['title'] = Func::getI()->getTicketId() > 0 ?
             Trl::_('TICKET_NUMBER') . Func::getI()->getTicketId() : '';
-
         /**
-         * Проверяем, существует ли тикет с таким ID
+         * We check whether there is a ticket with such ID
          */
         if (
             Func::getI()->getTicketId() > 0 &&
             Func::getI()->getTicket() !== false
         ) {
             /**
-             * Проверяем допуск пользователя
+             * Check the user tolerance
              */
             if (Func::getI()->checkAccess() === true) {
                 /**
-                 * Если статус тикета "Ещё не рассматривался",
-                 * и пользователь является модератором
-                 * меняем статус тикета на "Рассматривается"
+                 * If the status of a ticket "has not yet been considered",
+                 * and the user is a moderator
+                 * We change the status of a ticket to "considered"
                  */
                 if (
                     Auth::getUserStatus() == 1 &&
@@ -66,7 +65,7 @@ class Cont
                     Func::getI()->changeTicketStatus();
                     Func::getI()->changeTicketResponsible();
                     /**
-                     * Регистрируем изменения в логе изменений тикета
+                     * Registering changes in the log of ticket changes
                      */
                     Func::getI()->saveChangeStatusToLog();
 
@@ -79,26 +78,26 @@ class Cont
 
                     $this->content['msg'] .= Msg::getMsg_('warning', 'TICKET_OTHER_RESPONSIBLE');
                     /**
-                     * Выводим тикет
+                     * We display a ticket
                      */
                     $this->content['content'] = Func::getI()->viewTicket();
                     #
                 } else {
                     /**
-                     * Выводим тикет
+                     * We display a ticket
                      */
                     $this->content['content'] = Func::getI()->viewTicket();
                 }
             }
             /**
-             * Иначе, если
+             * Otherwise, if
              */
             else {
                 $this->content = (new \App\Main\NoAccess\Cont)->getContent();
             }
         }
         /**
-         * Если тикета с таким ID не существует
+         * If a thicket with such ID does not exist
          */
         else {
             $this->content = (new \App\Main\Page404\Cont)->getContent();
