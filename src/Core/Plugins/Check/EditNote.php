@@ -157,10 +157,8 @@ class EditNote
         return DB::getI()->delete(
             [
                 'table_name' => 'edit_note',
-                'where'      => ParamsToSql::getSet(
-                    $where = ['enabled_to' => time()]
-                ),
-                'array'      => $where,
+                'where'      => '`enabled_to` < :enabled_to',
+                'array'      => ['enabled_to' => time()],
             ]
         );
     }
